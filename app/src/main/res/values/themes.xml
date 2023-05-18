@@ -6,4 +6,13 @@
     </style>
 
     <style name="Theme.MotomoApp" parent="Base.Theme.MotomoApp" />
+
+    <style name="Theme.MotomoApp.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.MotomoApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.MotomoApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
