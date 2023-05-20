@@ -1,27 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NavigationDrawer">
+    >
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/orange"
-        android:theme="@style/Theme.MotomoApp.AppBarOverlay">
+        android:gravity="center"
+        >
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/motomoToolbar"
+            app:navigationIcon="@drawable/user_photo"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/orange"
-            app:popupTheme="@style/Theme.MotomoApp.PopupOverlay" />
-
+            app:title="@string/app_name"
+            />
     </com.google.android.material.appbar.AppBarLayout>
-
-    <include layout="@layout/content_navigation_drawer" />
-
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>

@@ -12,5 +12,10 @@
     <string name="navigation_drawer_giftcard">Ver mis tarjetas de regalo</string>
     <string name="navigation_drawer_myorder">Ver mi orden</string>
     <string name="user">Usuario</string>
-===== >>>>>>> f841daf (Add activities for logIn, SignUp and Navigation Drawer)
+    <string name="open_drawer">Mostrar opciones</string>
+    <string name="close_drawer">Mostrar opciones</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="usuario">Usuario</string>
+    <string name="contrase_a">Contraseña</string>
+    ===== >>>>>>> f841daf (Add activities for logIn, SignUp and Navigation Drawer)
 </resources>
