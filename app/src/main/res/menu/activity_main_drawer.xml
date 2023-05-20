@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/credit_card"
+            android:icon="@drawable/credit_card"
+            android:title="@string/navigation_drawer_creditcard" />
+        <item
+            android:id="@+id/giftcard"
+            android:icon="@drawable/giftcard"
+            android:title="@string/navigation_drawer_giftcard" />
+        <item
+            android:id="@+id/order"
+            android:icon="@drawable/my_order"
+            android:title="@string/navigation_drawer_myorder" />
+    </group>
+</menu>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    tools:context=".LogInFragment"
+    android:id="@+id/logInFragment"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/mottomologo"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        app:srcCompat="@drawable/mottomologo"
+        android:layout_marginTop="120dp"
+        android:layout_centerHorizontal="true"
+        />
+    <!--
+        <TextView
+            android:id="@+id/userText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/user"
+            android:textSize="16sp"
+            android:layout_above="@+id/logInUser"
+            android:layout_alignLeft="@+id/logInUser"/>
+            -->
+
+        <!-- TODO: Update blank fragment layout -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/logInUser"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:layout_below="@+id/mottomologo"
+        android:layout_centerHorizontal="true"
+        android:hint="Usuario">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:textSize="12sp"
+            android:maxLines="1"
+            android:maxLength="32"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <!--
+        <TextView
+            android:id="@+id/passwordText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/passwordText"
+            android:textSize="16sp"
+            android:layout_below="@+id/logInUser"
+            android:layout_alignLeft="@+id/logInUser"/>
+            -->
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/logInPassword"
+            android:layout_centerHorizontal="true"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:hint="Contraseña"
+            app:endIconMode="password_toggle"
+            android:layout_below="@+id/logInUser"
+            android:layout_marginTop="16dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textSize="12sp"
+                android:inputType="textPassword"
+                android:maxLength="128"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/accept_login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/logInPassword"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp"
+            android:text="Aceptar"
+            />
+
+    </RelativeLayout>

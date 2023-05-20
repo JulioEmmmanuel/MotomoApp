@@ -4,4 +4,13 @@
     <string name="descripcionfoodcard">Descripcion</string>
     <string name="preciofoodcard">Precio</string>
     <string name="boton_agregar">Agregar 1 al carrito</string>
+=======
+    <string name="logIn">Iniciar sesión</string>
+    <string name="signIn">Crear cuenta</string>
+    <string name="settings">Configuración</string>
+    <string name="navigation_drawer_creditcard">Ver mis tarjetas</string>
+    <string name="navigation_drawer_giftcard">Ver mis tarjetas de regalo</string>
+    <string name="navigation_drawer_myorder">Ver mi orden</string>
+    <string name="user">Usuario</string>
+===== >>>>>>> f841daf (Add activities for logIn, SignUp and Navigation Drawer)
 </resources>
