@@ -24,4 +24,8 @@
     <string name="descripcionfoodcard">Descripcion</string>
     <string name="preciofoodcard">Precio</string>
     <string name="boton_agregar">Agregar 1 al carrito</string>
+    
+    <string name="paymentMethodTitle">¿Qué medio de pago quieres utilizar?</string>
+    <string name="debitcardTitle">Tarjeta de crédito / débito</string>
+    <string name="giftcardTitle">Tarjeta de regalo</string>
 </resources>
