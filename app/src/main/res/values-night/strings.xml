@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="headerfoodcard">Header</string>
+    <string name="descripcionfoodcard">Descripcion</string>
+    <string name="preciofoodcard">Precio</string>
+    <string name="boton_agregar">Agregar 1 al carrito</string>
+</resources>

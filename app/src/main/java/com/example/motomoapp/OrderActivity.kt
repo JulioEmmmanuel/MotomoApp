@@ -1,15 +1,13 @@
 package com.example.motomoapp
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class MainActivity : AppCompatActivity() {
+class OrderActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_order)
 
-        val intent = Intent(this, OrderActivity::class.java)
-        startActivity(intent)
+        val gridFragment = supportFragmentManager.findFragmentById(R.id.fragmentGrid) as GridFragment
     }
 }
