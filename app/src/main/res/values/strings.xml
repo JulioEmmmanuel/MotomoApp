@@ -2,8 +2,6 @@
     <string name="app_name">MotomoApp</string>
     <string name="logIn">Iniciar sesión</string>
     <string name="signIn">Crear cuenta</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="settings">Configuración</string>
     <string name="title_activity_navigation_drawer">NavigationDrawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -24,6 +22,9 @@
     <string name="descripcionfoodcard">Descripcion</string>
     <string name="preciofoodcard">Precio</string>
     <string name="boton_agregar">Agregar 1 al carrito</string>
+    <string name="paymentMethodTitle">¿Qué medio de pago quieres utilizar?</string>
+    <string name="debitcardTitle">Tarjeta de crédito / débito</string>
+    <string name="giftcardTitle">Tarjeta de regalo</string>
     <string name="open_drawer">Mostrar opciones</string>
     <string name="close_drawer">Ocultar opciones</string>
     <string name="sign_up">Sign Up</string>
@@ -78,4 +79,8 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="medio_pago_pregunta">¿Qué medio de pago quieres utilizar?</string>
+    <string name="agregar">Agregar</string>
+    <string name="registro_correcto">Se ha registrado el método de pago correctamente</string>
+    <string name="continuar">Continuar</string>
 </resources>

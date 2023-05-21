@@ -47,8 +47,7 @@ class ItemDetalleActivity : AppCompatActivity() {
             }
 
             binding.btnBack.setOnClickListener{
-                val intent = Intent(this, OrderActivity::class.java)
-                startActivity(intent)
+                finish()
             }
 
             binding.btnAgregar.setOnClickListener{
@@ -56,6 +55,7 @@ class ItemDetalleActivity : AppCompatActivity() {
                 intent.putExtra("Cantidad", cantidad)
                 intent.putExtra("FoodSelected", foodItem)
                 startActivity(intent)
+                finish()
             }
         }
     }

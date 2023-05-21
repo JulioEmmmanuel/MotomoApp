@@ -3,6 +3,7 @@ package com.example.motomoapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -32,9 +33,19 @@ class CartSummaryActivity : AppCompatActivity() {
         recyclerItems = findViewById(R.id.recyclerViewCart)
         setUpRecyclerView()
 
-        binding.btnPagar.setOnClickListener {
-            val intent = Intent(this, MetodoPago::class.java)
-            startActivity(intent)
+        binding.tvTotal.text = "Total: $${Carrito.getPrice()}"
+
+        if(Carrito.getSize() > 0){
+            binding.btnPagar.visibility = View.VISIBLE
+            binding.btnPagar.setOnClickListener {
+                val intent = Intent(this, MetodoPago::class.java)
+                startActivity(intent)
+            }
+
+        }
+
+        binding.btnBack.setOnClickListener {
+            finish()
         }
     }
 
@@ -55,7 +66,7 @@ class CartSummaryActivity : AppCompatActivity() {
         recyclerItems.adapter = adapter
     }
 
-    private fun getItems():List<CartItem>{
+    private fun getItems():MutableList<CartItem>{
         return Carrito.getItems()
     }
 }

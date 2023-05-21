@@ -37,6 +37,15 @@ class OrderActivity : AppCompatActivity() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        if(Carrito.Orden.getSize() > 0){
+            binding.btnCarrito.visibility = View.VISIBLE
+            binding.btnCarrito.text = "Ver carrito (${Carrito.Orden.getTotalItems()})"
+        }
+    }
+
     private fun setTabs(){
         val pager = findViewById<ViewPager>(R.id.viewPager)
         val tab = findViewById<TabLayout>(R.id.tabs)
