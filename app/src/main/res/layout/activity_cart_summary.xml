@@ -47,6 +47,7 @@
             android:id="@+id/btnPagar"
             style="@style/ButtonFull"
             android:text="@string/pagar"
+            android:visibility="gone"
             android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

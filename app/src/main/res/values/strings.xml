@@ -79,4 +79,8 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="medio_pago_pregunta">¿Qué medio de pago quieres utilizar?</string>
+    <string name="agregar">Agregar</string>
+    <string name="registro_correcto">Se ha registrado el método de pago correctamente</string>
+    <string name="continuar">Continuar</string>
 </resources>

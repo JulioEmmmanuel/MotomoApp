@@ -1,5 +1,6 @@
 package com.example.motomoapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -18,7 +19,6 @@ class PaymentMethodActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment_method)
 
-        paymentFormContainer = findViewById(R.id.paymentFormContainer)
         val listView = findViewById<ListView>(R.id.paymentListView)
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, paymentMethods)
         listView.adapter = adapter
@@ -31,18 +31,19 @@ class PaymentMethodActivity : AppCompatActivity() {
     }
 
     private fun showPaymentForm(paymentMethod: String) {
-        val formLayoutId = when (paymentMethod) {
-            "Tarjeta de crédito" -> R.layout.activity_credit_card
-            "PayPal" -> R.layout.activity_gift_card
-            "Pago en efectivo" -> R.layout.activity_cash
-            else -> return
+        when (paymentMethod) {
+            "Pago con tarjeta" -> {
+                val intent = Intent(this, CreditCardActivity::class.java)
+                startActivity(intent)
+            }
+            "Tarjeta de regalo" -> {
+                val intent = Intent(this, GiftCardActivity::class.java)
+                startActivity(intent)
+            }
+            "Efectivo" -> {
+                val intent = Intent(this, CashActivity::class.java)
+                startActivity(intent)
+            }
         }
-
-        val inflater = LayoutInflater.from(this)
-        val formView = inflater.inflate(formLayoutId, paymentFormContainer, false)
-
-        // Si el formulario ya estaba mostrado, lo reemplazamos
-        paymentFormContainer.removeAllViews()
-        paymentFormContainer.addView(formView)
     }
 }

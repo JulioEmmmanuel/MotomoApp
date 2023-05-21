@@ -55,6 +55,11 @@ class Carrito {
             price -= items[index].price.substring(1).toInt()
             totalItems--
 
+            if(amounts[index] == 0){
+                items.removeAt(index)
+                amounts.remove(index)
+            }
+
             Log.d("Aviso", "Precio: $price")
             Log.d("Aviso", "Elementos en carrito: ${totalItems}")
 
@@ -64,7 +69,7 @@ class Carrito {
             return items[index]
         }
 
-        public fun getItems(): List<CartItem> {
+        public fun getItems(): MutableList<CartItem> {
 
             val cartItems =  items.mapIndexed { index, it ->
                 CartItem(
@@ -75,7 +80,7 @@ class Carrito {
                     it.idImage,
                     amounts[index])
             }
-            return cartItems
+            return cartItems.toMutableList()
 
         }
 
