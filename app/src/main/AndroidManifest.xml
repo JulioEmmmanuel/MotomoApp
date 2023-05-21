@@ -19,7 +19,7 @@
             android:name=".OrderActivity"
             android:exported="true" />
         <activity
-            android:name=".MenuInicio"
+            android:name=".MenuInicioActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"

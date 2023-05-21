@@ -6,16 +6,16 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import com.example.motomoapp.databinding.ActivityItemDetalleBinding
+import androidx.fragment.app.FragmentManager
 import com.example.motomoapp.databinding.ActivityMenuInicioBinding
 
-class MenuInicio : AppCompatActivity() {
+class MenuInicioActivity : AppCompatActivity() {
 
     //Variables Globales
     private lateinit var binding: ActivityMenuInicioBinding
 
-    private val logInFragment:LogInFragment  = LogInFragment()
-    private val signUpFragment:SignUpFragment = SignUpFragment()
+    private lateinit var logInFragment:LogInFragment
+    private lateinit var signUpFragment:SignUpFragment
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,14 +28,12 @@ class MenuInicio : AppCompatActivity() {
         this.setSupportActionBar(appBar)
         setupDrawer(appBar)
 
-        //Lógica de programación
-        setCurrentFragment(signUpFragment)
-        createFragments()
-    }
+        logInFragment = LogInFragment()
+        signUpFragment = SignUpFragment()
 
-    private fun setupDrawer(toolbar: Toolbar){
-        val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
-        val drawerToggle = ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open_drawer,R.string.close_drawer)
+        //Lógica de programación
+        setCurrentFragment(logInFragment)
+        createFragments()
     }
 
     private fun createFragments() {
@@ -57,9 +55,15 @@ class MenuInicio : AppCompatActivity() {
     }
 
     private fun setCurrentFragment(fragment: Fragment){
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction
-            .replace(R.id.containerView,fragment, "fragmento")
+        val fm: FragmentManager = supportFragmentManager
+        fm.beginTransaction()
+            .replace(R.id.frameLayout, fragment)
             .commit()
-        }
+    }
+
+    private fun setupDrawer(toolbar: Toolbar){
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
+        val drawerToggle = ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open_drawer,R.string.close_drawer)
+    }
+
 }
