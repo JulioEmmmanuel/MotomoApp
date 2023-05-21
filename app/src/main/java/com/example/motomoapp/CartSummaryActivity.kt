@@ -33,7 +33,7 @@ class CartSummaryActivity : AppCompatActivity() {
         setUpRecyclerView()
 
         binding.btnPagar.setOnClickListener {
-            val intent = Intent(this, MetodoPago::class.java)
+            val intent = Intent(this, SelectPaymentMethodActivity::class.java)
             startActivity(intent)
         }
     }

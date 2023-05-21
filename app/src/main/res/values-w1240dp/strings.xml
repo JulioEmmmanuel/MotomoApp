@@ -4,4 +4,12 @@
     <string name="navigation_drawer_giftcard">Ver mis tarjetas de regalo</string>
     <string name="navigation_drawer_myorder">Ver mi orden</string>
     <string name="user">Usuario</string>
+    <string name="selectPaymentMethod">¿Qué medio de pago quieres utilizar?</string>
+    <string name="creditCardPayment">Pago con Tarjeta</string>
+    <string name="continueOrder">Continuar con mi orden</string>
+    <string name="giftCardPayment">Tarjeta de regalo</string>
+    <string name="cashPayment">Efectivo</string>
+    <string name="paymentDone">Pago realizado</string>
+    <string name="orderDone">Hemos creado tu orden, en un momento te entregaremos tu pedido</string>
+    <string name="processingPayment">Procesando pago</string>
 </resources>

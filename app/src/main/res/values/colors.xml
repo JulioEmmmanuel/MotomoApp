@@ -4,7 +4,7 @@
     <color name="white">#EBEBEB</color>
     <color name="orange">#F8230F</color>
     <color name="colorPrimary">#F8230F</color>
-    <color name="colorPrimaryDark">#02228d</color>
-    <color name="colorAccent">#d80000</color>
+    <color name="colorPrimaryDark">#d80000</color>
+    <color name="colorAccent">#02228d</color>
     <color name="cardBackground">#EDEDED</color>
 </resources>

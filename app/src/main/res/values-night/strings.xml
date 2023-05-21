@@ -14,12 +14,20 @@
     <string name="user">Usuario</string>
     <string name="open_drawer">Mostrar opciones</string>
     <string name="close_drawer">Mostrar opciones</string>
-    <string name="sign_up">Sign Up</string>
+    <string name="sign_up">Crear cuenta</string>
     <string name="usuario">Usuario</string>
     <string name="contrase_a">Contraseña</string>
+    <string name="selectPaymentMethod">¿Qué medio de pago quieres utilizar?</string>
+    <string name="creditCardPayment">Pago con Tarjeta</string>
+    <string name="continueOrder">Continuar con mi orden</string>
+    <string name="giftCardPayment">Tarjeta de regalo</string>
+    <string name="cashPayment">Efectivo</string>
+    <string name="paymentDone">Pago realizado</string>
+    <string name="orderDone">Hemos creado tu orden, en un momento te entregaremos tu pedido</string>
     <string name="ver_carrito">Ver carrito (1)</string>
     <string name="subtotal">Subtotal</string>
     <string name="cantidad">Cantidad</string>
     <string name="pagar">Pagar</string>
+    <string name="processingPayment">Procesando pago</string>
     ===== >>>>>>> f841daf (Add activities for logIn, SignUp and Navigation Drawer)
 </resources>
