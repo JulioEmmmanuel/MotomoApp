@@ -4,12 +4,14 @@ import android.os.Parcel
 import android.os.Parcelable
 
 class FoodItem (
+    val id: Int,
     val name: String,
     val description: String,
     val price: String,
     val idImage: Int
 )  : Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readInt()!!,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
@@ -18,6 +20,7 @@ class FoodItem (
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(id)
         parcel.writeString(name)
         parcel.writeString(description)
         parcel.writeString(price)

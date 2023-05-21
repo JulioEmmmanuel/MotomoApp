@@ -1,5 +1,6 @@
 package com.example.motomoapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -43,6 +44,18 @@ class ItemDetalleActivity : AppCompatActivity() {
                     binding.tvCantidad.text = cantidad.toString()
                     binding.btnAgregar.text = "Agregar $cantidad al carrito"
                 }
+            }
+
+            binding.btnBack.setOnClickListener{
+                val intent = Intent(this, OrderActivity::class.java)
+                startActivity(intent)
+            }
+
+            binding.btnAgregar.setOnClickListener{
+                val intent = Intent(this, OrderActivity::class.java)
+                intent.putExtra("Cantidad", cantidad)
+                intent.putExtra("FoodSelected", foodItem)
+                startActivity(intent)
             }
         }
     }
