@@ -9,7 +9,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val intent = Intent(this, OrderActivity::class.java)
+        val intent = Intent(this, MenuInicioActivity::class.java)
         startActivity(intent)
     }
+
+
 }

@@ -1,80 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
-    tools:context=".LogInFragment"
-    android:id="@+id/signInFragment"
+    tools:context=".SignUpFragment"
+    android:id="@+id/signUpFragment"
     android:orientation="vertical">
+
 
     <ImageView
         android:id="@+id/mottomologo"
         android:layout_width="140dp"
         android:layout_height="140dp"
-        app:srcCompat="@drawable/mottomologo"
         android:layout_marginTop="120dp"
-        android:layout_centerHorizontal="true"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/mottomologo" />
 
-    <!-- <TextView
-        android:id="@+id/signInText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="64dp"
-        android:layout_marginBottom="64dp"
-        android:text="@string/signIn"
-        android:textSize="34sp" />
-    -->
+    <TextView
+        style="@style/Title.H2"
+        android:text="@string/sign_up"
+        app:layout_constraintBottom_toTopOf="@+id/logInUser"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mottomologo" />
 
-    <!-- TODO: Update blank fragment layout -->
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/signInUser"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:layout_below="@+id/mottomologo"
-        android:layout_centerHorizontal="true"
-        android:hint="Usuario">
+        android:id="@+id/logInUser"
+        style="@style/InputLay"
+        android:layout_marginTop="88dp"
+        android:hint="@string/usuario"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mottomologo">
+
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:textSize="12sp"
-            android:maxLines="1"
-            android:maxLength="32"/>
+            style="@style/EditText"
+            android:inputType="textPassword" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/signInPassword"
-        android:layout_centerHorizontal="true"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:hint="Contraseña"
+        android:id="@+id/logInPassword"
+        style="@style/InputLay"
+        android:hint="@string/contrase_a"
         app:endIconMode="password_toggle"
-        android:layout_below="@+id/signInUser"
-        android:layout_marginTop="16dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logInUser">
+
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:textSize="12sp"
-            android:inputType="textPassword"
-            android:maxLength="128"/>
+            style="@style/EditText"
+            android:inputType="text"
+            />
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/sign_In_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/signInPassword"
-        android:text="Aceptar"
+        android:id="@+id/accept_login_button"
+        style="@style/ButtonFull"
+        android:layout_marginTop="64dp"
+        android:text="@string/aceptar"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logInPassword" />
 
-</RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
