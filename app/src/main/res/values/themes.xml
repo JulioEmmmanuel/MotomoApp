@@ -35,14 +35,56 @@
     <style name="ButtonHalf" parent="ThemeOverlay.Material3.Button">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">50dp</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:textSize">18dp</item>
     </style>
 
-    <style name="ButtonFull" parent="TextAppearance.MaterialComponents.Button">
-        <item name="android:layout_width">100dp</item>
-        <item name="android:layout_height">50dp</item>
+    <style name="ButtonFull" parent="ThemeOverlay.Material3.Button">
+        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_height">55dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
         <item name="android:textSize">18dp</item>
     </style>
+
+    <style name="InputLay" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="android:layout_width">320dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">12dp</item>
+    </style>
+
+    <style name="EditText" parent="ThemeOverlay.Material3.TextInputEditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLength">32</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="roundButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="icon">@drawable/back</item>
+        <item name="iconSize">20dp</item>
+        <item name="iconPadding">0dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="cornerRadius">100dp</item>
+    </style>
+
+    <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:statusBarColor">@color/colorAccent</item>
+    </style>
+
 
     <style name="Theme.MotomoApp" parent="Base.Theme.MotomoApp" />
 

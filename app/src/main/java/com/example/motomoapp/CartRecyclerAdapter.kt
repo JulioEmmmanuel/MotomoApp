@@ -1,0 +1,74 @@
+package com.example.motomoapp
+
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+
+class CartRecyclerAdapter(
+    private val cartItems: List<CartItem>,
+    private val tvTotal: TextView): RecyclerView.Adapter<CartRecyclerAdapter.ViewHolder>()
+{
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val cartItem = cartItems.get(position)
+        holder.bind(cartItem, tvTotal)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
+        return ViewHolder(layoutInflater.inflate(R.layout.product_card, parent, false))
+    }
+
+    override fun getItemCount(): Int {
+        return cartItems.size
+    }
+
+    class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+
+        //obteniendo las referencias a las Views
+        val itemName = view.findViewById(R.id.tvNombreItem) as TextView
+        val precio = view.findViewById(R.id.tvPrecioItem) as TextView
+        val subtotal = view.findViewById(R.id.tvSubtotalItem) as TextView
+        val image = view.findViewById(R.id.imgFoodItem) as ImageView
+        val btnMas = view.findViewById(R.id.btnMas) as Button
+        val btnMenos = view.findViewById(R.id.btnMenos) as Button
+        val cantidad = view.findViewById(R.id.tvCantidad) as TextView
+
+        //"atando" los datos a las Views
+        fun bind(cartItem: CartItem, tvTotal: TextView){
+            itemName.text = cartItem.name
+            precio.text = "Precio: ${cartItem.precio}"
+            subtotal.text = "Subtotal: $${cartItem.subtotal}"
+            cantidad.text = cartItem.cantidad.toString()
+            image.setImageResource(cartItem.idImagen)
+
+            btnMas.setOnClickListener{
+                val cantidadNum = (cantidad.text as String).toInt()
+                val subtotalNum = (subtotal.text.substring(11) as String).toInt()
+                val precioNum = (precio.text.substring(9) as String).toInt()
+                if(cantidadNum < 10){
+                    cantidad.text = (cantidadNum+1).toString();
+                    subtotal.text = "Subtotal: $${subtotalNum+precioNum}"
+                    Carrito.addOne(cartItem.id)
+                    tvTotal.text = "Total: ${Carrito.getPrice()}"
+                }
+            }
+
+            btnMenos.setOnClickListener{
+                val cantidadNum = (cantidad.text as String).toInt()
+                val subtotalNum = (subtotal.text.substring(11) as String).toInt()
+                val precioNum = (precio.text.substring(9) as String).toInt()
+                if(cantidadNum > 1){
+                    cantidad.text = (cantidadNum-1).toString();
+                    subtotal.text = "Subtotal: $${subtotalNum-precioNum}"
+                    Carrito.removeOne(cartItem.id)
+                    tvTotal.text = "Total: $${Carrito.getPrice()}"
+                }
+            }
+        }
+    }
+}

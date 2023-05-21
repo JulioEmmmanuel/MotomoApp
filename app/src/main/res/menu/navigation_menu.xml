@@ -7,7 +7,7 @@
         android:icon="@drawable/login"/>
 
     <item
-        android:id="@+id/signIn"
+        android:id="@+id/signUp"
         android:title="@string/signIn"
         android:icon="@drawable/signup"/>
 

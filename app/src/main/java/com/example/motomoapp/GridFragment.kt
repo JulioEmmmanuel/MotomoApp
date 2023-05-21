@@ -13,6 +13,7 @@ class GridFragment: Fragment() {
     private lateinit var adapter:FoodRecyclerAdapter
     private lateinit var recyclerItems:RecyclerView
     private var listener: (FoodItem) -> Unit = {}
+    private var foodItems:MutableList<FoodItem> = ArrayList()
 
 
     override fun onCreateView(
@@ -34,16 +35,8 @@ class GridFragment: Fragment() {
         setUpRecyclerView()
     }
 
-    //generamos datos dummy con este método
-    private fun getFoodItems(): MutableList<FoodItem>{
-        var items:MutableList<FoodItem> = ArrayList()
-
-        items.add(FoodItem("Sopa Miso", "Nuestra mejor sopa", "$50", R.drawable.sopa_miso))
-        items.add(FoodItem("Sushi de camarón", "Nuestro mejor sushi", "$70", R.drawable.sushi_camaron))
-        items.add(FoodItem("Pulpo asado", "Nuevo platillo", "$45", R.drawable.pulpo))
-        items.add(FoodItem("Yakimeshi", "Con verduras", "$30", R.drawable.yakimeshi))
-
-        return items
+    public fun setFoodItems(items: MutableList<FoodItem>){
+        foodItems = items;
     }
 
     //configuramos lo necesario para desplegar el RecyclerView
@@ -53,7 +46,7 @@ class GridFragment: Fragment() {
         // indicamos el tipo de layoutManager
         recyclerItems.layoutManager = GridLayoutManager(activity, 2)
         //seteando el Adapter
-        adapter = FoodRecyclerAdapter( requireActivity(), getFoodItems())
+        adapter = FoodRecyclerAdapter( requireActivity(), foodItems)
         //asignando el Adapter al RecyclerView
         recyclerItems.adapter = adapter
     }

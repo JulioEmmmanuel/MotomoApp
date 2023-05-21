@@ -30,10 +30,9 @@
 
         <TextView
             android:id="@+id/tvNombreItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="@string/headerfoodcard"
             android:textSize="18sp"
+            style="@style/Title.H3"
             android:textStyle="bold"
             android:layout_marginTop="5sp"
             android:layout_marginStart="5sp"
@@ -42,10 +41,8 @@
 
         <TextView
             android:id="@+id/tvDescripcionItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="@string/descripcionfoodcard"
-            android:textSize="14sp"
+            style="@style/Text"
             android:layout_marginTop="3sp"
             android:layout_marginStart="5sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,13 +50,11 @@
 
         <TextView
             android:id="@+id/tvPrecioItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/Text"
+            android:textStyle="bold"
             android:layout_marginTop="3sp"
             android:layout_marginBottom="5sp"
             android:text="@string/preciofoodcard"
-            android:textSize="14sp"
-            android:textStyle="bold"
             android:layout_marginStart="5sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
