@@ -3,17 +3,23 @@ package com.example.motomoapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.viewpager.widget.ViewPager
+import com.example.motomoapp.databinding.ActivityOrderBinding
 import com.google.android.material.tabs.TabLayout
 
 class OrderActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityOrderBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_order)
+        binding = ActivityOrderBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         val appBar = findViewById<Toolbar>(R.id.motomoToolbar)
         this.setSupportActionBar(appBar)
@@ -55,6 +61,11 @@ class OrderActivity : AppCompatActivity() {
         val cantidad = intent.getIntExtra("Cantidad", 0)
         if(foodItem != null){
             Carrito.Orden.addItem(foodItem, cantidad)
+        }
+
+        if(Carrito.Orden.getSize() > 0){
+            binding.btnCarrito.visibility = View.VISIBLE
+            binding.btnCarrito.text = "Ver carrito (${Carrito.Orden.getTotalItems()})"
         }
 
     }

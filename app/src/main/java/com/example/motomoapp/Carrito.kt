@@ -9,6 +9,7 @@ class Carrito {
         private val amounts = mutableListOf<Int>()
 
         private var price = 0
+        private var totalItems = 0
 
         public fun addItem(foodItem: FoodItem, amount:Int){
             val index = items.indexOfFirst {
@@ -23,6 +24,7 @@ class Carrito {
             }
 
             price += amount * foodItem.price.substring(1).toInt()
+            totalItems += amount
 
             Log.d("Aviso", "Precio: $price")
             Log.d("Aviso", "Elementos en carrito: ${items.size}")
@@ -35,6 +37,10 @@ class Carrito {
 
         public fun getSize():Int{
             return items.size
+        }
+
+        public fun getTotalItems():Int{
+            return totalItems
         }
 
         private fun findElement():Int{
