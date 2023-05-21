@@ -20,16 +20,25 @@
         android:layout_height="wrap_content"
         tools:context=".ItemDetalleActivity">
 
+
         <ImageView
             android:id="@+id/imgDescripcion"
             android:layout_width="match_parent"
             android:layout_height="400dp"
             android:adjustViewBounds="true"
+            android:elevation="1dp"
             android:scaleType="centerCrop"
             android:src="@drawable/food"
+            android:translationZ="-1dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline5" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBack"
+            style="@style/roundButton"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="@+id/guideline5" />
 
         <TextView
@@ -140,6 +149,7 @@
         android:layout_gravity="start"
         android:layout_height="match_parent"
         android:layout_width="wrap_content"
-        app:menu="@menu/activity_main_drawer" />
+        app:menu="@menu/activity_main_drawer"
+        />
 
 </androidx.drawerlayout.widget.DrawerLayout>
