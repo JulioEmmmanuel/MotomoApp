@@ -52,6 +52,22 @@
             android:name=".OrderActivity"
             android:exported="true" />
         <activity
+            android:name=".PaymentMethodActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".CreditCardActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".GiftCardActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".CashActivity"
+            android:exported="true" />
+
+        <activity
             android:name=".MenuInicioActivity"
             android:exported="true" />
         <activity

@@ -28,6 +28,8 @@
     <string name="subtotal">Subtotal</string>
     <string name="cantidad">Cantidad</string>
     <string name="pagar">Pagar</string>
+    <string name="medio_pago_pregunta">¿Qué medio de pago quieres utilizar?</string>
+    <string name="agregar">Agregar</string>
     <string name="processingPayment">Procesando pago</string>
     ===== >>>>>>> f841daf (Add activities for logIn, SignUp and Navigation Drawer)
 </resources>

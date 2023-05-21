@@ -9,13 +9,15 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class CartRecyclerAdapter(
-    private val cartItems: List<CartItem>,
+    private val cartItems: MutableList<CartItem>,
     private val tvTotal: TextView): RecyclerView.Adapter<CartRecyclerAdapter.ViewHolder>()
 {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val cartItem = cartItems.get(position)
-        holder.bind(cartItem, tvTotal)
+        holder.bind(cartItem, tvTotal, fun():Unit {
+            deleteItem(position)
+        } )
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,6 +27,12 @@ class CartRecyclerAdapter(
 
     override fun getItemCount(): Int {
         return cartItems.size
+    }
+
+    private fun deleteItem(position: Int) {
+        cartItems.removeAt(position)
+        notifyItemRemoved(position)
+        notifyItemRangeChanged(position, cartItems.size)
     }
 
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
@@ -39,7 +47,7 @@ class CartRecyclerAdapter(
         val cantidad = view.findViewById(R.id.tvCantidad) as TextView
 
         //"atando" los datos a las Views
-        fun bind(cartItem: CartItem, tvTotal: TextView){
+        fun bind(cartItem: CartItem, tvTotal: TextView, delete: () -> Unit){
             itemName.text = cartItem.name
             precio.text = "Precio: ${cartItem.precio}"
             subtotal.text = "Subtotal: $${cartItem.subtotal}"
@@ -54,7 +62,7 @@ class CartRecyclerAdapter(
                     cantidad.text = (cantidadNum+1).toString();
                     subtotal.text = "Subtotal: $${subtotalNum+precioNum}"
                     Carrito.addOne(cartItem.id)
-                    tvTotal.text = "Total: ${Carrito.getPrice()}"
+                    tvTotal.text = "Total: $${Carrito.getPrice()}"
                 }
             }
 
@@ -67,6 +75,10 @@ class CartRecyclerAdapter(
                     subtotal.text = "Subtotal: $${subtotalNum-precioNum}"
                     Carrito.removeOne(cartItem.id)
                     tvTotal.text = "Total: $${Carrito.getPrice()}"
+                } else {
+                    Carrito.removeOne(cartItem.id)
+                    tvTotal.text = "Total: $${Carrito.getPrice()}"
+                    delete()
                 }
             }
         }
