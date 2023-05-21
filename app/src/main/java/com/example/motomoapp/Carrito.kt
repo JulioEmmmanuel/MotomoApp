@@ -27,12 +27,56 @@ class Carrito {
             totalItems += amount
 
             Log.d("Aviso", "Precio: $price")
-            Log.d("Aviso", "Elementos en carrito: ${items.size}")
+            Log.d("Aviso", "Elementos en carrito: ${totalItems}")
+        }
+
+        public fun addOne(id:Int){
+            val index = items.indexOfFirst {
+                it.id == id
+            }
+
+            amounts[index]++;
+
+            price += items[index].price.substring(1).toInt()
+            totalItems++
+
+            Log.d("Aviso", "Precio: $price")
+            Log.d("Aviso", "Elementos en carrito: ${totalItems}")
+
+        }
+
+        public fun removeOne(id:Int){
+            val index = items.indexOfFirst {
+                it.id == id
+            }
+
+            amounts[index]--;
+
+            price -= items[index].price.substring(1).toInt()
+            totalItems--
+
+            Log.d("Aviso", "Precio: $price")
+            Log.d("Aviso", "Elementos en carrito: ${totalItems}")
 
         }
 
         public fun getItem(index:Int):FoodItem{
             return items[index]
+        }
+
+        public fun getItems(): List<CartItem> {
+
+            val cartItems =  items.mapIndexed { index, it ->
+                CartItem(
+                    it.id,
+                    it.name,
+                    it.price,
+                    (amounts[index] * it.price.substring(1).toInt()).toString(),
+                    it.idImage,
+                    amounts[index])
+            }
+            return cartItems
+
         }
 
         public fun getSize():Int{
@@ -43,9 +87,8 @@ class Carrito {
             return totalItems
         }
 
-        private fun findElement():Int{
-
-            return 1
+        public fun getPrice():Int{
+            return price
         }
 
     }

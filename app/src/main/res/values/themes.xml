@@ -77,6 +77,8 @@
         <item name="cornerRadius">100dp</item>
     </style>
 
+
+
     <style name="Theme.MotomoApp" parent="Base.Theme.MotomoApp" />
 
     <style name="Theme.MotomoApp.NoActionBar">

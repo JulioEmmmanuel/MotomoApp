@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/cardBackground"
+    app:cardCornerRadius="5dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    android:layout_marginBottom="5dp"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imgFoodItem"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/food"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvNombreItem"
+            style="@style/Title.H3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5sp"
+            android:layout_marginTop="5sp"
+            android:text="@string/headerfoodcard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgFoodItem" />
+
+        <TextView
+            android:id="@+id/tvPrecioItem"
+            style="@style/Text"
+            android:layout_marginStart="5sp"
+            android:layout_marginTop="3sp"
+            android:text="@string/preciofoodcard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNombreItem" />
+
+        <TextView
+            android:id="@+id/tvSubtotalItem"
+            style="@style/Text"
+            android:layout_marginStart="5sp"
+            android:layout_marginTop="3sp"
+            android:layout_marginBottom="5sp"
+            android:text="@string/subtotal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvPrecioItem" />
+
+
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline12"
+            app:layout_constraintStart_toStartOf="@+id/guideline10"
+            app:layout_constraintTop_toBottomOf="@+id/imgFoodItem">
+
+            <Button
+                android:id="@+id/btnMenos"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:background="@drawable/left_corner"
+                android:text="-"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/tvCantidad"
+                style="@style/Text"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:height="50dp"
+                android:gravity="center"
+                android:text="1" />
+
+            <Button
+                android:id="@+id/btnMas"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:background="@drawable/right_corner"
+                android:text="+"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="208dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="366dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

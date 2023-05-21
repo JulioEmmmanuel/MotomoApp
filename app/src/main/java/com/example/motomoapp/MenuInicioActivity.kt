@@ -26,7 +26,6 @@ class MenuInicioActivity : AppCompatActivity() {
 
         val appBar = findViewById<Toolbar>(R.id.motomoToolbar)
         this.setSupportActionBar(appBar)
-        setupDrawer(appBar)
 
         logInFragment = LogInFragment()
         signUpFragment = SignUpFragment()
@@ -61,9 +60,5 @@ class MenuInicioActivity : AppCompatActivity() {
             .commit()
     }
 
-    private fun setupDrawer(toolbar: Toolbar){
-        val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
-        val drawerToggle = ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open_drawer,R.string.close_drawer)
-    }
 
 }

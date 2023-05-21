@@ -1,5 +1,6 @@
 package com.example.motomoapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -25,6 +26,18 @@ class OrderActivity : AppCompatActivity() {
         this.setSupportActionBar(appBar)
         setupDrawer(appBar)
 
+        updateCart()
+
+        setTabs()
+
+        binding.btnCarrito.setOnClickListener {
+            val intent = Intent(this, CartSummaryActivity::class.java)
+            startActivity(intent)
+        }
+
+    }
+
+    private fun setTabs(){
         val pager = findViewById<ViewPager>(R.id.viewPager)
         val tab = findViewById<TabLayout>(R.id.tabs)
 
@@ -45,18 +58,14 @@ class OrderActivity : AppCompatActivity() {
         adapter.addFragment(gridFragment2, "Ramen")
         adapter.addFragment(gridFragment3, "Bebidas")
 
-
         // Adding the Adapter to the ViewPager
         pager.adapter = adapter
 
         // bind the viewPager with the TabLayout.
         tab.setupWithViewPager(pager)
-
     }
 
-    override fun onResume() {
-        super.onResume()
-
+    private fun updateCart(){
         val foodItem = intent.getParcelableExtra<FoodItem>("FoodSelected")
         val cantidad = intent.getIntExtra("Cantidad", 0)
         if(foodItem != null){
@@ -67,7 +76,6 @@ class OrderActivity : AppCompatActivity() {
             binding.btnCarrito.visibility = View.VISIBLE
             binding.btnCarrito.text = "Ver carrito (${Carrito.Orden.getTotalItems()})"
         }
-
     }
 
     private fun setupDrawer(toolbar: Toolbar){
