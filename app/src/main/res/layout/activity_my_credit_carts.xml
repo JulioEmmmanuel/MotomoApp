@@ -28,11 +28,16 @@
     <FrameLayout
         android:id="@+id/creditCardsFragment"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineTop"
+        android:layout_height="0dp"
+        android:padding="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineBottom"/>
+        app:layout_constraintTop_toTopOf="@+id/guidelineTop">
+        <include
+            android:id="@+id/card_item"
+            layout="@layout/fragment_card_item"/>
+    </FrameLayout>
 
 
     <com.google.android.material.button.MaterialButton
@@ -59,5 +64,24 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="200dp" />
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <include layout="@layout/app_bar_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <com.google.android.material.navigation.NavigationView
+            app:headerLayout="@layout/drawer_header"
+            android:id="@+id/nav_view"
+            android:layout_gravity="start"
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            app:menu="@menu/activity_main_drawer" />
+
+    </androidx.drawerlayout.widget.DrawerLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

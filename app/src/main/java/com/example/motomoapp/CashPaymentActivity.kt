@@ -16,9 +16,11 @@ class CashPaymentActivity : AppCompatActivity() {
 
         newOrderButton = findViewById(R.id.newOrderButton)
 
-        newOrderButton.setOnClickListener() {
+        newOrderButton.setOnClickListener {
             val intent = Intent(this, OrderActivity::class.java)
             this.startActivity(intent)
         }
+
+        Carrito.clear()
     }
 }

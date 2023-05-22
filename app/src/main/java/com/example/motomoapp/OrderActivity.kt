@@ -4,15 +4,17 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.viewpager.widget.ViewPager
 import com.example.motomoapp.databinding.ActivityOrderBinding
+import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 
-class OrderActivity : AppCompatActivity() {
+class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityOrderBinding
 
@@ -34,7 +36,7 @@ class OrderActivity : AppCompatActivity() {
             val intent = Intent(this, CartSummaryActivity::class.java)
             startActivity(intent)
         }
-
+        binding.navView.setNavigationItemSelectedListener(this)
     }
 
     override fun onResume() {
@@ -127,5 +129,25 @@ class OrderActivity : AppCompatActivity() {
         items.add(FoodItem(24, "Té verde frío", "Refrescante y saludable", "$55", R.drawable.teverde))
 
         return items
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem) : Boolean {
+        // Handle navigation view item clicks here.
+
+        when(item.itemId){
+            R.id.credit_card -> {
+                val intent = Intent(this, MyCreditCards::class.java)
+                this.startActivity(intent)
+            }
+            R.id.giftcard -> {
+                val intent = Intent(this, MyGiftCards::class.java)
+                this.startActivity(intent)
+            }
+            R.id.order -> {
+                val intent = Intent(this, CartSummaryActivity::class.java)
+                this.startActivity(intent)
+            }
+        }
+        return true;
     }
 }

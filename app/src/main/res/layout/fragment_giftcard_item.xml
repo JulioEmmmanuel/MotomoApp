@@ -65,6 +65,7 @@
         app:layout_constraintVertical_bias="0.106" />
 
     <Button
+        android:id="@+id/select_gift_card"
         android:layout_width="140dp"
         android:layout_height="50dp"
         android:text="@string/btnCard"

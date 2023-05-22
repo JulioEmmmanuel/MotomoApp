@@ -1,14 +1,14 @@
 package com.example.motomoapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.app.ActionBarDrawerToggle
+import android.content.Intent
+import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
+import androidx.appcompat.app.AppCompatActivity
 import com.example.motomoapp.databinding.ActivityMyCreditCartsBinding
-class MyCreditCards : AppCompatActivity() {
+import com.google.android.material.navigation.NavigationView
+
+class MyCreditCards : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     //Variables Globales
 
@@ -24,37 +24,29 @@ class MyCreditCards : AppCompatActivity() {
         this.setSupportActionBar(appBar)
 
         creditCardFragment = myCreditCardsFragment()
-
-        setCurrentFragment(creditCardFragment)
-
+        binding.cardItem.selectCard.setOnClickListener {
+            val intent = Intent(this, SplashScreenProcessingPayment::class.java)
+            this.startActivity(intent)
+        }
+        binding.navView.setNavigationItemSelectedListener(this)
     }
-/*
-    private fun createFragments() {
-        binding.bottomNavigationView.setOnItemSelectedListener {
-            when(it.itemId){
-                R.id.logIn->{
-                    setCurrentFragment(logInFragment)
-                    it.actionView?.clearFocus()
-                    true
-                }
-                R.id.signUp-> {
-                    setCurrentFragment(signUpFragment)
-                    it.actionView?.clearFocus()
-                    true
-                }
-                else -> false
+    override fun onNavigationItemSelected(item: MenuItem) : Boolean {
+        // Handle navigation view item clicks here.
+
+        when(item.itemId){
+            R.id.credit_card -> {
+                val intent = Intent(this, MyCreditCards::class.java)
+                this.startActivity(intent)
+            }
+            R.id.giftcard -> {
+                val intent = Intent(this, MyGiftCards::class.java)
+                this.startActivity(intent)
+            }
+            R.id.order -> {
+                val intent = Intent(this, CartSummaryActivity::class.java)
+                this.startActivity(intent)
             }
         }
+        return true;
     }
-
- */
-
-    private fun setCurrentFragment(fragment: Fragment){
-        val fm: FragmentManager = supportFragmentManager
-        fm.beginTransaction()
-            .replace(R.id.creditCardsFragment, fragment)
-            .commit()
-    }
-
-
 }

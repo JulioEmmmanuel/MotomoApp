@@ -22,5 +22,7 @@ class PaymentDone : AppCompatActivity() {
             this.startActivity(intent)
         }
 
+        Carrito.clear()
+
     }
 }

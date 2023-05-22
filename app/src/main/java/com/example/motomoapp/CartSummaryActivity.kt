@@ -3,22 +3,22 @@ package com.example.motomoapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.motomoapp.databinding.ActivityCartSummaryBinding
-import com.example.motomoapp.databinding.ActivityItemDetalleBinding
+import com.google.android.material.navigation.NavigationView
 
-class CartSummaryActivity : AppCompatActivity() {
+class CartSummaryActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener  {
+
+    private lateinit var binding: ActivityCartSummaryBinding
 
     private lateinit var adapter: CartRecyclerAdapter
-    private lateinit var binding: ActivityCartSummaryBinding
     private lateinit var recyclerItems: RecyclerView
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,17 +46,8 @@ class CartSummaryActivity : AppCompatActivity() {
                 finish()
             }
         }
-    }
 
-    private fun setupDrawer(toolbar: Toolbar) {
-        val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
-        val drawerToggle = ActionBarDrawerToggle(
-            this,
-            drawerLayout,
-            toolbar,
-            R.string.open_drawer,
-            R.string.close_drawer
-        )
+        binding.navView.setNavigationItemSelectedListener(this)
     }
 
     //configuramos lo necesario para desplegar el RecyclerView
@@ -73,5 +64,34 @@ class CartSummaryActivity : AppCompatActivity() {
 
     private fun getItems(): MutableList<CartItem> {
         return Carrito.getItems()
+    }
+    private fun setupDrawer(toolbar: Toolbar) {
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
+        val drawerToggle = ActionBarDrawerToggle(
+            this,
+            drawerLayout,
+            toolbar,
+            R.string.open_drawer,
+            R.string.close_drawer
+        )
+    }
+    override fun onNavigationItemSelected(item: MenuItem) : Boolean {
+        // Handle navigation view item clicks here.
+
+        when(item.itemId){
+            R.id.credit_card -> {
+                val intent = Intent(this, MyCreditCards::class.java)
+                this.startActivity(intent)
+            }
+            R.id.giftcard -> {
+                val intent = Intent(this, MyGiftCards::class.java)
+                this.startActivity(intent)
+            }
+            R.id.order -> {
+                val intent = Intent(this, CartSummaryActivity::class.java)
+                this.startActivity(intent)
+            }
+        }
+        return true;
     }
 }

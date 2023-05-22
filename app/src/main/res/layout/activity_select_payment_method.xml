@@ -7,7 +7,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OrderActivity"
+    tools:context=".SelectPaymentMethodActivity"
     >
 
     <include layout="@layout/app_bar"
@@ -72,17 +72,6 @@
         app:strokeWidth="1dp"
         />
 
-    <!--
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/acceptPaymentButton"
-        android:text="@string/continueOrder"
-        style="@style/ButtonFull"
-        android:layout_height="0dp"
-        android:layout_marginBottom="64dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
--->
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
