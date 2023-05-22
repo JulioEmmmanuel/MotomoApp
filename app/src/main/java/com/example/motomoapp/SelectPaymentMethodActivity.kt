@@ -41,7 +41,7 @@ class SelectPaymentMethodActivity : AppCompatActivity() {
         }
 
         cashButton.setOnClickListener() {
-            val intent = Intent(this, SplashScreenProcessingPayment::class.java)
+            val intent = Intent(this, CashPaymentActivity::class.java)
             this.startActivity(intent)
         }
     }

@@ -13,6 +13,9 @@
         android:theme="@style/Theme.MotomoApp"
         tools:targetApi="31">
         <activity
+            android:name=".CashPaymentActivity"
+            android:exported="false" />
+        <activity
             android:name=".SplashScreenProcessingPayment"
             android:exported="false" />
         <activity
@@ -25,8 +28,8 @@
             android:name=".MyGiftCards"
             android:exported="false" />
         <activity
-            android:name=".MyCreditCarts"
-            android:exported="false" />
+            android:name=".MyCreditCards"
+            android:exported="true" />
         <activity
             android:name=".SelectPaymentMethodActivity"
             android:exported="true" />
@@ -49,25 +52,21 @@
         <activity
             android:name=".PaymentMethodActivity"
             android:exported="true" />
-
         <activity
             android:name=".CreditCardActivity"
             android:exported="true" />
-
         <activity
             android:name=".GiftCardActivity"
             android:exported="true" />
-
         <activity
             android:name=".CashActivity"
             android:exported="true" />
-
         <activity
             android:name=".MenuInicioActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>

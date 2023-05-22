@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MyGiftCards">
 
-    <!-- Campos del formulario para tarjeta de crédito -->
+    <!-- Campos del formulario para tarjeta de regalo -->
     <include
         android:id="@+id/include"
         layout="@layout/app_bar"
@@ -15,7 +15,7 @@
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/myCreditCards"
+        android:id="@+id/myGiftCards"
         android:text="@string/myGifCards"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,6 +30,8 @@
 
 
 
+
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnAgregar"
         style="@style/ButtonFull"
@@ -39,9 +41,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottomp_toBottomOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent" />
+<!--
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnBack"
         style="@style/roundButton"
@@ -51,5 +52,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
+        -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,4 +14,10 @@
     <string name="processingPayment">Procesando pago</string>
     <string name="newOrder">Hacer un nuevo pedido</string>
     <string name="myGifCards">Mis tarjetas de regalo</string>
+    <string name="btnCard">Seleccionar</string>
+    <string name="credit_card_title">Tarjeta de crédito</string>
+    <string name="myCreditCards">Mis tarjetas de crédito</string>
+    <string name="cashOrderDone">Pasa a caja a pagar por favor, en un momento te entregaremos tu pedido</string>
+    <string name="giftcard_title">Tarjeta de regalo</string>
+    <string name="giftcardValue">500</string>
 </resources>

@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="16dp"
-        android:text="@string/credit_card_title"
+        android:text="@string/giftcard_title"
         android:textAppearance="?attr/textAppearanceListItem"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,12 +36,27 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/cardIdNumber"
+        android:id="@+id/giftCardValue"
         style="@style/Text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="24dp"
-        android:text="****1187"
+        android:layout_marginStart="24dp"
+        android:text="@string/giftcardValue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintStart_toStartOf="@+id/cardDisplay"
+        app:layout_constraintTop_toBottomOf="@+id/item_number"
+        app:layout_constraintVertical_bias="0.106" />
+
+    <TextView
+        android:id="@+id/value"
+        style="@style/Text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="24dp"
+        android:text="$"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.047"
@@ -62,13 +77,13 @@
 
     <ImageView
         android:layout_width="80dp"
-        android:layout_height="40dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="24dp"
-        android:src="@drawable/visalogo"
+        android:src="@drawable/giftcard"
         app:layout_constraintBottom_toBottomOf="@+id/cardDisplay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.918"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:tint="@color/colorPrimary" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
