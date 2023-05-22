@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
     <!-- Base application theme. -->
+
     <style name="Base.Theme.MotomoApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -56,6 +57,15 @@
         <item name="android:paddingTop">5dp</item>
         <item name="android:paddingBottom">5dp</item>
         <item name="android:textSize">18dp</item>
+    </style>
+
+    <style name="ButtonWhiteBackground" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_height">80dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:strokeColor">@color/colorPrimary</item>
     </style>
 
     <style name="InputLay" parent="Widget.Material3.TextInputLayout.OutlinedBox">
@@ -126,4 +136,6 @@
     <style name="Theme.MotomoApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.MotomoApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
 </resources>

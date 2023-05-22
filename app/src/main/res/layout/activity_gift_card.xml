@@ -28,12 +28,14 @@
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
         android:layout_height="83dp"
+        android:layout_marginTop="100dp"
         android:ems="10"
         android:hint="Ingresa los dígitos de tu tarjeta"
         android:inputType="text"
         app:helperText="Ingresa los 10 dígitos de tu tarjeta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textTitle"
         tools:layout_editor_absoluteY="203dp">
 
         <com.google.android.material.textfield.TextInputEditText
