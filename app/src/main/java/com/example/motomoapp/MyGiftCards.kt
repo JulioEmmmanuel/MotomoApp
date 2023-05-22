@@ -28,6 +28,12 @@ class MyGiftCards : AppCompatActivity(), NavigationView.OnNavigationItemSelected
             val intent = Intent(this, SplashScreenProcessingPayment::class.java)
             this.startActivity(intent)
         }
+
+        binding.btnAgregar.setOnClickListener {
+            val intent = Intent(this, GiftCardActivity::class.java)
+            this.startActivity(intent)
+        }
+
         binding.navView.setNavigationItemSelectedListener(this)
     }
 

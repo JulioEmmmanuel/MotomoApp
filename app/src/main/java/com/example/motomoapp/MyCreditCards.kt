@@ -28,6 +28,12 @@ class MyCreditCards : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             val intent = Intent(this, SplashScreenProcessingPayment::class.java)
             this.startActivity(intent)
         }
+
+        binding.btnAgregar.setOnClickListener {
+            val intent = Intent(this, CreditCardActivity::class.java)
+            this.startActivity(intent)
+        }
+
         binding.navView.setNavigationItemSelectedListener(this)
     }
     override fun onNavigationItemSelected(item: MenuItem) : Boolean {
