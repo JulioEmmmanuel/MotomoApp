@@ -15,7 +15,7 @@ import com.example.motomoapp.databinding.ActivityItemDetalleBinding
 
 class CartSummaryActivity : AppCompatActivity() {
 
-    private lateinit var adapter:CartRecyclerAdapter
+    private lateinit var adapter: CartRecyclerAdapter
     private lateinit var binding: ActivityCartSummaryBinding
     private lateinit var recyclerItems: RecyclerView
 
@@ -35,30 +35,32 @@ class CartSummaryActivity : AppCompatActivity() {
 
         binding.tvTotal.text = "Total: $${Carrito.getPrice()}"
 
-        if(Carrito.getSize() > 0){
+        if (Carrito.getSize() > 0) {
             binding.btnPagar.visibility = View.VISIBLE
-            binding.btnPagar.setOnClickListener {
-                val intent = Intent(this, MetodoPago::class.java)
+             binding.btnPagar.setOnClickListener {
+                val intent = Intent(this, SelectPaymentMethodActivity::class.java)
                 startActivity(intent)
             }
 
-        binding.btnPagar.setOnClickListener {
-            val intent = Intent(this, SelectPaymentMethodActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.btnBack.setOnClickListener {
-            finish()
+            binding.btnBack.setOnClickListener {
+                finish()
+            }
         }
     }
 
-    private fun setupDrawer(toolbar: Toolbar){
+    private fun setupDrawer(toolbar: Toolbar) {
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
-        val drawerToggle = ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open_drawer,R.string.close_drawer)
+        val drawerToggle = ActionBarDrawerToggle(
+            this,
+            drawerLayout,
+            toolbar,
+            R.string.open_drawer,
+            R.string.close_drawer
+        )
     }
 
     //configuramos lo necesario para desplegar el RecyclerView
-    private fun setUpRecyclerView(){
+    private fun setUpRecyclerView() {
         // indicamos que tiene un tamaño fijo
         recyclerItems.setHasFixedSize(true)
         // indicamos el tipo de layoutManager
@@ -69,7 +71,7 @@ class CartSummaryActivity : AppCompatActivity() {
         recyclerItems.adapter = adapter
     }
 
-    private fun getItems():MutableList<CartItem>{
+    private fun getItems(): MutableList<CartItem> {
         return Carrito.getItems()
     }
 }

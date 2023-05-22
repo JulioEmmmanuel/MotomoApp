@@ -92,4 +92,6 @@
     <string name="registro_correcto">Se ha registrado el método de pago correctamente</string>
     <string name="continuar">Continuar</string>
     <string name="processingPayment">Procesando pago</string>
+    <string name="newOrder">Hacer un nuevo pedido</string>
+    <string name="myGifCards">Mis tarjetas de regalo</string>
 </resources>

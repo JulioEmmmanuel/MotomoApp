@@ -16,11 +16,6 @@
             android:name=".SplashScreenProcessingPayment"
             android:exported="false" />
         <activity
-            android:name=".MetodoPago"
-            android:exported="false"
-            android:label="@string/title_activity_metodo_pago"
-            android:theme="@style/Theme.MotomoApp" />
-        <activity
             android:name=".CartSummaryActivity"
             android:exported="false" />
         <activity
