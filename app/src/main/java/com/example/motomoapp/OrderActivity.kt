@@ -47,7 +47,7 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             binding.btnCarrito.text = "Ver carrito (${Carrito.Orden.getTotalItems()})"
         }
     }
-
+//Menu tab de las categorias de comida
     private fun setTabs(){
         val pager = findViewById<ViewPager>(R.id.viewPager)
         val tab = findViewById<TabLayout>(R.id.tabs)
@@ -75,7 +75,7 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         // bind the viewPager with the TabLayout.
         tab.setupWithViewPager(pager)
     }
-
+//actualizar el carrito
     private fun updateCart(){
         val foodItem = intent.getParcelableExtra<FoodItem>("FoodSelected")
         val cantidad = intent.getIntExtra("Cantidad", 0)
@@ -130,7 +130,7 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
         return items
     }
-
+//acceso a los elementos del menu
     override fun onNavigationItemSelected(item: MenuItem) : Boolean {
         // Handle navigation view item clicks here.
 
