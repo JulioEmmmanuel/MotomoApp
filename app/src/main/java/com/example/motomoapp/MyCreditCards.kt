@@ -37,6 +37,11 @@ class MyCreditCards : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             this.startActivity(intent)
         }
 
+        binding.btnBack.setOnClickListener{
+            finish()
+        }
+
+
         binding.navView.setNavigationItemSelectedListener(this)
     }
 

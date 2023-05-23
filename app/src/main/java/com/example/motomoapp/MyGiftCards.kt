@@ -34,6 +34,11 @@ class MyGiftCards : AppCompatActivity(), NavigationView.OnNavigationItemSelected
             this.startActivity(intent)
         }
 
+        binding.btnBack.setOnClickListener{
+            finish()
+        }
+
+
         binding.navView.setNavigationItemSelectedListener(this)
     }
 

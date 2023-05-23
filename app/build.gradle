@@ -19,15 +19,45 @@ android {
         versionCode 1
         versionName "1.0"
 
+        buildConfigField "boolean", "IS_PAID", "true"
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+        debug {
+            applicationIdSuffix ".debug"
+            debuggable true
+        }
+
+    }
+
+
+    flavorDimensions 'price'
+
+    productFlavors{
+        free{
+            buildConfigField "boolean", "IS_PAID", "false"
+            applicationId "com.example.motoapp.buildvariant.free"
+            dimension "price"
+            applicationIdSuffix ".free"
+            versionNameSuffix "-free"
+        }
+        paid{
+            applicationId "com.example.motoapp.buildvariant.paid"
+            dimension "price"
+            applicationIdSuffix ".paid"
+            versionNameSuffix "-full"
         }
     }
+
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

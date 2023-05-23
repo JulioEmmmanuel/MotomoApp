@@ -49,6 +49,11 @@ class SelectPaymentMethodActivity : AppCompatActivity(), NavigationView.OnNaviga
             this.startActivity(intent)
         }
 
+        binding.btnBack.setOnClickListener{
+            finish()
+        }
+
+
         binding.navView.setNavigationItemSelectedListener(this)
     }
     private fun setupDrawer(toolbar: Toolbar){

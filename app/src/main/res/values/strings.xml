@@ -100,4 +100,5 @@
     <string name="cashOrderDone">Pasa a caja a pagar por favor, en un momento te entregaremos tu pedido</string>
     <string name="giftcard_title">Tarjeta de regalo</string>
     <string name="giftcardValue">500</string>
+    <string name="order_completed">Has completado tu orden</string>
 </resources>
