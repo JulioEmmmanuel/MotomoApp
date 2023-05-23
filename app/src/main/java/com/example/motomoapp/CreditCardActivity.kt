@@ -13,7 +13,7 @@ import com.example.motomoapp.CreditCard
 import com.example.motomoapp.R
 import com.example.motomoapp.databinding.ActivityCreditCardBinding
 import com.example.motomoapp.databinding.ActivityOrderBinding
-
+//formulario de registro de tarjeta de credito
 class CreditCardActivity : AppCompatActivity() {
 
     private lateinit var binding:ActivityCreditCardBinding
@@ -32,7 +32,7 @@ class CreditCardActivity : AppCompatActivity() {
         }
 
         binding.btnAgregar.setOnClickListener {
-
+//validacion de los elementos del formulario
             if(binding.tiCardNumber.text.isNullOrBlank() ||
                 binding.tiExpiryMonth.text.isNullOrBlank() ||
                 binding.tiExpiryYear.text.isNullOrBlank() ||
