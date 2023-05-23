@@ -41,6 +41,7 @@
         app:layout_constraintTop_toBottomOf="@+id/mottomologo">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/userInput"
             style="@style/EditText"
             android:inputType="text" />
 
@@ -57,6 +58,7 @@
         app:layout_constraintTop_toBottomOf="@+id/logInUser">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordInput"
             style="@style/EditText"
             android:inputType="textPassword"
              />

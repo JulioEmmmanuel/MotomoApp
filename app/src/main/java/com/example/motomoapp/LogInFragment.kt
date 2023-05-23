@@ -8,9 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
 import com.example.motomoapp.databinding.FragmentLogInBinding
-import com.google.android.material.button.MaterialButton
 
 
 class LogInFragment : Fragment() {
@@ -32,8 +30,15 @@ class LogInFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         binding.acceptLoginButton.setOnClickListener{
-            val intent = Intent(requireActivity(), OrderActivity::class.java)
-            requireActivity().startActivity(intent)
+            if(!binding.userInput.text.isNullOrBlank() && !binding.passwordInput.text.isNullOrBlank()){
+                Toast.makeText(requireActivity(), "Cargando el menú. Espera un momento...", Toast.LENGTH_SHORT)
+                    .show()
+                val intent = Intent(requireActivity(), OrderActivity::class.java)
+                requireActivity().startActivity(intent)
+            } else {
+                Toast.makeText(requireActivity(), "Llena todos los campos", Toast.LENGTH_SHORT)
+                    .show()
+            }
         }
     }
 }

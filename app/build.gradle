@@ -50,6 +50,7 @@ android {
             versionNameSuffix "-free"
         }
         paid{
+            buildConfigField "boolean", "IS_PAID", "true"
             applicationId "com.example.motoapp.buildvariant.paid"
             dimension "price"
             applicationIdSuffix ".paid"
