@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.motomoapp.databinding.FragmentSignUpBinding
+import com.example.motomoapp.BuildConfig
 
 class SignUpFragment : Fragment() {
 
@@ -26,8 +27,14 @@ class SignUpFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         binding.acceptSignupButton.setOnClickListener{
-            val intent = Intent(requireActivity(), PaymentMethodActivity::class.java)
-            requireActivity().startActivity(intent)
+            if(BuildConfig.IS_PAID){
+                val intent = Intent(requireActivity(), PaymentMethodActivity::class.java)
+                requireActivity().startActivity(intent)
+            } else {
+                val intent = Intent(requireActivity(), OrderActivity::class.java)
+                requireActivity().startActivity(intent)
+            }
+
         }
     }
     
