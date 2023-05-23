@@ -13,7 +13,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 
 class PaymentMethodActivity : AppCompatActivity() {
-
+//set de los elementos de pago
     private val paymentMethods = arrayOf("Pago con tarjeta", "Tarjeta de regalo", "Efectivo")
     private lateinit var listView: ListView
     private lateinit var paymentFormContainer: ViewGroup
@@ -25,7 +25,7 @@ class PaymentMethodActivity : AppCompatActivity() {
         val appBar = findViewById<Toolbar>(R.id.motomoToolbar)
         this.setSupportActionBar(appBar)
         setupDrawer(appBar)
-
+//encontrar el id de List View y usar el adapter para colocar los elementos de la lista
         val listView = findViewById<ListView>(R.id.paymentListView)
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, paymentMethods)
         listView.adapter = adapter
@@ -41,7 +41,7 @@ class PaymentMethodActivity : AppCompatActivity() {
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
         val drawerToggle = ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open_drawer,R.string.close_drawer)
     }
-
+//muestra el metodo de pago dependiendo de la seleccion de la lista
     private fun showPaymentForm(paymentMethod: String) {
         when (paymentMethod) {
             "Pago con tarjeta" -> {
