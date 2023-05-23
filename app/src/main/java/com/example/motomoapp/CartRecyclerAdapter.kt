@@ -75,7 +75,7 @@ class CartRecyclerAdapter(
                     subtotal.text = "Subtotal: $${subtotalNum-precioNum}"
                     Carrito.removeOne(cartItem.id)
                     tvTotal.text = "Total: $${Carrito.getPrice()}"
-                } else {
+                } else if(cantidadNum == 0) {
                     Carrito.removeOne(cartItem.id)
                     tvTotal.text = "Total: $${Carrito.getPrice()}"
                     delete()

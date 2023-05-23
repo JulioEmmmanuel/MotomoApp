@@ -68,6 +68,8 @@ class Carrito {
         fun clear(){
             items.clear()
             amounts.clear()
+            price = 0
+            totalItems = 0
         }
 
         public fun getItem(index:Int):FoodItem{

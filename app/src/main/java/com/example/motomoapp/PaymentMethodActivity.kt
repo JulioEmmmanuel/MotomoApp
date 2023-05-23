@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 
 class PaymentMethodActivity : AppCompatActivity() {
 
@@ -19,6 +22,10 @@ class PaymentMethodActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment_method)
 
+        val appBar = findViewById<Toolbar>(R.id.motomoToolbar)
+        this.setSupportActionBar(appBar)
+        setupDrawer(appBar)
+
         val listView = findViewById<ListView>(R.id.paymentListView)
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, paymentMethods)
         listView.adapter = adapter
@@ -28,6 +35,11 @@ class PaymentMethodActivity : AppCompatActivity() {
                 val selectedMethod = paymentMethods[position]
                 showPaymentForm(selectedMethod)
             }
+    }
+
+    private fun setupDrawer(toolbar: Toolbar){
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
+        val drawerToggle = ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open_drawer,R.string.close_drawer)
     }
 
     private fun showPaymentForm(paymentMethod: String) {

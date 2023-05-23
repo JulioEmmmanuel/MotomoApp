@@ -3,8 +3,10 @@ package com.example.motomoapp
 import android.os.Bundle
 import android.content.Intent
 import android.view.MenuItem
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
 import com.example.motomoapp.databinding.ActivityMyCreditCartsBinding
 import com.google.android.material.navigation.NavigationView
 
@@ -22,6 +24,7 @@ class MyCreditCards : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
         val appBar = findViewById<Toolbar>(R.id.motomoToolbar)
         this.setSupportActionBar(appBar)
+        setupDrawer(appBar)
 
         creditCardFragment = myCreditCardsFragment()
         binding.cardItem.selectCard.setOnClickListener {
@@ -35,6 +38,11 @@ class MyCreditCards : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         }
 
         binding.navView.setNavigationItemSelectedListener(this)
+    }
+
+    private fun setupDrawer(toolbar: Toolbar){
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
+        val drawerToggle = ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open_drawer,R.string.close_drawer)
     }
     override fun onNavigationItemSelected(item: MenuItem) : Boolean {
         // Handle navigation view item clicks here.
