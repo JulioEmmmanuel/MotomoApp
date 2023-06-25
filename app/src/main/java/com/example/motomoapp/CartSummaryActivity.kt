@@ -49,7 +49,7 @@ class CartSummaryActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         if (Carrito.getSize() > 0) {
             binding.btnPagar.visibility = View.VISIBLE
              binding.btnPagar.setOnClickListener {
-                val intent = Intent(this, SelectPaymentMethodActivity::class.java)
+                val intent = Intent(this, GpsActivity::class.java)
                 startActivity(intent)
             }
 

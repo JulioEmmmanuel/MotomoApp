@@ -36,8 +36,11 @@
     <string name="btnCard">Seleccionar</string>
     <string name="credit_card_title">Tarjeta de crédito</string>
     <string name="myCreditCards">Mis tarjetas de crédito</string>
-    <string name="cashOrderDone">Pasa a caja a pagar por favor, en un momento te entregaremos tu pedido</string>
+    <string name="cashOrderDone">Una vez que realices tu pago se te entregará tu pedido, gracias</string>
     <string name="giftcard_title">Tarjeta de regalo</string>
     <string name="giftcardValue">500</string>
+    <string name="si">Sí</string>
+    <string name="no">No</string>
+    <string name="homeDelivery">¿Desea que su pedido sea entregado en su domicilio?</string>
     ===== >>>>>>> f841daf (Add activities for logIn, SignUp and Navigation Drawer)
 </resources>
