@@ -1,8 +1,11 @@
 package com.example.motomoapp
 
+import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.transition.Slide
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -24,6 +27,15 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         val view = binding.root
         setContentView(view)
 
+        // transición al iniciar activity
+        val transition = Slide(Gravity.TOP).apply {
+            duration = 500
+            excludeTarget(window.decorView.findViewById<View>(androidx.transition.R.id.action_bar_container), true)
+            excludeTarget(android.R.id.statusBarBackground, true)
+            excludeTarget(android.R.id.navigationBarBackground, true)
+        }
+        window.enterTransition = transition
+
         val appBar = findViewById<Toolbar>(R.id.motomoToolbar)
         this.setSupportActionBar(appBar)
         setupDrawer(appBar)
@@ -34,7 +46,7 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
         binding.btnCarrito.setOnClickListener {
             val intent = Intent(this, CartSummaryActivity::class.java)
-            startActivity(intent)
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
         binding.navView.setNavigationItemSelectedListener(this)
     }

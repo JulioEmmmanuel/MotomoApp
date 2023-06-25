@@ -1,5 +1,6 @@
 package com.example.motomoapp
 
+import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -56,7 +57,7 @@ class ItemDetalleActivity : AppCompatActivity(), NavigationView.OnNavigationItem
                 val intent = Intent(this, OrderActivity::class.java)
                 intent.putExtra("Cantidad", cantidad)
                 intent.putExtra("FoodSelected", foodItem)
-                startActivity(intent)
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
                 finish()
             }
         }

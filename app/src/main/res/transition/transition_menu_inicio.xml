@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<transitionSet
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <fade/>
+    <slide
+        android:slideEdge="start">
+        <targets>
+            <target
+                android:targetId="@+id/mottomologo" />
+            <target
+                android:targetId="@+id/logInPassword"/>
+            <target
+                android:targetId="@+id/logInUser" />
+
+        </targets>
+    </slide>
+    <slide
+        android:slideEdge="bottom">
+        <targets>
+            <target
+                android:targetId="@+id/accept_login_button"/>
+        </targets>
+    </slide>
+</transitionSet>

@@ -2,9 +2,9 @@ package com.example.motomoapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.app.ActionBarDrawerToggle
+import android.transition.TransitionInflater
+import android.view.View
 import androidx.appcompat.widget.Toolbar
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.motomoapp.databinding.ActivityMenuInicioBinding
@@ -23,6 +23,18 @@ class MenuInicioActivity : AppCompatActivity() {
         binding = ActivityMenuInicioBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        title = "Emisor"
+
+        val transitionXml = TransitionInflater
+            .from(this).inflateTransition(R.transition.transition_menu_inicio).apply {
+                duration = 700
+                excludeTarget(window.decorView.findViewById<View>(androidx.transition.R.id.action_bar_container), true)
+                excludeTarget(android.R.id.statusBarBackground, true)
+                excludeTarget(android.R.id.navigationBarBackground, true)
+            }
+
+        window.exitTransition = transitionXml
 
         val appBar = findViewById<Toolbar>(R.id.motomoToolbar)
         this.setSupportActionBar(appBar)

@@ -3,6 +3,8 @@ package com.example.motomoapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.transition.Slide
+import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -25,6 +27,15 @@ class CartSummaryActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         binding = ActivityCartSummaryBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        // transición al iniciar activity
+        val transitionIn = Slide(Gravity.RIGHT).apply {
+            duration = 700
+            excludeTarget(window.decorView.findViewById<View>(androidx.transition.R.id.action_bar_container), true)
+            excludeTarget(android.R.id.statusBarBackground, true)
+            excludeTarget(android.R.id.navigationBarBackground, true)
+        }
+        window.enterTransition = transitionIn
 
         val appBar = findViewById<Toolbar>(R.id.motomoToolbar)
         this.setSupportActionBar(appBar)
