@@ -134,9 +134,18 @@ class LogInFragment : Fragment() {
 
     private fun setValue(){
         val userName = preferences.getString(USERNAME_KEY, "")
+        val isLogged = preferences.getBoolean(ISLOGGED_KEY, false)
         if(userName == null || userName == "") {
+            Toast.makeText(
+                requireActivity(),
+                "Ingresa tu usuario y contraseña",
+                Toast.LENGTH_SHORT
+            ).show()
 
-        } else {binding.userInput.setText(userName)
+        } else if (isLogged){
+
+        }
+        else {binding.userInput.setText(userName)
             Toast.makeText(
                 requireActivity(),
                 "Se ha cerrado tu sesión, ingresa de nuevo tu contraseña",
