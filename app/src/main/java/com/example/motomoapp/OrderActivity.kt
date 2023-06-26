@@ -15,10 +15,18 @@ import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.viewpager.widget.ViewPager
 import com.example.motomoapp.databinding.ActivityOrderBinding
+import com.example.motomoapp.databinding.FragmentLogInBinding
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 
 class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    //Aplicación de sharedPreferences
+    private val PREFS_NAME = "sharedpreferences"
+    private val USERNAME_KEY = "username_key"
+    private val ISLOGGED_KEY = "islogged_key"
+
+    private lateinit var preferences: SharedPreferences
 
     private lateinit var binding: ActivityOrderBinding
 /*
@@ -46,7 +54,7 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         }
         window.enterTransition = transition
 
-        //preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
 
         val appBar = findViewById<Toolbar>(R.id.motomoToolbar)
@@ -54,7 +62,6 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
         setupDrawer(appBar)
 
-        //setValues()
         updateCart()
 
         setTabs()
@@ -64,6 +71,13 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
         binding.navView.setNavigationItemSelectedListener(this)
+
+        binding.bttnLogOut.setOnClickListener(){
+            preferences.edit().putBoolean(ISLOGGED_KEY, false).apply()
+            val intent = Intent(this, MenuInicioActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+        }
     }
 
     override fun onResume() {
@@ -102,28 +116,13 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         // bind the viewPager with the TabLayout.
         tab.setupWithViewPager(pager)
     }
-/*
-    private fun setValues() {
 
-        val foodItemUpdated = preferences.getString(FOOD_ITEM_KEY, "")
-        val cantidadUpdated = preferences.getInt(CANTIDAD_KEY, 0)
-
-        val foodItem = intent.getParcelableExtra<FoodItem>(foodItemUpdated.toString())
-        val cantidad = intent.getIntExtra(cantidadUpdated.toString(), 0)
-    }
-
- */
 
 //actualizar el carrito
     private fun updateCart(){
         val foodItem = intent.getParcelableExtra<FoodItem>("FoodSelected")
         val cantidad = intent.getIntExtra("Cantidad", 0)
-/*
-        preferences.edit()
-            .putString(FOOD_ITEM_KEY, foodItem?.toString())
-            .putInt(CANTIDAD_KEY, cantidad)
-            .apply()
-*/
+
        if(foodItem != null){
             Carrito.Orden.addItem(foodItem, cantidad)
         }

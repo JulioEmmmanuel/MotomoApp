@@ -23,4 +23,5 @@
     <string name="si">Sí</string>
     <string name="no">No</string>
     <string name="homeDelivery">¿Desea que su pedido sea entregado en su domicilio?</string>
+    <string name="log_out">Cerrar Sesión</string>
 </resources>

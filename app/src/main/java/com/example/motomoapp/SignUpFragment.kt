@@ -42,6 +42,7 @@ class SignUpFragment : Fragment() {
                     Toast.makeText(requireActivity(), "Cargando el menú. Espera un momento...", Toast.LENGTH_SHORT)
                         .show()
                     val intent = Intent(requireActivity(), OrderActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     requireActivity().startActivity(intent)
                 }
             } else {

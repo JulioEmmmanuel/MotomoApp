@@ -28,6 +28,7 @@ class LogInFragment : Fragment() {
     //Aplicación de sharedPreferences
     private val PREFS_NAME = "sharedpreferences"
     private val USERNAME_KEY = "username_key"
+    private val ISLOGGED_KEY = "islogged_key"
 
     private lateinit var binding: FragmentLogInBinding
     private lateinit var preferences: SharedPreferences
@@ -39,13 +40,13 @@ class LogInFragment : Fragment() {
 
     ): View? {
 
+
         // Inflate the layout for this fragment
         binding = FragmentLogInBinding.inflate(inflater, container, false)
         val view = binding.getRoot()
         barrelRoll()
         fadeIn()
         return view
- //       preferences = requireActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
 
 
@@ -67,10 +68,13 @@ class LogInFragment : Fragment() {
         binding.acceptLoginButton.setOnClickListener {
             if (!binding.userInput.text.isNullOrBlank() && !binding.passwordInput.text
                     .isNullOrBlank()
-            ) {
+            ) { if (binding.userInput.text.toString() == "irvinbsu" &&
+                    binding.passwordInput.text.toString() == "hola123") {
+
                 val userName = binding.userInput.text.toString()
 
                 preferences.edit().putString(USERNAME_KEY, userName).apply()
+                preferences.edit().putBoolean(ISLOGGED_KEY, true).apply()
 
                 Toast.makeText(
                     requireActivity(),
@@ -79,7 +83,15 @@ class LogInFragment : Fragment() {
                 )
                     .show()
                 val intent = Intent(requireActivity(), OrderActivity::class.java)
-                requireActivity().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(requireActivity()).toBundle())
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                requireActivity().startActivity(
+                    intent,
+                    ActivityOptions.makeSceneTransitionAnimation(requireActivity()).toBundle()
+                )
+            }else {
+                Toast.makeText(requireActivity(), "El nombre de usuario y/o contraseña está incorrecto", Toast.LENGTH_SHORT)
+                    .show()
+            }
 
             } else {
                 Toast.makeText(requireActivity(), "Llena todos los campos", Toast.LENGTH_SHORT)
