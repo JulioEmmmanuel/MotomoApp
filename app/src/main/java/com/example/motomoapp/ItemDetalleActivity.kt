@@ -1,7 +1,9 @@
 package com.example.motomoapp
 
 import android.app.ActivityOptions
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -10,8 +12,17 @@ import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.motomoapp.databinding.ActivityItemDetalleBinding
 import com.google.android.material.navigation.NavigationView
+import com.google.gson.Gson
 
 class ItemDetalleActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    private val PREFS_NAME = "com.irvinbsu.sharedpreferences"
+
+    private val STRING_KEY = "string_key"
+    private val NUMBER_KEY = "number_key"
+
+
+    private lateinit var preferences: SharedPreferences
 
     private lateinit var binding: ActivityItemDetalleBinding
     private var cantidad:Int = 1;
@@ -21,6 +32,10 @@ class ItemDetalleActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         binding = ActivityItemDetalleBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+
+
 
         val appBar = findViewById<Toolbar>(R.id.motomoToolbar)
         this.setSupportActionBar(appBar)
@@ -52,12 +67,19 @@ class ItemDetalleActivity : AppCompatActivity(), NavigationView.OnNavigationItem
             binding.btnBack.setOnClickListener{
                 finish()
             }
-
-            binding.btnAgregar.setOnClickListener{
+            binding.btnAgregar.setOnClickListener(){
                 val intent = Intent(this, OrderActivity::class.java)
                 intent.putExtra("Cantidad", cantidad)
                 intent.putExtra("FoodSelected", foodItem)
+
+                //saveFoodItem(this, foodItem)
+                preferences.edit()
+                    .putInt(NUMBER_KEY, cantidad)
+                    .putString(STRING_KEY, Gson().toJson(foodItem))
+                    .apply()
+
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+                setValues()
                 finish()
             }
         }
@@ -87,5 +109,35 @@ class ItemDetalleActivity : AppCompatActivity(), NavigationView.OnNavigationItem
             }
         }
         return true;
+    }
+
+    fun saveFoodItem(context: Context, foodItem: FoodItem) {
+
+        preferences.edit()
+            .putString(STRING_KEY, Gson().toJson(foodItem))
+            .apply()
+    }
+
+    fun getFoodItem(context: Context): FoodItem? {
+
+        val json = preferences.getString(STRING_KEY, null)
+        return Gson().fromJson(json, FoodItem::class.java)
+    }
+
+    fun setValues(){
+        val cantidad = preferences.getInt(NUMBER_KEY, 0)
+        //val foodItem = getFoodItem(this)
+        val foodItemJson = preferences.getString(STRING_KEY, null)
+        val foodItem = if (foodItemJson != null) {
+            Gson().fromJson(foodItemJson, FoodItem::class.java)
+        } else {
+            null
+        }
+
+        val intent = Intent(this, OrderActivity::class.java)
+        intent.putExtra("Cantidad", cantidad)
+        intent.putExtra("FoodSelected", foodItem)
+        //startActivity(intent)
+        finish()
     }
 }

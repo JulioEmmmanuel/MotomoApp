@@ -5,7 +5,9 @@ package com.example.motomoapp
 import android.animation.AnimatorInflater
 import android.animation.ValueAnimator
 import android.app.ActivityOptions
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.transition.TransitionInflater
 import androidx.fragment.app.Fragment
@@ -16,16 +18,25 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import android.transition.Scene
+import androidx.core.widget.addTextChangedListener
 import com.example.motomoapp.databinding.FragmentLogInBinding
 import com.google.android.material.textfield.TextInputEditText
 
+//@Suppress("UNREACHABLE_CODE")
 class LogInFragment : Fragment() {
 
+    //Aplicación de sharedPreferences
+    private val PREFS_NAME = "sharedpreferences"
+    private val USERNAME_KEY = "username_key"
+
     private lateinit var binding: FragmentLogInBinding
+    private lateinit var preferences: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
+
     ): View? {
 
         // Inflate the layout for this fragment
@@ -34,6 +45,8 @@ class LogInFragment : Fragment() {
         barrelRoll()
         fadeIn()
         return view
+ //       preferences = requireActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+
 
 
     }
@@ -42,13 +55,23 @@ class LogInFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
 
+        preferences = requireActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
+        setValue()
 
+        binding.userInput.addTextChangedListener{
+            val userName = binding.userInput.text.toString()
+            preferences.edit().putString(USERNAME_KEY, userName).apply()
+        }
 
         binding.acceptLoginButton.setOnClickListener {
             if (!binding.userInput.text.isNullOrBlank() && !binding.passwordInput.text
                     .isNullOrBlank()
             ) {
+                val userName = binding.userInput.text.toString()
+
+                preferences.edit().putString(USERNAME_KEY, userName).apply()
+
                 Toast.makeText(
                     requireActivity(),
                     "Cargando el menú. Espera un momento...",
@@ -95,5 +118,19 @@ class LogInFragment : Fragment() {
         binding.logInUser.startAnimation(animation)
         binding.logInPassword.startAnimation(animation)
         binding.acceptLoginButton.startAnimation(animation)
+    }
+
+    private fun setValue(){
+        val userName = preferences.getString(USERNAME_KEY, "")
+        if(userName == null || userName == "") {
+
+        } else {binding.userInput.setText(userName)
+            Toast.makeText(
+                requireActivity(),
+                "Se ha cerrado tu sesión, ingresa de nuevo tu contraseña",
+                Toast.LENGTH_SHORT
+            ).show()
+
+        }
     }
 }

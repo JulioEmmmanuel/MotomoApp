@@ -1,6 +1,8 @@
 package com.example.motomoapp
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.transition.Slide
@@ -50,6 +52,9 @@ class CartSummaryActivity : AppCompatActivity(), NavigationView.OnNavigationItem
             binding.btnPagar.visibility = View.VISIBLE
              binding.btnPagar.setOnClickListener {
                 val intent = Intent(this, GpsActivity::class.java)
+
+
+
                 startActivity(intent)
             }
 

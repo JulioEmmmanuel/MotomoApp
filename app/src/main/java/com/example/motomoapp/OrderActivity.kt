@@ -1,12 +1,13 @@
 package com.example.motomoapp
 
 import android.app.ActivityOptions
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.transition.Slide
 import android.view.Gravity
-import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -20,6 +21,15 @@ import com.google.android.material.tabs.TabLayout
 class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityOrderBinding
+/*
+    //Shared Preferences
+    private val PREFS_NAME = "sharedPreferences"
+    private val CANTIDAD_KEY = "cantidad_string_key"
+    private val FOOD_ITEM_KEY = "food_item_string_key"
+
+    private lateinit var preferences: SharedPreferences
+
+ */
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,10 +46,15 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         }
         window.enterTransition = transition
 
+        //preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+
+
         val appBar = findViewById<Toolbar>(R.id.motomoToolbar)
         this.setSupportActionBar(appBar)
+
         setupDrawer(appBar)
 
+        //setValues()
         updateCart()
 
         setTabs()
@@ -87,11 +102,29 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         // bind the viewPager with the TabLayout.
         tab.setupWithViewPager(pager)
     }
+/*
+    private fun setValues() {
+
+        val foodItemUpdated = preferences.getString(FOOD_ITEM_KEY, "")
+        val cantidadUpdated = preferences.getInt(CANTIDAD_KEY, 0)
+
+        val foodItem = intent.getParcelableExtra<FoodItem>(foodItemUpdated.toString())
+        val cantidad = intent.getIntExtra(cantidadUpdated.toString(), 0)
+    }
+
+ */
+
 //actualizar el carrito
     private fun updateCart(){
         val foodItem = intent.getParcelableExtra<FoodItem>("FoodSelected")
         val cantidad = intent.getIntExtra("Cantidad", 0)
-        if(foodItem != null){
+/*
+        preferences.edit()
+            .putString(FOOD_ITEM_KEY, foodItem?.toString())
+            .putInt(CANTIDAD_KEY, cantidad)
+            .apply()
+*/
+       if(foodItem != null){
             Carrito.Orden.addItem(foodItem, cantidad)
         }
 

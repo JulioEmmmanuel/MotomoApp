@@ -88,7 +88,6 @@ class Carrito {
                     amounts[index])
             }
             return cartItems.toMutableList()
-
         }
 
         public fun getSize():Int{
