@@ -1,4 +1,4 @@
-package com.example.motomoapp
+package com.example.motomoapp.models
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -7,11 +7,11 @@ class FoodItem (
     val id: Int,
     val name: String,
     val description: String,
-    val price: String,
-    val idImage: Int
+    var price: String,
+    var idImage: Int
 )  : Parcelable {
     constructor(parcel: Parcel) : this(
-        parcel.readInt()!!,
+        parcel.readInt(),
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,

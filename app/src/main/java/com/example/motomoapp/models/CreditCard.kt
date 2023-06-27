@@ -1,4 +1,4 @@
-package com.example.motomoapp
+package com.example.motomoapp.models
 
 class CreditCard(
     var cardNumber: String,

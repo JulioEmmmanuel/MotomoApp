@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.motomoapp.databinding.ActivityMyCreditCartsBinding
+import com.example.motomoapp.models.MyGiftCards
 import com.google.android.material.navigation.NavigationView
 
 class MyCreditCards : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {

@@ -10,6 +10,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.example.motomoapp.databinding.ActivitySelectPaymentMethodBinding
+import com.example.motomoapp.models.MyGiftCards
 
 class SelectPaymentMethodActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 

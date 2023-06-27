@@ -15,7 +15,11 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.motomoapp.adapters.CartRecyclerAdapter
 import com.example.motomoapp.databinding.ActivityCartSummaryBinding
+import com.example.motomoapp.models.Carrito
+import com.example.motomoapp.models.CartItem
+import com.example.motomoapp.models.MyGiftCards
 import com.google.android.material.navigation.NavigationView
 
 class CartSummaryActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener  {

@@ -1,4 +1,4 @@
-package com.example.motomoapp
+package com.example.motomoapp.adapters
 
 import android.content.Context
 import android.content.Intent
@@ -8,10 +8,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.motomoapp.ItemDetalleActivity
+import com.example.motomoapp.R
+import com.example.motomoapp.models.FoodItem
 
 class FoodRecyclerAdapter(
     private val context: Context,
-    private val foodItems: MutableList<FoodItem>): RecyclerView.Adapter<FoodRecyclerAdapter.ViewHolder>()
+    private val foodItems: List<FoodItem>): RecyclerView.Adapter<FoodRecyclerAdapter.ViewHolder>()
 {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

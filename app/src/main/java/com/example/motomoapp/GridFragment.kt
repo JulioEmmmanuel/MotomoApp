@@ -7,13 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.motomoapp.adapters.FoodRecyclerAdapter
+import com.example.motomoapp.models.FoodItem
 
 class GridFragment: Fragment() {
 
-    private lateinit var adapter:FoodRecyclerAdapter
+    private lateinit var adapter: FoodRecyclerAdapter
     private lateinit var recyclerItems:RecyclerView
     private var listener: (FoodItem) -> Unit = {}
-    private var foodItems:MutableList<FoodItem> = ArrayList()
+    private var foodItems:List<FoodItem> = ArrayList()
 
 
     override fun onCreateView(
@@ -35,7 +37,7 @@ class GridFragment: Fragment() {
         setUpRecyclerView()
     }
 
-    public fun setFoodItems(items: MutableList<FoodItem>){
+    public fun setFoodItems(items: List<FoodItem>){
         foodItems = items;
     }
 
