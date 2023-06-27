@@ -11,6 +11,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat.startActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -101,15 +102,15 @@ class CartSummaryActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         when(item.itemId){
             R.id.credit_card -> {
                 val intent = Intent(this, MyCreditCards::class.java)
-                this.startActivity(intent)
+                startActivity(intent)
             }
             R.id.giftcard -> {
                 val intent = Intent(this, MyGiftCards::class.java)
-                this.startActivity(intent)
+                startActivity(intent)
             }
             R.id.order -> {
                 val intent = Intent(this, CartSummaryActivity::class.java)
-                this.startActivity(intent)
+                startActivity(intent)
             }
         }
         return true;
