@@ -7,6 +7,8 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.motomoapp.databinding.ActivityPaymentDoneBinding
+import com.example.motomoapp.utils.OrderNotification
+import com.example.motomoapp.utils.executeOrRequestPermission
 import com.google.android.material.button.MaterialButton
 
 class PaymentDone : AppCompatActivity() {
@@ -28,6 +30,10 @@ class PaymentDone : AppCompatActivity() {
         }
 
         Carrito.clear()
+
+        executeOrRequestPermission(this@PaymentDone) {
+            OrderNotification(this@PaymentDone)
+        }
 
     }
 

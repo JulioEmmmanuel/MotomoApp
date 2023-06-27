@@ -69,7 +69,7 @@ class SignUpFragment : Fragment() {
     }
 
     // Animación fade in
-    private fun fadeIn() {
+    fun fadeIn() {
 
         with(binding) {
             signInText.visibility = View.VISIBLE

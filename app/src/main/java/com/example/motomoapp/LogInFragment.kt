@@ -1,7 +1,5 @@
 package com.example.motomoapp
 
-
-
 import android.animation.AnimatorInflater
 import android.animation.ValueAnimator
 import android.app.ActivityOptions

@@ -105,4 +105,9 @@
     <string name="no">No</string>
     <string name="homeDelivery">¿Desea que su pedido sea entregado en su domicilio?</string>
     <string name="log_out">Cerrar Sesión</string>
+    <string name="main_channel">Notificaciones principales</string>
+    <string name="courses_description">Notificaciones sobre tu pedido</string>
+    <string name="main_description">Notificaciones sobre tu pedido</string>
+    <string name="pedido_title">Pedido realizado</string>
+    <string name="pedido_string">Tu pedido ha sido realizado y está siendo preparado</string>
 </resources>
