@@ -15,7 +15,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.commit
 import com.example.motomoapp.databinding.ActivityMenuInicioBinding
+import com.example.motomoapp.utils.executeOrRequestPermission
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
 
 class MenuInicioActivity : AppCompatActivity() {
@@ -70,17 +72,19 @@ class MenuInicioActivity : AppCompatActivity() {
     }
 
     private fun connectToFirebase(){
-        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-            if (!task.isSuccessful) {
-                Log.w("Error", "Fetching FCM registration token failed", task.exception)
-                return@OnCompleteListener
-            }
+        executeOrRequestPermission(this) {
+            FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    Log.w("Error", "Fetching FCM registration token failed", task.exception)
+                    return@OnCompleteListener
+                }
 
-            val token = task.result
+                val token = task.result
 
-            Log.d("FCM_TOKEN",token)
-            Toast.makeText(baseContext,"FCM token: $token", Toast.LENGTH_SHORT).show()
-        })
+                Log.d("FCM_TOKEN", token)
+                Toast.makeText(baseContext, "FCM token: $token", Toast.LENGTH_SHORT).show()
+            })
+        }
     }
 
     private fun createFragments() {
