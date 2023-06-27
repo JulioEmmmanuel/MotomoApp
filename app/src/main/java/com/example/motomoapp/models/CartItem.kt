@@ -1,4 +1,4 @@
-package com.example.motomoapp
+package com.example.motomoapp.models
 
 data class CartItem (
     val id:Int,

@@ -1,4 +1,4 @@
-package com.example.motomoapp
+package com.example.motomoapp.adapters
 
 
 import androidx.fragment.app.Fragment

@@ -1,4 +1,4 @@
-package com.example.motomoapp
+package com.example.motomoapp.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,9 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.motomoapp.R
+import com.example.motomoapp.models.Carrito
+import com.example.motomoapp.models.CartItem
 
 class CartRecyclerAdapter(
     private val cartItems: MutableList<CartItem>,

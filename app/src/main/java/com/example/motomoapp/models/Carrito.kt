@@ -1,4 +1,4 @@
-package com.example.motomoapp
+package com.example.motomoapp.models
 
 import android.util.Log
 
@@ -27,7 +27,7 @@ class Carrito {
             totalItems += amount
 
             Log.d("Aviso", "Precio: $price")
-            Log.d("Aviso", "Elementos en carrito: ${totalItems}")
+            Log.d("Aviso", "Elementos en carrito: $totalItems")
         }
 
         public fun addOne(id:Int){
@@ -41,7 +41,7 @@ class Carrito {
             totalItems++
 
             Log.d("Aviso", "Precio: $price")
-            Log.d("Aviso", "Elementos en carrito: ${totalItems}")
+            Log.d("Aviso", "Elementos en carrito: $totalItems")
 
         }
 
@@ -61,7 +61,7 @@ class Carrito {
             }
 
             Log.d("Aviso", "Precio: $price")
-            Log.d("Aviso", "Elementos en carrito: ${totalItems}")
+            Log.d("Aviso", "Elementos en carrito: $totalItems")
 
         }
 
@@ -72,7 +72,7 @@ class Carrito {
             totalItems = 0
         }
 
-        public fun getItem(index:Int):FoodItem{
+        public fun getItem(index:Int): FoodItem {
             return items[index]
         }
 

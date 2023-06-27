@@ -1,4 +1,4 @@
-package com.example.motomoapp
+package com.example.motomoapp.models
 
 class GiftCard(
     val giftNumber: String,

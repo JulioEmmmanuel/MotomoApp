@@ -11,6 +11,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.motomoapp.databinding.ActivityItemDetalleBinding
+import com.example.motomoapp.models.FoodItem
+import com.example.motomoapp.models.MyGiftCards
 import com.google.android.material.navigation.NavigationView
 import com.google.gson.Gson
 
