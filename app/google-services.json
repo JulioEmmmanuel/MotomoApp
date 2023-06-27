@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "614701959811",
+    "project_id": "beduejemplo",
+    "storage_bucket": "beduejemplo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:614701959811:android:8ab8ff81301cc9e98e69b6",
+        "android_client_info": {
+          "package_name": "org.bedu.firebasenotifications"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "614701959811-8fhe83mi4at75orre33ss1ol16fosfqn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBryoPgXrLCO3xpkmNaYUgFXlTCsZaWBQA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "614701959811-8fhe83mi4at75orre33ss1ol16fosfqn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

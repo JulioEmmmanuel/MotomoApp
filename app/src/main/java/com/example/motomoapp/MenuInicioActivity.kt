@@ -7,12 +7,16 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.transition.TransitionInflater
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.commit
 import com.example.motomoapp.databinding.ActivityMenuInicioBinding
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 
 class MenuInicioActivity : AppCompatActivity() {
 
@@ -60,6 +64,23 @@ class MenuInicioActivity : AppCompatActivity() {
         //Lógica de programación
         setCurrentFragment(logInFragment)
         createFragments()
+
+        connectToFirebase()
+
+    }
+
+    private fun connectToFirebase(){
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w("Error", "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
+
+            val token = task.result
+
+            Log.d("FCM_TOKEN",token)
+            Toast.makeText(baseContext,"FCM token: $token", Toast.LENGTH_SHORT).show()
+        })
     }
 
     private fun createFragments() {
