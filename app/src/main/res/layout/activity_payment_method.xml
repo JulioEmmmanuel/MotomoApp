@@ -15,7 +15,7 @@
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/textTitle"
+        android:id="@+id/paymentMethodText"
         style="@style/Title.H1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,6 +34,6 @@
         android:layout_marginEnd="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/paymentMethodText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

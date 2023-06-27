@@ -1,12 +1,17 @@
 package com.example.motomoapp
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.transition.Slide
+import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat.startActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,6 +31,15 @@ class CartSummaryActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         val view = binding.root
         setContentView(view)
 
+        // transición al iniciar activity
+        val transitionIn = Slide(Gravity.RIGHT).apply {
+            duration = 700
+            excludeTarget(window.decorView.findViewById<View>(androidx.transition.R.id.action_bar_container), true)
+            excludeTarget(android.R.id.statusBarBackground, true)
+            excludeTarget(android.R.id.navigationBarBackground, true)
+        }
+        window.enterTransition = transitionIn
+
         val appBar = findViewById<Toolbar>(R.id.motomoToolbar)
         this.setSupportActionBar(appBar)
         setupDrawer(appBar)
@@ -38,7 +52,10 @@ class CartSummaryActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         if (Carrito.getSize() > 0) {
             binding.btnPagar.visibility = View.VISIBLE
              binding.btnPagar.setOnClickListener {
-                val intent = Intent(this, SelectPaymentMethodActivity::class.java)
+                val intent = Intent(this, GpsActivity::class.java)
+
+
+
                 startActivity(intent)
             }
 
@@ -81,15 +98,15 @@ class CartSummaryActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         when(item.itemId){
             R.id.credit_card -> {
                 val intent = Intent(this, MyCreditCards::class.java)
-                this.startActivity(intent)
+                startActivity(intent)
             }
             R.id.giftcard -> {
                 val intent = Intent(this, MyGiftCards::class.java)
-                this.startActivity(intent)
+                startActivity(intent)
             }
             R.id.order -> {
                 val intent = Intent(this, CartSummaryActivity::class.java)
-                this.startActivity(intent)
+                startActivity(intent)
             }
         }
         return true;

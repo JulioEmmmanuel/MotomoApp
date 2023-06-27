@@ -3,6 +3,9 @@ package com.example.motomoapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.transition.Fade
+import android.transition.Visibility
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -18,6 +21,15 @@ class GiftCardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gift_card)
+
+        // transicion al abrir activity
+        val transition = Fade(Visibility.MODE_IN).apply {
+            duration = 700
+            excludeTarget(window.decorView.findViewById<View>(androidx.transition.R.id.action_bar_container), true)
+            excludeTarget(android.R.id.statusBarBackground, true)
+            excludeTarget(android.R.id.navigationBarBackground, true)
+        }
+        window.enterTransition = transition
 
         val appBar = findViewById<Toolbar>(R.id.motomoToolbar)
         this.setSupportActionBar(appBar)

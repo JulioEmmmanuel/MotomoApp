@@ -1,9 +1,13 @@
 package com.example.motomoapp
 
+import android.app.ActivityOptions
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
+import android.transition.Slide
+import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -11,12 +15,29 @@ import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.viewpager.widget.ViewPager
 import com.example.motomoapp.databinding.ActivityOrderBinding
+import com.example.motomoapp.databinding.FragmentLogInBinding
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 
 class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+    //Aplicación de sharedPreferences
+    private val PREFS_NAME = "sharedpreferences"
+    private val USERNAME_KEY = "username_key"
+    private val ISLOGGED_KEY = "islogged_key"
+
+    private lateinit var preferences: SharedPreferences
+
     private lateinit var binding: ActivityOrderBinding
+/*
+    //Shared Preferences
+    private val PREFS_NAME = "sharedPreferences"
+    private val CANTIDAD_KEY = "cantidad_string_key"
+    private val FOOD_ITEM_KEY = "food_item_string_key"
+
+    private lateinit var preferences: SharedPreferences
+
+ */
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,8 +45,21 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         val view = binding.root
         setContentView(view)
 
+        // transición al iniciar activity
+        val transition = Slide(Gravity.TOP).apply {
+            duration = 500
+            excludeTarget(window.decorView.findViewById<View>(androidx.transition.R.id.action_bar_container), true)
+            excludeTarget(android.R.id.statusBarBackground, true)
+            excludeTarget(android.R.id.navigationBarBackground, true)
+        }
+        window.enterTransition = transition
+
+        preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+
+
         val appBar = findViewById<Toolbar>(R.id.motomoToolbar)
         this.setSupportActionBar(appBar)
+
         setupDrawer(appBar)
 
         updateCart()
@@ -34,9 +68,16 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
         binding.btnCarrito.setOnClickListener {
             val intent = Intent(this, CartSummaryActivity::class.java)
-            startActivity(intent)
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
         binding.navView.setNavigationItemSelectedListener(this)
+
+        binding.bttnLogOut.setOnClickListener(){
+            preferences.edit().putBoolean(ISLOGGED_KEY, false).apply()
+            val intent = Intent(this, MenuInicioActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+        }
     }
 
     override fun onResume() {
@@ -75,11 +116,14 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         // bind the viewPager with the TabLayout.
         tab.setupWithViewPager(pager)
     }
+
+
 //actualizar el carrito
     private fun updateCart(){
         val foodItem = intent.getParcelableExtra<FoodItem>("FoodSelected")
         val cantidad = intent.getIntExtra("Cantidad", 0)
-        if(foodItem != null){
+
+       if(foodItem != null){
             Carrito.Orden.addItem(foodItem, cantidad)
         }
 

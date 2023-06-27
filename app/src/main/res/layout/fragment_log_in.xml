@@ -23,6 +23,7 @@
         app:srcCompat="@drawable/mottomologo" />
 
     <TextView
+        android:id="@+id/logInText"
         style="@style/Title.H2"
         android:text="@string/logIn"
         app:layout_constraintBottom_toTopOf="@+id/logInUser"
