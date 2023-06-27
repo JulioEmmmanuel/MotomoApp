@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import com.example.motomoapp.models.GiftCard
 
 class GiftCardActivity : AppCompatActivity() {
 

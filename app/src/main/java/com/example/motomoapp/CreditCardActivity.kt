@@ -3,21 +3,17 @@ package com.example.motomoapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.transition.Fade
-import android.transition.Slide
-import android.transition.Visibility
-import android.view.Gravity
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.motomoapp.CashActivity
-import com.example.motomoapp.CreditCard
 import com.example.motomoapp.R
 import com.example.motomoapp.databinding.ActivityCreditCardBinding
 import com.example.motomoapp.databinding.ActivityOrderBinding
+import com.example.motomoapp.models.CreditCard
+
 //formulario de registro de tarjeta de credito
 class CreditCardActivity : AppCompatActivity() {
 
@@ -28,16 +24,6 @@ class CreditCardActivity : AppCompatActivity() {
         binding = ActivityCreditCardBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
-        // transicion al abrir activity
-        val transition = Fade(Visibility.MODE_IN).apply {
-            duration = 700
-            excludeTarget(window.decorView.findViewById<View>(androidx.transition.R.id.action_bar_container), true)
-            excludeTarget(android.R.id.statusBarBackground, true)
-            excludeTarget(android.R.id.navigationBarBackground, true)
-        }
-        window.enterTransition = transition
-
 
         val appBar = findViewById<Toolbar>(R.id.motomoToolbar)
         this.setSupportActionBar(appBar)

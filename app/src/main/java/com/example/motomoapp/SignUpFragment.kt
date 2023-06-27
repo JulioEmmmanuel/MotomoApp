@@ -12,7 +12,6 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import com.example.motomoapp.databinding.FragmentSignUpBinding
-import com.example.motomoapp.BuildConfig
 
 class SignUpFragment : Fragment() {
 
