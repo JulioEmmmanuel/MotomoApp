@@ -10,6 +10,10 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.motomoapp.databinding.ActivityCashBinding
+import com.example.motomoapp.utils.OrderNotification
+import com.example.motomoapp.utils.ReceiverNotification
+import com.example.motomoapp.utils.TouchNotification
+import com.example.motomoapp.utils.executeOrRequestPermission
 
 class CashActivity: AppCompatActivity() {
 
@@ -36,6 +40,15 @@ class CashActivity: AppCompatActivity() {
         binding.btnContinuar.setOnClickListener{
             val intent = Intent(this, OrderActivity::class.java)
             startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            executeOrRequestPermission(this@CashActivity) {
+                ReceiverNotification(this@CashActivity)
+            }
         }
+
+        executeOrRequestPermission(this@CashActivity) {
+            TouchNotification(this@CashActivity)
+        }
+
+
     }
 }

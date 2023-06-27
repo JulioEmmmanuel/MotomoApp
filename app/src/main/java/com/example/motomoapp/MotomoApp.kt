@@ -7,9 +7,9 @@ import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
 
-class NotificationApp:Application() {
+class MotomoApp:Application() {
     companion object {
-        val CHANNEL_ID = "Notificaciones pedido"
+        const val CHANNEL_ID = "Notificaciones pedido"
     }
 
     override fun onCreate() {

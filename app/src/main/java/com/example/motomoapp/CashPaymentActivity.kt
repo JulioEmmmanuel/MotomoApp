@@ -4,6 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.example.motomoapp.utils.OrderNotification
+import com.example.motomoapp.utils.ReceiverNotification
+import com.example.motomoapp.utils.executeOrRequestPermission
 import com.google.android.material.button.MaterialButton
 
 class CashPaymentActivity : AppCompatActivity() {
@@ -18,7 +21,14 @@ class CashPaymentActivity : AppCompatActivity() {
 
         newOrderButton.setOnClickListener {
             val intent = Intent(this, OrderActivity::class.java)
+            executeOrRequestPermission(this@CashPaymentActivity) {
+                ReceiverNotification(this@CashPaymentActivity)
+            }
             this.startActivity(intent)
+        }
+
+        executeOrRequestPermission(this@CashPaymentActivity) {
+            OrderNotification(this@CashPaymentActivity)
         }
 
         Carrito.clear()

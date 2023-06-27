@@ -110,4 +110,9 @@
     <string name="main_description">Notificaciones sobre tu pedido</string>
     <string name="pedido_title">Pedido realizado</string>
     <string name="pedido_string">Tu pedido ha sido realizado y está siendo preparado</string>
+    <string name="action_title">Pide ahora</string>
+    <string name="action_body">Pulsa para hacer un nuevo pedido</string>
+    <string name="button_title">Cerrar sesión</string>
+    <string name="button_body">Terminaste con tu compra, ¿deseas cerrar sesión?</string>
+    <string name="button_text">Sí</string>
 </resources>
