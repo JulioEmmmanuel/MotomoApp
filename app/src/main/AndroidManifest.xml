@@ -77,6 +77,19 @@
             android:exported="true" />
         <receiver android:name=".receivers.NotificationReceiver"
             android:exported="true"/>
+        <service
+            android:name=".firebase.FirebaseMessaging"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/mottomologo" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="DEFAULT_CHANNEL" />
     </application>
 
 </manifest>

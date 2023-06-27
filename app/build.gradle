@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'
     id 'kotlin-kapt'
 }
 
@@ -12,53 +13,21 @@ android {
         enabled = true
     }
 
-
     defaultConfig {
         applicationId "com.example.motomoapp"
         minSdk 28
         targetSdk 33
         versionCode 1
         versionName "1.0"
-
-        buildConfigField "boolean", "IS_PAID", "true"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-
-    buildTypes {
+    buildTypes{
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.debug
-        }
-        debug {
-            applicationIdSuffix ".debug"
-            debuggable true
-        }
-
-    }
-
-
-    flavorDimensions 'price'
-
-    productFlavors{
-        free{
-            buildConfigField "boolean", "IS_PAID", "false"
-            applicationId "com.example.motoapp.buildvariant.free"
-            dimension "price"
-            applicationIdSuffix ".free"
-            versionNameSuffix "-free"
-        }
-        paid{
-            buildConfigField "boolean", "IS_PAID", "true"
-            applicationId "com.example.motoapp.buildvariant.paid"
-            dimension "price"
-            applicationIdSuffix ".paid"
-            versionNameSuffix "-full"
         }
     }
-
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
@@ -73,6 +42,8 @@ android {
 }
 
 dependencies {
+    implementation platform('com.google.firebase:firebase-bom:32.1.0')
+    implementation 'com.google.firebase:firebase-messaging-ktx'
 
     def room_version = "2.5.1"
 
@@ -80,8 +51,9 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
-    implementation 'com.google.code.gson:gson:2.8.8'
-    implementation 'com.squareup.okhttp3:okhttp:4.10.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation "com.squareup.okhttp3:okhttp:4.9.1"
+
     implementation 'com.google.android.gms:play-services-location:21.0.1'
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'

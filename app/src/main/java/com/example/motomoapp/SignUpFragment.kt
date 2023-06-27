@@ -34,16 +34,8 @@ class SignUpFragment : Fragment() {
         binding.acceptSignupButton.setOnClickListener{
 
             if(!binding.userInput.text.isNullOrBlank() && !binding.passwordInput.text.isNullOrBlank()){
-                if(BuildConfig.IS_PAID){
-                    val intent = Intent(requireActivity(), PaymentMethodActivity::class.java)
-                    requireActivity().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(requireActivity()).toBundle())
-                } else {
-                    Toast.makeText(requireActivity(), "Cargando el menú. Espera un momento...", Toast.LENGTH_SHORT)
-                        .show()
-                    val intent = Intent(requireActivity(), OrderActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    requireActivity().startActivity(intent)
-                }
+                val intent = Intent(requireActivity(), PaymentMethodActivity::class.java)
+                requireActivity().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(requireActivity()).toBundle())
             } else {
                 Toast.makeText(requireActivity(), "Llena todos los campos", Toast.LENGTH_SHORT)
                     .show()
