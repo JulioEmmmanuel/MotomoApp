@@ -77,11 +77,13 @@ fun ReceiverNotification(activity: Activity){
 
     val builder = NotificationCompat.Builder(activity, MotomoApp.CHANNEL_ID)
         .setSmallIcon(R.drawable.mottomologo)
+        .setColor(activity.getColor(R.color.colorPrimary))
         .setContentTitle(activity.getString(R.string.button_title))
         .setContentText(activity.getString(R.string.button_body))
         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
         .addAction(R.drawable.mottomologo, activity.getString(R.string.button_text), // agregamos la acción
             acceptPendingIntent)
+        .setAutoCancel(true)
 
     with(NotificationManagerCompat.from(activity)) {
         notify(40, builder.build())

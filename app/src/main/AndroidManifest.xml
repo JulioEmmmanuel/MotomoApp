@@ -73,6 +73,8 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
+        <receiver android:name=".receivers.NotificationReceiver"
+            android:exported="true"/>
     </application>
 
 </manifest>

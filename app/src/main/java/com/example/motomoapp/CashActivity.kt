@@ -40,9 +40,6 @@ class CashActivity: AppCompatActivity() {
         binding.btnContinuar.setOnClickListener{
             val intent = Intent(this, OrderActivity::class.java)
             startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-            executeOrRequestPermission(this@CashActivity) {
-                ReceiverNotification(this@CashActivity)
-            }
         }
 
         executeOrRequestPermission(this@CashActivity) {
