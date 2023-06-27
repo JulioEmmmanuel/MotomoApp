@@ -82,7 +82,6 @@ class MenuInicioActivity : AppCompatActivity() {
                 val token = task.result
 
                 Log.d("FCM_TOKEN", token)
-                Toast.makeText(baseContext, "FCM token: $token", Toast.LENGTH_SHORT).show()
             })
         }
     }
