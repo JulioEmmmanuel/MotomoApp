@@ -2,14 +2,12 @@ package com.example.motomoapp
 
 
 
-import android.animation.AnimatorInflater
 import android.animation.ValueAnimator
 import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.transition.TransitionInflater
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,10 +15,8 @@ import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
 import android.widget.Toast
-import android.transition.Scene
 import androidx.core.widget.addTextChangedListener
 import com.example.motomoapp.databinding.FragmentLogInBinding
-import com.google.android.material.textfield.TextInputEditText
 
 //@Suppress("UNREACHABLE_CODE")
 class LogInFragment : Fragment() {
@@ -88,7 +84,18 @@ class LogInFragment : Fragment() {
                     intent,
                     ActivityOptions.makeSceneTransitionAnimation(requireActivity()).toBundle()
                 )
-            }else {
+            }else if(binding.userInput.text.toString() == "admin" &&
+                binding.passwordInput.text.toString() == "admin123")
+            {/*
+                val intent = Intent(requireActivity(), DishListFragment::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+                requireActivity().startActivity(
+                    intent,
+                    ActivityOptions.makeSceneTransitionAnimation(requireActivity()).toBundle())
+                    */
+
+            } else {
                 Toast.makeText(requireActivity(), "El nombre de usuario y/o contraseña está incorrecto", Toast.LENGTH_SHORT)
                     .show()
             }
