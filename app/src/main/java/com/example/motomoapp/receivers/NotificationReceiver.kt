@@ -3,9 +3,7 @@ package com.example.motomoapp.receivers
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.widget.Toast
-import com.example.motomoapp.MainActivity
-import com.example.motomoapp.MenuInicioActivity
+import com.example.motomoapp.view.inicio.MenuInicioActivity
 import com.example.motomoapp.utils.ACTION_RECEIVED
 
 

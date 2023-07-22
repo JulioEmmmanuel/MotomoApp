@@ -115,4 +115,5 @@
     <string name="button_title">Cerrar sesión</string>
     <string name="button_body">Terminaste con tu compra, ¿deseas cerrar sesión?</string>
     <string name="button_text">Sí</string>
+    <string name="usuarioEmail">Correo electrónico</string>
 </resources>

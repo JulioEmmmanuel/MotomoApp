@@ -1,14 +1,11 @@
-package com.example.motomoapp
+package com.example.motomoapp.view
 
 import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.transition.Fade
 import android.transition.Slide
-import android.transition.Visibility
 import android.view.Gravity
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
@@ -17,7 +14,7 @@ import android.widget.ListView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.transition.TransitionInflater
+import com.example.motomoapp.R
 
 class PaymentMethodActivity : AppCompatActivity() {
 //set de los elementos de pago
@@ -65,7 +62,10 @@ class PaymentMethodActivity : AppCompatActivity() {
 
     private fun setupDrawer(toolbar: Toolbar){
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
-        val drawerToggle = ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open_drawer,R.string.close_drawer)
+        val drawerToggle = ActionBarDrawerToggle(this,drawerLayout,toolbar,
+            R.string.open_drawer,
+            R.string.close_drawer
+        )
     }
 //muestra el metodo de pago dependiendo de la seleccion de la lista
     private fun showPaymentForm(paymentMethod: String) {

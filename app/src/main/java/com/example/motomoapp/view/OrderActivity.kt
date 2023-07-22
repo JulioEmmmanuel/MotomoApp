@@ -1,4 +1,4 @@
-package com.example.motomoapp
+package com.example.motomoapp.view
 
 import android.app.ActivityOptions
 import android.content.Context
@@ -16,12 +16,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.viewpager.widget.ViewPager
+import com.example.motomoapp.R
 import com.example.motomoapp.adapters.ViewPagerAdapter
 import com.example.motomoapp.databinding.ActivityOrderBinding
 import com.example.motomoapp.models.Carrito
 import com.example.motomoapp.models.FoodItem
 import com.example.motomoapp.models.MyGiftCards
 import com.example.motomoapp.repositories.MenuRepository
+import com.example.motomoapp.view.inicio.MenuInicioActivity
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 
@@ -111,13 +113,13 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         val adapter = ViewPagerAdapter(supportFragmentManager)
 
         // add fragment to the list
-        val gridFragment1:GridFragment = GridFragment()
+        val gridFragment1: GridFragment = GridFragment()
         gridFragment1.setFoodItems(getYakimeshiItems());
 
-        val gridFragment2:GridFragment = GridFragment()
+        val gridFragment2: GridFragment = GridFragment()
         gridFragment2.setFoodItems(getRamenItems());
 
-        val gridFragment3:GridFragment = GridFragment()
+        val gridFragment3: GridFragment = GridFragment()
         gridFragment3.setFoodItems(getBebidasItems());
 
         adapter.addFragment(gridFragment1, "Plato principal")
@@ -149,7 +151,10 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
     private fun setupDrawer(toolbar: Toolbar){
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
-        val drawerToggle = ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open_drawer,R.string.close_drawer)
+        val drawerToggle = ActionBarDrawerToggle(this,drawerLayout,toolbar,
+            R.string.open_drawer,
+            R.string.close_drawer
+        )
     }
 
     //generamos datos dummy con este método

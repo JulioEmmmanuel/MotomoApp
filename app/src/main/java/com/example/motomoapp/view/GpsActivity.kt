@@ -1,21 +1,18 @@
-package com.example.motomoapp
+package com.example.motomoapp.view
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.constraintlayout.motion.widget.Debug.getLocation
 import androidx.core.app.ActivityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.example.motomoapp.R
 import com.example.motomoapp.databinding.ActivityGpsBinding
 import com.example.motomoapp.models.MyGiftCards
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -126,6 +123,9 @@ class GpsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelected
 
     private fun setupDrawer(toolbar: Toolbar){
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
-        val drawerToggle = ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open_drawer,R.string.close_drawer)
+        val drawerToggle = ActionBarDrawerToggle(this,drawerLayout,toolbar,
+            R.string.open_drawer,
+            R.string.close_drawer
+        )
     }
 }

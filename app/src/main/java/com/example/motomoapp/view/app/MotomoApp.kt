@@ -1,4 +1,4 @@
-package com.example.motomoapp
+package com.example.motomoapp.view.app
 
 import android.app.Application
 import android.app.NotificationChannel
@@ -6,6 +6,7 @@ import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
+import com.example.motomoapp.R
 
 class MotomoApp:Application() {
     companion object {

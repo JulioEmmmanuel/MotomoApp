@@ -1,4 +1,4 @@
-package com.example.motomoapp
+package com.example.motomoapp.view.inicio
 
 import android.app.ActivityOptions
 import android.content.Context
@@ -9,13 +9,13 @@ import android.os.Bundle
 import android.transition.TransitionInflater
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.commit
+import com.example.motomoapp.R
 import com.example.motomoapp.databinding.ActivityMenuInicioBinding
 import com.example.motomoapp.utils.executeOrRequestPermission
+import com.example.motomoapp.view.OrderActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
@@ -25,28 +25,39 @@ class MenuInicioActivity : AppCompatActivity() {
     //Variables Globales
     private lateinit var binding: ActivityMenuInicioBinding
 
-    private lateinit var logInFragment:LogInFragment
-    private lateinit var signUpFragment:SignUpFragment
+    private lateinit var logInFragment: LogInFragment
+    private lateinit var signUpFragment: SignUpFragment
 
     //Aplicación de sharedPreferences
     private val PREFS_NAME = "sharedpreferences"
-    private val USERNAME_KEY = "username_key"
     private val ISLOGGED_KEY = "islogged_key"
     private lateinit var preferences: SharedPreferences
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMenuInicioBinding.inflate(layoutInflater)
         val view = binding.root
 
-        preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-
         isLogged()
         setContentView(view)
+        setUpTransition()
 
-        title = "Emisor"
+        //set appBar
+        val appBar = findViewById<Toolbar>(R.id.motomoToolbar)
+        this.setSupportActionBar(appBar)
 
+        //set up fragments
+        logInFragment = LogInFragment()
+        signUpFragment = SignUpFragment()
+        setCurrentFragment(logInFragment)
+        createFragments()
+
+        connectToFirebase()
+
+    }
+
+    private fun setUpTransition(){
+        //create transtion
         val transitionXml = TransitionInflater
             .from(this).inflateTransition(R.transition.transition_menu_inicio).apply {
                 duration = 700
@@ -56,22 +67,11 @@ class MenuInicioActivity : AppCompatActivity() {
             }
 
         window.exitTransition = transitionXml
-
-        val appBar = findViewById<Toolbar>(R.id.motomoToolbar)
-        this.setSupportActionBar(appBar)
-
-        logInFragment = LogInFragment()
-        signUpFragment = SignUpFragment()
-
-        //Lógica de programación
-        setCurrentFragment(logInFragment)
-        createFragments()
-
-        connectToFirebase()
-
     }
 
     private fun connectToFirebase(){
+        FirebaseApp.initializeApp(this)
+
         executeOrRequestPermission(this) {
             FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
                 if (!task.isSuccessful) {
@@ -86,15 +86,16 @@ class MenuInicioActivity : AppCompatActivity() {
         }
     }
 
+    //change selected fragment
     private fun createFragments() {
         binding.bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
-                R.id.logIn->{
+                R.id.logIn ->{
                     setCurrentFragment(logInFragment)
                     it.actionView?.clearFocus()
                     true
                 }
-                R.id.signUp-> {
+                R.id.signUp -> {
                     setCurrentFragment(signUpFragment)
                     it.actionView?.clearFocus()
                     true
@@ -104,6 +105,7 @@ class MenuInicioActivity : AppCompatActivity() {
         }
     }
 
+    //display fragment
     private fun setCurrentFragment(fragment: Fragment){
         val fm: FragmentManager = supportFragmentManager
         fm.beginTransaction()
@@ -111,8 +113,9 @@ class MenuInicioActivity : AppCompatActivity() {
             .commit()
     }
 
+    //check whether the user is logged
    fun isLogged(){
-
+        preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
        val isLogged = preferences.getBoolean(ISLOGGED_KEY, false)
 
        if (isLogged){

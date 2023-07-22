@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".MotomoApp"
+        android:name=".view.app.MotomoApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -18,63 +18,61 @@
         android:theme="@style/Theme.MotomoApp"
         tools:targetApi="31">
         <activity
-            android:name=".GpsActivity"
+            android:name=".view.GpsActivity"
             android:exported="false" />
         <activity
-            android:name=".CashPaymentActivity"
+            android:name=".view.CashPaymentActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashScreenProcessingPayment"
+            android:name=".view.SplashScreenProcessingPayment"
             android:exported="false" />
         <activity
-            android:name=".CartSummaryActivity"
+            android:name=".view.CartSummaryActivity"
             android:exported="false" />
         <activity
-            android:name=".PaymentDone"
+            android:name=".view.PaymentDone"
             android:exported="true" />
         <activity
             android:name=".models.MyGiftCards"
             android:exported="false" />
         <activity
-            android:name=".MyCreditCards"
+            android:name=".view.MyCreditCards"
             android:exported="true" />
         <activity
-            android:name=".SelectPaymentMethodActivity"
+            android:name=".view.SelectPaymentMethodActivity"
             android:exported="true" />
         <activity
-            android:name=".ItemDetalleActivity"
+            android:name=".view.ItemDetalleActivity"
             android:exported="true" />
         <activity
-            android:name=".SplashScreenActivity"
+            android:name=".view.inicio.SplashScreenActivity"
             android:exported="true"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".OrderActivity"
+            android:name=".view.OrderActivity"
             android:exported="true" />
         <activity
-            android:name=".PaymentMethodActivity"
+            android:name=".view.PaymentMethodActivity"
             android:exported="true" />
         <activity
-            android:name=".CreditCardActivity"
+            android:name=".view.CreditCardActivity"
             android:exported="true" />
         <activity
-            android:name=".GiftCardActivity"
+            android:name=".view.GiftCardActivity"
             android:exported="true" />
         <activity
-            android:name=".CashActivity"
+            android:name=".view.CashActivity"
             android:exported="true" />
         <activity
-            android:name=".MenuInicioActivity"
+            android:name=".view.inicio.MenuInicioActivity"
             android:exported="true" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true" />
+
+
         <receiver android:name=".receivers.NotificationReceiver"
             android:exported="true"/>
         <service

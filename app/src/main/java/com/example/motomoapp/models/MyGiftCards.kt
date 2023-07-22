@@ -7,11 +7,11 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
-import com.example.motomoapp.CartSummaryActivity
-import com.example.motomoapp.GiftCardActivity
-import com.example.motomoapp.MyCreditCards
+import com.example.motomoapp.view.CartSummaryActivity
+import com.example.motomoapp.view.GiftCardActivity
+import com.example.motomoapp.view.MyCreditCards
 import com.example.motomoapp.R
-import com.example.motomoapp.SplashScreenProcessingPayment
+import com.example.motomoapp.view.SplashScreenProcessingPayment
 import com.example.motomoapp.databinding.ActivityMyGiftCardsBinding
 import com.google.android.material.navigation.NavigationView
 
