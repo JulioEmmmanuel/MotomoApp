@@ -12,6 +12,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.motomoapp.R
 import com.example.motomoapp.databinding.ActivityItemDetalleBinding
+import com.example.motomoapp.models.Carrito
 import com.example.motomoapp.models.FoodItem
 import com.example.motomoapp.models.MyGiftCards
 import com.example.motomoapp.view.MyCreditCards
@@ -44,7 +45,11 @@ class ItemDetalleActivity : AppCompatActivity(), NavigationView.OnNavigationItem
             binding.tvDescription.text = foodItem.description;
             binding.tvPrice.text = "$" + String.format("%.2f", foodItem.price.toDouble())
 
-            Picasso.get().load(foodItem.idImage).into(binding.imgDescripcion)
+            Picasso
+                .get()
+                .load(foodItem.idImage)
+                .placeholder(R.drawable.food)
+                .into(binding.imgDescripcion)
 
             binding.btnMas.setOnClickListener{
                 if(cantidad < 10){
@@ -66,10 +71,7 @@ class ItemDetalleActivity : AppCompatActivity(), NavigationView.OnNavigationItem
                 finish()
             }
             binding.btnAgregar.setOnClickListener(){
-                val intent = Intent(this, OrderActivity::class.java)
-                intent.putExtra("Cantidad", cantidad)
-                intent.putExtra("FoodSelected", foodItem)
-                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+                Carrito.addItem(foodItem, cantidad)
                 finish()
             }
         }

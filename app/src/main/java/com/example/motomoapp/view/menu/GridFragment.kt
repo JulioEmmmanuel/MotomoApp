@@ -1,5 +1,6 @@
 package com.example.motomoapp.view.menu
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -48,9 +49,10 @@ class GridFragment: Fragment() {
         // indicamos el tipo de layoutManager
         recyclerItems.layoutManager = GridLayoutManager(activity, 2)
         //seteando el Adapter
-        adapter = FoodRecyclerAdapter( requireActivity(), foodItems)
+        adapter = FoodRecyclerAdapter(foodItems)
         //asignando el Adapter al RecyclerView
         recyclerItems.adapter = adapter
     }
+
 
 }

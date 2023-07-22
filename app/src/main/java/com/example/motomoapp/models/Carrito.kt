@@ -5,10 +5,10 @@ import android.util.Log
 class Carrito {
 
     companion object Orden {
-        private val items = mutableListOf<FoodItem>()
+        private val items =  mutableListOf<FoodItem>()
         private val amounts = mutableListOf<Int>()
 
-        private var price = 0
+        private var price = 0.0
         private var totalItems = 0
 
         public fun addItem(foodItem: FoodItem, amount:Int){
@@ -23,11 +23,9 @@ class Carrito {
                 amounts[index] += amount;
             }
 
-            price += amount * foodItem.price.substring(1).toInt()
+            price += amount * foodItem.price.toDouble()
             totalItems += amount
 
-            Log.d("Aviso", "Precio: $price")
-            Log.d("Aviso", "Elementos en carrito: $totalItems")
         }
 
         public fun addOne(id:String){
@@ -37,11 +35,8 @@ class Carrito {
 
             amounts[index]++;
 
-            price += items[index].price.substring(1).toInt()
+            price += items[index].price.toDouble()
             totalItems++
-
-            Log.d("Aviso", "Precio: $price")
-            Log.d("Aviso", "Elementos en carrito: $totalItems")
 
         }
 
@@ -52,7 +47,7 @@ class Carrito {
 
             amounts[index]--;
 
-            price -= items[index].price.substring(1).toInt()
+            price -= items[index].price.toDouble()
             totalItems--
 
             if(amounts[index] == 0){
@@ -60,15 +55,12 @@ class Carrito {
                 amounts.remove(index)
             }
 
-            Log.d("Aviso", "Precio: $price")
-            Log.d("Aviso", "Elementos en carrito: $totalItems")
-
         }
 
         fun clear(){
             items.clear()
             amounts.clear()
-            price = 0
+            price = 0.0
             totalItems = 0
         }
 
@@ -83,7 +75,7 @@ class Carrito {
                     it.id,
                     it.name,
                     it.price,
-                    (amounts[index] * it.price.substring(1).toInt()).toString(),
+                    (amounts[index] * it.price.toDouble()).toString(),
                     it.idImage,
                     amounts[index])
             }
@@ -98,7 +90,7 @@ class Carrito {
             return totalItems
         }
 
-        public fun getPrice():Int{
+        public fun getPrice():Double{
             return price
         }
 

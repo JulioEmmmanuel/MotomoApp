@@ -10,10 +10,13 @@ import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.viewpager.widget.ViewPager
 import com.example.motomoapp.R
 import com.example.motomoapp.adapters.ViewPagerAdapter
@@ -22,9 +25,11 @@ import com.example.motomoapp.models.Carrito
 import com.example.motomoapp.models.FoodItem
 import com.example.motomoapp.models.MyGiftCards
 import com.example.motomoapp.models.api.ApiFood
-import com.example.motomoapp.repositories.MenuRepository
+import com.example.motomoapp.models.repositories.MenuRepository
 import com.example.motomoapp.view.MyCreditCards
+import com.example.motomoapp.view.app.MotomoApp
 import com.example.motomoapp.view.inicio.MenuInicioActivity
+import com.example.motomoapp.viewmodels.MenuViewModel
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import es.dmoral.toasty.Toasty
@@ -42,8 +47,13 @@ import retrofit2.Response
 class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityOrderBinding
-    private lateinit var menu: MenuRepository
     private lateinit var preferences: SharedPreferences
+
+    private lateinit var viewModel: MenuViewModel
+
+    // Initializing the ViewPagerAdapter
+    val adapter = ViewPagerAdapter(supportFragmentManager)
+    private lateinit var tabs:TabLayout
 
     companion object {
         val MAIN_TYPE = "Best Food"
@@ -60,9 +70,6 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         transitionIn()
         setUpAppbar()
 
-        //get menu
-        menu = MenuRepository()
-
         preferences = getSharedPreferences(MenuInicioActivity.PREFS_NAME, AppCompatActivity.MODE_PRIVATE)
 
         binding.navView.setNavigationItemSelectedListener(this)
@@ -71,9 +78,10 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         updateCart()
         setButtons()
 
-        CoroutineScope(Dispatchers.IO).launch{
-            setTabs()
-        }
+        viewModel = MenuViewModel((applicationContext as MotomoApp).menuRepository)
+
+        tabs = findViewById(R.id.tabs)
+        setupObservers()
 
     }
 
@@ -119,18 +127,45 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     }
 
     //Menu tab de las categorias de comida
-    @OptIn(ExperimentalCoroutinesApi::class)
-    private suspend fun setTabs(){
+    private fun setupObservers(){
+        viewModel.bestFoods.observe(this, Observer {
+            if(it.isNotEmpty()){
+                val g = GridFragment()
+                g.setFoodItems(it)
+                adapter.addFragment(g, MAIN_TYPE)
+                binding.viewPager.adapter = adapter
+                tabs.setupWithViewPager(binding.viewPager)
+            }
+        })
 
-        // Initializing the ViewPagerAdapter
-        val adapter = ViewPagerAdapter(supportFragmentManager)
+        viewModel.drinks.observe(this, Observer {
+            if(it.isNotEmpty()){
+                val g = GridFragment()
+                g.setFoodItems(it)
+                adapter.addFragment(g, DRINKS)
+                binding.viewPager.adapter = adapter
+                tabs.setupWithViewPager(binding.viewPager)
+            }
+        })
 
-        // add fragments to the list asynchronously
-        getItems(MAIN_TYPE, adapter)
-        getItems(DRINKS, adapter)
-        getItems(DESSERTS, adapter)
+        viewModel.desserts.observe(this, Observer {
+            if(it.isNotEmpty()){
+                val g = GridFragment()
+                g.setFoodItems(it)
+                adapter.addFragment(g, DESSERTS)
+                binding.viewPager.adapter = adapter
+                tabs.setupWithViewPager(binding.viewPager)
+            }
+        })
 
+        viewModel.errorMessage.observe(this, Observer {
+            if(it.isNotEmpty()){
+                Toasty.error(this@OrderActivity,  it, Toast.LENGTH_SHORT, true).show()
+            }
+        })
     }
+
+
 
     //actualizar el carrito
     private fun updateCart(){
@@ -154,52 +189,6 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             R.string.open_drawer,
             R.string.close_drawer
         )
-    }
-
-    //generamos datos dummy con este método
-    private suspend fun getItems(type: String, adapter: ViewPagerAdapter) {
-        // Get the menu from the API through the Repository
-        // Using the square brackets we will be able to call directly the method get
-
-        val pager = findViewById<ViewPager>(R.id.viewPager)
-        val tab = findViewById<TabLayout>(R.id.tabs)
-
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val result = when (type) {
-                    MAIN_TYPE -> ApiFood.endpoint.getBestFoods()
-                    DRINKS -> ApiFood.endpoint.getDrinks()
-                    DESSERTS -> ApiFood.endpoint.getDesserts()
-                    else -> ApiFood.endpoint.getBestFoods()
-                }
-                withContext(Dispatchers.Main) {
-                    if (result.isSuccessful) {
-                        val gridFragment = GridFragment()
-                        gridFragment.setFoodItems(result.body()?.subList(0, 10) ?: listOf<FoodItem>())
-                        adapter.addFragment(gridFragment, type)
-                        pager.adapter = adapter
-                        tab.setupWithViewPager(pager)
-                    } else {
-                        Toasty.error(
-                            this@OrderActivity,
-                            "No se pudieron obtener los elementos correctamente",
-                            Toast.LENGTH_SHORT,
-                            true
-                        ).show()
-                    }
-                }
-            } catch (error: Throwable) {
-                withContext(Dispatchers.Main) {
-                    Log.e("ErrorApi", error.message.toString())
-                    Toasty.error(
-                        this@OrderActivity,
-                        "Ocurrió un error",
-                        Toast.LENGTH_SHORT,
-                        true
-                    ).show()
-                }
-            }
-        }
     }
 
     //acceso a los elementos del menu

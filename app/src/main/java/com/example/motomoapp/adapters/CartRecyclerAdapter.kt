@@ -55,33 +55,34 @@ class CartRecyclerAdapter(
             itemName.text = cartItem.name
             precio.text = "Precio: $" + String.format("%.2f", cartItem.precio.toDouble())
             subtotal.text = "Subtotal: $" + String.format("%.2f", cartItem.subtotal.toDouble())
+            tvTotal.text = "Total: $" + String.format("%.2f", Carrito.getPrice())
             cantidad.text = cartItem.cantidad.toString()
             Picasso.get().load(cartItem.idImagen).into(image)
 
             btnMas.setOnClickListener{
                 val cantidadNum = (cantidad.text as String).toInt()
-                val subtotalNum = (subtotal.text.substring(11) as String).toInt()
-                val precioNum = (precio.text.substring(9) as String).toInt()
+                val subtotalNum = (subtotal.text.substring(11) as String).toDouble()
+                val precioNum = (precio.text.substring(9) as String).toDouble()
                 if(cantidadNum < 10){
                     cantidad.text = (cantidadNum+1).toString();
-                    subtotal.text = "Subtotal: $${subtotalNum+precioNum}"
+                    subtotal.text = "Subtotal: $" + String.format("%.2f", subtotalNum+precioNum)
                     Carrito.addOne(cartItem.id)
-                    tvTotal.text = "Total: $${Carrito.getPrice()}"
+                    tvTotal.text = "Total: $" + String.format("%.2f", Carrito.getPrice())
                 }
             }
 
             btnMenos.setOnClickListener{
                 val cantidadNum = (cantidad.text as String).toInt()
-                val subtotalNum = (subtotal.text.substring(11) as String).toInt()
-                val precioNum = (precio.text.substring(9) as String).toInt()
+                val subtotalNum = (subtotal.text.substring(11) as String).toDouble()
+                val precioNum = (precio.text.substring(9) as String).toDouble()
                 if(cantidadNum > 1){
                     cantidad.text = (cantidadNum-1).toString();
-                    subtotal.text = "Subtotal: $${subtotalNum-precioNum}"
+                    subtotal.text = "Subtotal: $" + String.format("%.2f", subtotalNum-precioNum)
                     Carrito.removeOne(cartItem.id)
-                    tvTotal.text = "Total: $${Carrito.getPrice()}"
+                    tvTotal.text = "Total: $" + String.format("%.2f", Carrito.getPrice())
                 } else if(cantidadNum == 0) {
                     Carrito.removeOne(cartItem.id)
-                    tvTotal.text = "Total: $${Carrito.getPrice()}"
+                    tvTotal.text = "Total: $" + String.format("%.2f", Carrito.getPrice())
                     delete()
                 }
             }

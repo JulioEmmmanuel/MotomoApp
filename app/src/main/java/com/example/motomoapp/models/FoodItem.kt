@@ -2,9 +2,13 @@ package com.example.motomoapp.models
 
 import android.os.Parcel
 import android.os.Parcelable
+import android.view.View
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import com.google.gson.annotations.SerializedName
+import com.squareup.picasso.Picasso
 
-class FoodItem (
+data class FoodItem (
     val id: String,
     val name: String,
     @SerializedName("dsc") val description: String,
@@ -41,5 +45,6 @@ class FoodItem (
             return arrayOfNulls(size)
         }
     }
+
 }
 

@@ -1,66 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="200dp"
-    android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/cardBackground"
-    app:cardCornerRadius="5dp"
-    android:layout_marginTop="5dp"
-    android:layout_marginStart="5dp"
-    android:layout_marginBottom="5dp"
-    >
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <data>
+        <variable
+            name="foodItem"
+            type="com.example.motomoapp.models.FoodItem" />
+
+        <variable
+            name="price"
+            type="String"
+            />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/cardBackground"
+        app:cardCornerRadius="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="5dp"
+        app:detailClick="@{foodItem}"
         >
 
-        <ImageView
-            android:id="@+id/imgFoodItem"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/food"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tvNombreItem"
-            android:text="@string/headerfoodcard"
-            android:textSize="18sp"
-            style="@style/Title.H3"
-            android:textStyle="bold"
-            android:layout_marginTop="5sp"
-            android:layout_marginStart="5sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgFoodItem" />
+            <ImageView
+                android:id="@+id/imgFoodItem"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{foodItem.idImage}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tvDescripcionItem"
-            android:text="@string/descripcionfoodcard"
-            style="@style/Text"
-            android:layout_marginTop="3sp"
-            android:layout_marginStart="5sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvNombreItem" />
+            <TextView
+                android:id="@+id/tvNombreItem"
+                android:text="@{foodItem.name}"
+                tools:text="Titulo"
+                android:textSize="18sp"
+                style="@style/Title.H3"
+                android:textStyle="bold"
+                android:layout_marginTop="5sp"
+                android:layout_marginStart="5sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgFoodItem" />
 
-        <TextView
-            android:id="@+id/tvPrecioItem"
-            style="@style/Text"
-            android:textStyle="bold"
-            android:layout_marginTop="3sp"
-            android:layout_marginBottom="5sp"
-            android:text="@string/preciofoodcard"
-            android:layout_marginStart="5sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvDescripcionItem" />
+            <TextView
+                android:id="@+id/tvDescripcionItem"
+                android:text="@{foodItem.description}"
+                tools:text="@string/descripcionfoodcard"
+                style="@style/Text"
+                android:layout_marginTop="3sp"
+                android:layout_marginStart="5sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNombreItem" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/tvPrecioItem"
+                style="@style/Text"
+                android:textStyle="bold"
+                android:layout_marginTop="3sp"
+                android:layout_marginBottom="5sp"
+                android:text="@{price}"
+                tools:text="@string/preciofoodcard"
+                android:layout_marginStart="5sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDescripcionItem" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</com.google.android.material.card.MaterialCardView>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

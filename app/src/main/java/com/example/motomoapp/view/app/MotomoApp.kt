@@ -7,8 +7,17 @@ import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.example.motomoapp.R
+import com.example.motomoapp.models.api.ApiFood
+import com.example.motomoapp.models.api.FoodService
+import com.example.motomoapp.models.repositories.MenuRepository
 
 class MotomoApp:Application() {
+
+    val menuRepository: MenuRepository
+        get() = MenuRepository(
+            ApiFood
+        )
+
     companion object {
         const val CHANNEL_ID = "Notificaciones pedido"
     }
