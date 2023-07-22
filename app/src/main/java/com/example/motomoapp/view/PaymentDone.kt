@@ -1,15 +1,14 @@
-package com.example.motomoapp
+package com.example.motomoapp.view
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.example.motomoapp.R
 import com.example.motomoapp.models.Carrito
 import com.example.motomoapp.databinding.ActivityPaymentDoneBinding
 import com.example.motomoapp.utils.OrderNotification
-import com.example.motomoapp.utils.TouchNotification
 import com.example.motomoapp.utils.executeOrRequestPermission
 import com.google.android.material.button.MaterialButton
 

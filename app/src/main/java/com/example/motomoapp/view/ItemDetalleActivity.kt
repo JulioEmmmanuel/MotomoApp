@@ -1,4 +1,4 @@
-package com.example.motomoapp
+package com.example.motomoapp.view
 
 import android.app.ActivityOptions
 import android.content.Context
@@ -10,6 +10,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+import com.example.motomoapp.R
 import com.example.motomoapp.databinding.ActivityItemDetalleBinding
 import com.example.motomoapp.models.FoodItem
 import com.example.motomoapp.models.MyGiftCards
@@ -90,7 +91,10 @@ class ItemDetalleActivity : AppCompatActivity(), NavigationView.OnNavigationItem
 
     private fun setupDrawer(toolbar: Toolbar){
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
-        val drawerToggle = ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open_drawer,R.string.close_drawer)
+        val drawerToggle = ActionBarDrawerToggle(this,drawerLayout,toolbar,
+            R.string.open_drawer,
+            R.string.close_drawer
+        )
     }
 
     override fun onNavigationItemSelected(item: MenuItem) : Boolean {

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".LogInFragment"
+    tools:context=".view.inicio.LogInFragment"
     android:id="@+id/logInFragment"
     android:background="@color/white"
     android:orientation="vertical">
@@ -35,7 +35,7 @@
         android:id="@+id/logInUser"
         style="@style/InputLay"
         android:layout_marginTop="88dp"
-        android:hint="@string/usuario"
+        android:hint="@string/usuarioEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +44,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/userInput"
             style="@style/EditText"
-            android:inputType="text" />
+            android:inputType="textEmailAddress" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

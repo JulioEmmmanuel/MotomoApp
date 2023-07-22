@@ -1,12 +1,11 @@
-package com.example.motomoapp
+package com.example.motomoapp.view
 
 import android.animation.AnimatorInflater
-import android.animation.ValueAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.appcompat.app.AppCompatActivity
+import com.example.motomoapp.R
 import com.example.motomoapp.databinding.ActivitySplashScreenProcessingPaymentBinding
 
 class SplashScreenProcessingPayment : AppCompatActivity() {

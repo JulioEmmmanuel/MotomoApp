@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.motomoapp.ItemDetalleActivity
+import com.example.motomoapp.view.ItemDetalleActivity
 import com.example.motomoapp.R
 import com.example.motomoapp.models.FoodItem
 

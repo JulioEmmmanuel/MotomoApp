@@ -1,17 +1,15 @@
-package com.example.motomoapp
+package com.example.motomoapp.view
 
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.transition.Fade
 import android.transition.Visibility
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.example.motomoapp.R
 import com.example.motomoapp.databinding.ActivityCashBinding
-import com.example.motomoapp.utils.OrderNotification
-import com.example.motomoapp.utils.ReceiverNotification
 import com.example.motomoapp.utils.TouchNotification
 import com.example.motomoapp.utils.executeOrRequestPermission
 

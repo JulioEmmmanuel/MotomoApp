@@ -1,4 +1,4 @@
-package com.example.motomoapp
+package com.example.motomoapp.view.inicio
 
 import android.content.Intent
 import android.os.Bundle

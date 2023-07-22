@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:background="@color/white"
     android:layout_height="match_parent"
-    tools:context=".ItemDetalleActivity"
+    tools:context=".view.ItemDetalleActivity"
     >
 
     <include layout="@layout/app_bar"
@@ -19,7 +19,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".ItemDetalleActivity">
+        tools:context=".view.ItemDetalleActivity">
 
 
         <ImageView

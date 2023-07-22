@@ -1,4 +1,4 @@
-package com.example.motomoapp
+package com.example.motomoapp.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.motomoapp.R
 import com.example.motomoapp.adapters.FoodRecyclerAdapter
 import com.example.motomoapp.models.FoodItem
 
