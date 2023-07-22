@@ -1,10 +1,10 @@
 package com.example.motomoapp.models
 
 data class CartItem (
-    val id:Int,
+    val id:String,
     val name: String,
     val precio: String,
     val subtotal: String,
-    val idImagen: Int,
+    val idImagen: String,
     val cantidad: Int
 )

@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.CartSummaryActivity"
+    tools:context=".view.menu.CartSummaryActivity"
     >
 
     <include layout="@layout/app_bar"
@@ -18,7 +18,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".view.ItemDetalleActivity">
+        tools:context=".view.menu.ItemDetalleActivity">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnBack"

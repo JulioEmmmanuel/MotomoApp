@@ -7,7 +7,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
-import com.example.motomoapp.view.CartSummaryActivity
+import com.example.motomoapp.view.menu.CartSummaryActivity
 import com.example.motomoapp.view.GiftCardActivity
 import com.example.motomoapp.view.MyCreditCards
 import com.example.motomoapp.R

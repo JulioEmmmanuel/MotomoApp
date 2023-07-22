@@ -8,9 +8,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.motomoapp.view.ItemDetalleActivity
+import com.example.motomoapp.view.menu.ItemDetalleActivity
 import com.example.motomoapp.R
 import com.example.motomoapp.models.FoodItem
+import com.squareup.picasso.Picasso
 
 class FoodRecyclerAdapter(
     private val context: Context,
@@ -48,8 +49,8 @@ class FoodRecyclerAdapter(
         fun bind(foodItem: FoodItem, context: Context){
             itemName.text = foodItem.name
             description.text = foodItem.description
-            price.text = foodItem.price
-            image.setImageResource(foodItem.idImage)
+            price.text = "$" + String.format("%.2f", foodItem.price.toDouble())
+            Picasso.get().load(foodItem.idImage).into(image)
         }
     }
 }

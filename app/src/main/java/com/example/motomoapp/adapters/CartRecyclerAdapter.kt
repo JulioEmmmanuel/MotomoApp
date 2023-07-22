@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.motomoapp.R
 import com.example.motomoapp.models.Carrito
 import com.example.motomoapp.models.CartItem
+import com.squareup.picasso.Picasso
 
 class CartRecyclerAdapter(
     private val cartItems: MutableList<CartItem>,
@@ -52,10 +53,10 @@ class CartRecyclerAdapter(
         //"atando" los datos a las Views
         fun bind(cartItem: CartItem, tvTotal: TextView, delete: () -> Unit){
             itemName.text = cartItem.name
-            precio.text = "Precio: ${cartItem.precio}"
-            subtotal.text = "Subtotal: $${cartItem.subtotal}"
+            precio.text = "Precio: $" + String.format("%.2f", cartItem.precio.toDouble())
+            subtotal.text = "Subtotal: $" + String.format("%.2f", cartItem.subtotal.toDouble())
             cantidad.text = cartItem.cantidad.toString()
-            image.setImageResource(cartItem.idImagen)
+            Picasso.get().load(cartItem.idImagen).into(image)
 
             btnMas.setOnClickListener{
                 val cantidadNum = (cantidad.text as String).toInt()

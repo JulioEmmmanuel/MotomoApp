@@ -12,6 +12,7 @@ import com.example.motomoapp.R
 import com.google.android.material.navigation.NavigationView
 import com.example.motomoapp.databinding.ActivitySelectPaymentMethodBinding
 import com.example.motomoapp.models.MyGiftCards
+import com.example.motomoapp.view.menu.CartSummaryActivity
 
 class SelectPaymentMethodActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 

@@ -1,4 +1,4 @@
-package com.example.motomoapp.view
+package com.example.motomoapp.view.menu
 
 import android.app.ActivityOptions
 import android.content.Context
@@ -14,18 +14,12 @@ import com.example.motomoapp.R
 import com.example.motomoapp.databinding.ActivityItemDetalleBinding
 import com.example.motomoapp.models.FoodItem
 import com.example.motomoapp.models.MyGiftCards
+import com.example.motomoapp.view.MyCreditCards
 import com.google.android.material.navigation.NavigationView
 import com.google.gson.Gson
+import com.squareup.picasso.Picasso
 
 class ItemDetalleActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-
-    private val PREFS_NAME = "com.irvinbsu.sharedpreferences"
-
-    private val STRING_KEY = "string_key"
-    private val NUMBER_KEY = "number_key"
-
-
-    private lateinit var preferences: SharedPreferences
 
     private lateinit var binding: ActivityItemDetalleBinding
     private var cantidad:Int = 1;
@@ -36,20 +30,21 @@ class ItemDetalleActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         val view = binding.root
         setContentView(view)
 
-        preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        setUpAppbar()
+        updateUI()
 
+        binding.navView.setNavigationItemSelectedListener(this)
+    }
 
-
-        val appBar = findViewById<Toolbar>(R.id.motomoToolbar)
-        this.setSupportActionBar(appBar)
-        setupDrawer(appBar)
-
+    //updateUI with selected food item
+    private fun updateUI(){
         val foodItem = intent.getParcelableExtra<FoodItem>("FoodItem")
         if(foodItem != null){
             binding.tvHeader.text = foodItem.name;
             binding.tvDescription.text = foodItem.description;
-            binding.tvPrice.text = foodItem.price;
-            binding.imgDescripcion.setImageResource(foodItem.idImage);
+            binding.tvPrice.text = "$" + String.format("%.2f", foodItem.price.toDouble())
+
+            Picasso.get().load(foodItem.idImage).into(binding.imgDescripcion)
 
             binding.btnMas.setOnClickListener{
                 if(cantidad < 10){
@@ -74,21 +69,21 @@ class ItemDetalleActivity : AppCompatActivity(), NavigationView.OnNavigationItem
                 val intent = Intent(this, OrderActivity::class.java)
                 intent.putExtra("Cantidad", cantidad)
                 intent.putExtra("FoodSelected", foodItem)
-
-                //saveFoodItem(this, foodItem)
-                preferences.edit()
-                    .putInt(NUMBER_KEY, cantidad)
-                    .putString(STRING_KEY, Gson().toJson(foodItem))
-                    .apply()
-
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-                setValues()
                 finish()
             }
         }
-        binding.navView.setNavigationItemSelectedListener(this)
     }
 
+
+    //set up app bar
+    private fun setUpAppbar(){
+        val appBar = findViewById<Toolbar>(R.id.motomoToolbar)
+        this.setSupportActionBar(appBar)
+        setupDrawer(appBar)
+    }
+
+    //set up drawer
     private fun setupDrawer(toolbar: Toolbar){
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
         val drawerToggle = ActionBarDrawerToggle(this,drawerLayout,toolbar,
@@ -117,33 +112,4 @@ class ItemDetalleActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         return true;
     }
 
-    fun saveFoodItem(context: Context, foodItem: FoodItem) {
-
-        preferences.edit()
-            .putString(STRING_KEY, Gson().toJson(foodItem))
-            .apply()
-    }
-
-    fun getFoodItem(context: Context): FoodItem? {
-
-        val json = preferences.getString(STRING_KEY, null)
-        return Gson().fromJson(json, FoodItem::class.java)
-    }
-
-    fun setValues(){
-        val cantidad = preferences.getInt(NUMBER_KEY, 0)
-        //val foodItem = getFoodItem(this)
-        val foodItemJson = preferences.getString(STRING_KEY, null)
-        val foodItem = if (foodItemJson != null) {
-            Gson().fromJson(foodItemJson, FoodItem::class.java)
-        } else {
-            null
-        }
-
-        val intent = Intent(this, OrderActivity::class.java)
-        intent.putExtra("Cantidad", cantidad)
-        intent.putExtra("FoodSelected", foodItem)
-        //startActivity(intent)
-        finish()
-    }
 }

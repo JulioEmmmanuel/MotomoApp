@@ -2,29 +2,30 @@ package com.example.motomoapp.models
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 
 class FoodItem (
-    val id: Int,
+    val id: String,
     val name: String,
-    val description: String,
+    @SerializedName("dsc") val description: String,
     var price: String,
-    var idImage: Int
+    @SerializedName("img") var idImage: String
 )  : Parcelable {
     constructor(parcel: Parcel) : this(
-        parcel.readInt(),
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
-        parcel.readInt()
+        parcel.readString()!!,
+        parcel.readString()!!
     ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(id)
+        parcel.writeString(id)
         parcel.writeString(name)
         parcel.writeString(description)
         parcel.writeString(price)
-        parcel.writeInt(idImage)
+        parcel.writeString(idImage)
     }
 
     override fun describeContents(): Int {

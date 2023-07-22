@@ -1,4 +1,4 @@
-package com.example.motomoapp.view
+package com.example.motomoapp.view.menu
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,7 +15,6 @@ class GridFragment: Fragment() {
 
     private lateinit var adapter: FoodRecyclerAdapter
     private lateinit var recyclerItems:RecyclerView
-    private var listener: (FoodItem) -> Unit = {}
     private var foodItems:List<FoodItem> = ArrayList()
 
 

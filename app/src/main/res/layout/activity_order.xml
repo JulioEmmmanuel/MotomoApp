@@ -9,7 +9,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
 
-    tools:context=".view.OrderActivity"
+    tools:context=".view.menu.OrderActivity"
     >
 
     <include layout="@layout/app_bar_tabs"

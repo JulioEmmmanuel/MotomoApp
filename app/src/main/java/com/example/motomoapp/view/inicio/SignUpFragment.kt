@@ -3,6 +3,7 @@ package com.example.motomoapp.view.inicio
 import android.animation.ValueAnimator
 import android.app.ActivityOptions
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.motomoapp.R
 import com.example.motomoapp.databinding.FragmentSignUpBinding
 import com.example.motomoapp.view.PaymentMethodActivity
@@ -26,6 +28,9 @@ class SignUpFragment : Fragment() {
     private lateinit var binding: FragmentSignUpBinding
     private lateinit var auth: FirebaseAuth
 
+    private lateinit var preferences: SharedPreferences
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,6 +40,9 @@ class SignUpFragment : Fragment() {
         val view = binding.root
         barrelRoll()
         fadeIn()
+
+        auth = Firebase.auth
+
         return view
     }
 
@@ -49,7 +57,11 @@ class SignUpFragment : Fragment() {
             }
         }
 
-        auth = Firebase.auth
+        preferences = requireActivity().getSharedPreferences(
+            MenuInicioActivity.PREFS_NAME,
+            AppCompatActivity.MODE_PRIVATE
+        )
+
     }
 
     //create account with firebase
@@ -60,6 +72,10 @@ class SignUpFragment : Fragment() {
                     if (task.isSuccessful) {
                         Log.d("signup", "createUserWithEmail:success")
                         val user = auth.currentUser
+                        preferences
+                            .edit()
+                            .putBoolean(MenuInicioActivity.ISLOGGED_KEY, true)
+                            .apply()
                         updateUI(user, null)
                     } else {
                         Log.w("signup", "createUserWithEmail:failure", task.exception)

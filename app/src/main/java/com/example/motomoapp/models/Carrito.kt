@@ -30,7 +30,7 @@ class Carrito {
             Log.d("Aviso", "Elementos en carrito: $totalItems")
         }
 
-        public fun addOne(id:Int){
+        public fun addOne(id:String){
             val index = items.indexOfFirst {
                 it.id == id
             }
@@ -45,7 +45,7 @@ class Carrito {
 
         }
 
-        public fun removeOne(id:Int){
+        public fun removeOne(id:String){
             val index = items.indexOfFirst {
                 it.id == id
             }

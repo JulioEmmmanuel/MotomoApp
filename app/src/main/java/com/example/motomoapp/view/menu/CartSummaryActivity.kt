@@ -1,4 +1,4 @@
-package com.example.motomoapp.view
+package com.example.motomoapp.view.menu
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +18,8 @@ import com.example.motomoapp.databinding.ActivityCartSummaryBinding
 import com.example.motomoapp.models.Carrito
 import com.example.motomoapp.models.CartItem
 import com.example.motomoapp.models.MyGiftCards
+import com.example.motomoapp.view.GpsActivity
+import com.example.motomoapp.view.MyCreditCards
 import com.google.android.material.navigation.NavigationView
 
 class CartSummaryActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener  {
@@ -33,18 +35,9 @@ class CartSummaryActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         val view = binding.root
         setContentView(view)
 
-        // transición al iniciar activity
-        val transitionIn = Slide(Gravity.RIGHT).apply {
-            duration = 700
-            excludeTarget(window.decorView.findViewById<View>(androidx.transition.R.id.action_bar_container), true)
-            excludeTarget(android.R.id.statusBarBackground, true)
-            excludeTarget(android.R.id.navigationBarBackground, true)
-        }
-        window.enterTransition = transitionIn
+        transitionIn()
 
-        val appBar = findViewById<Toolbar>(R.id.motomoToolbar)
-        this.setSupportActionBar(appBar)
-        setupDrawer(appBar)
+        setUpAppbar()
 
         recyclerItems = findViewById(R.id.recyclerViewCart)
         setUpRecyclerView()
@@ -52,21 +45,41 @@ class CartSummaryActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         binding.tvTotal.text = "Total: $${Carrito.getPrice()}"
 
         if (Carrito.getSize() > 0) {
-            binding.btnPagar.visibility = View.VISIBLE
-             binding.btnPagar.setOnClickListener {
-                val intent = Intent(this, GpsActivity::class.java)
-
-
-
-                startActivity(intent)
-            }
-
-            binding.btnBack.setOnClickListener {
-                finish()
-            }
+           updateUI()
         }
 
         binding.navView.setNavigationItemSelectedListener(this)
+    }
+
+    private fun setUpAppbar(){
+        val appBar = findViewById<Toolbar>(R.id.motomoToolbar)
+        this.setSupportActionBar(appBar)
+        setupDrawer(appBar)
+    }
+
+    //make transition
+    private fun transitionIn(){
+        // transición al iniciar activity
+        val transition = Slide(Gravity.END).apply {
+            duration = 700
+            excludeTarget(window.decorView.findViewById<View>(androidx.transition.R.id.action_bar_container), true)
+            excludeTarget(android.R.id.statusBarBackground, true)
+            excludeTarget(android.R.id.navigationBarBackground, true)
+        }
+        window.enterTransition = transition
+    }
+
+    //update ui based on cart size
+    private fun updateUI(){
+        binding.btnPagar.visibility = View.VISIBLE
+        binding.btnPagar.setOnClickListener {
+            val intent = Intent(this, GpsActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
     }
 
     //configuramos lo necesario para desplegar el RecyclerView

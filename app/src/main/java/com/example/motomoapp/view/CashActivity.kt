@@ -12,6 +12,7 @@ import com.example.motomoapp.R
 import com.example.motomoapp.databinding.ActivityCashBinding
 import com.example.motomoapp.utils.TouchNotification
 import com.example.motomoapp.utils.executeOrRequestPermission
+import com.example.motomoapp.view.menu.OrderActivity
 
 class CashActivity: AppCompatActivity() {
 

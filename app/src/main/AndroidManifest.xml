@@ -27,7 +27,7 @@
             android:name=".view.SplashScreenProcessingPayment"
             android:exported="false" />
         <activity
-            android:name=".view.CartSummaryActivity"
+            android:name=".view.menu.CartSummaryActivity"
             android:exported="false" />
         <activity
             android:name=".view.PaymentDone"
@@ -42,7 +42,7 @@
             android:name=".view.SelectPaymentMethodActivity"
             android:exported="true" />
         <activity
-            android:name=".view.ItemDetalleActivity"
+            android:name=".view.menu.ItemDetalleActivity"
             android:exported="true" />
         <activity
             android:name=".view.inicio.SplashScreenActivity"
@@ -54,7 +54,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.OrderActivity"
+            android:name=".view.menu.OrderActivity"
             android:exported="true" />
         <activity
             android:name=".view.PaymentMethodActivity"

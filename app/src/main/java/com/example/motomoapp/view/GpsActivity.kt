@@ -15,6 +15,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.example.motomoapp.R
 import com.example.motomoapp.databinding.ActivityGpsBinding
 import com.example.motomoapp.models.MyGiftCards
+import com.example.motomoapp.view.menu.CartSummaryActivity
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.navigation.NavigationView

@@ -10,6 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.example.motomoapp.R
 import com.example.motomoapp.databinding.ActivityMyCreditCartsBinding
 import com.example.motomoapp.models.MyGiftCards
+import com.example.motomoapp.view.menu.CartSummaryActivity
 import com.google.android.material.navigation.NavigationView
 
 class MyCreditCards : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
