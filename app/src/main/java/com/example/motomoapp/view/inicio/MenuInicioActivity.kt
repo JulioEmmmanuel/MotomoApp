@@ -72,8 +72,6 @@ class MenuInicioActivity : AppCompatActivity() {
     }
 
     private fun connectToFirebase(){
-        FirebaseApp.initializeApp(this)
-
         executeOrRequestPermission(this) {
             FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
                 if (!task.isSuccessful) {

@@ -21,6 +21,7 @@ import com.example.motomoapp.view.menu.OrderActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.ktx.Firebase
 import es.dmoral.toasty.Toasty
 
@@ -85,6 +86,8 @@ class LogInFragment : Fragment() {
                         .edit()
                         .putBoolean(MenuInicioActivity.ISLOGGED_KEY, true)
                         .apply()
+                    //set user id for crashlytics
+                    FirebaseCrashlytics.getInstance().setUserId(email)
                     updateUI(user, null)
                 } else {
                     Log.w("login", "signInUserWithEmail:failure", task.exception)

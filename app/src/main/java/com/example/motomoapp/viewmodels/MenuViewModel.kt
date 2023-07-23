@@ -14,6 +14,7 @@ import com.example.motomoapp.models.repositories.MenuRepository
 import com.example.motomoapp.view.menu.GridFragment
 import com.example.motomoapp.view.menu.OrderActivity
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -62,6 +63,7 @@ class MenuViewModel(private val menuRepository: MenuRepository):ViewModel() {
                     _errorMessage.postValue("No se pudieron obtener los datos")
                 }
             } catch(error: Throwable){
+                FirebaseCrashlytics.getInstance().recordException(error)
                 _errorMessage.postValue(error.message)
             }
         }
@@ -80,6 +82,7 @@ class MenuViewModel(private val menuRepository: MenuRepository):ViewModel() {
                     _errorMessage.postValue("No se pudieron obtener los datos")
                 }
             } catch(error: Throwable){
+                FirebaseCrashlytics.getInstance().recordException(error)
                 _errorMessage.postValue(error.message)
             }
         }
@@ -98,6 +101,7 @@ class MenuViewModel(private val menuRepository: MenuRepository):ViewModel() {
                     _errorMessage.postValue("No se pudieron obtener los datos")
                 }
             } catch(error: Throwable){
+                FirebaseCrashlytics.getInstance().recordException(error)
                 _errorMessage.postValue(error.message)
             }
         }

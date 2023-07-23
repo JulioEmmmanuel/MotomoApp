@@ -14,6 +14,8 @@ import com.example.motomoapp.models.databases.MotomoDb
 import com.example.motomoapp.models.repositories.CarritoRepository
 import com.example.motomoapp.models.repositories.GiftCardRepository
 import com.example.motomoapp.models.repositories.MenuRepository
+import com.google.firebase.FirebaseApp
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 
 class MotomoApp:Application() {
 
@@ -38,6 +40,10 @@ class MotomoApp:Application() {
 
     override fun onCreate() {
         super.onCreate()
+
+        FirebaseApp.initializeApp(this)
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true)
+
         // Para android Oreo en adelante, s obligatorio registrar el canal de notificación
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             setNotificationChannel()
