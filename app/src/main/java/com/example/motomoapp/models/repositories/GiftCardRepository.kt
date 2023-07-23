@@ -16,4 +16,9 @@ class GiftCardRepository(
     suspend fun insertGiftCard(giftCard: GiftCard) = withContext(ioDispatcher) {
         giftCardDao.insertGiftCard(giftCard)
     }
+
+    suspend fun updateGiftCard(giftCard: GiftCard) = withContext(ioDispatcher) {
+        giftCardDao.updateGiftCard(giftCard)
+    }
+
 }

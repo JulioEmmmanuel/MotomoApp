@@ -1,12 +1,10 @@
-package com.example.motomoapp.viewmodels
+package com.example.motomoapp.viewmodels.giftcard
 
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.motomoapp.models.entities.GiftCard
 import com.example.motomoapp.models.repositories.GiftCardRepository
-import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.launch
 
 class AddGiftCardViewModel(
@@ -42,8 +40,17 @@ class AddGiftCardViewModel(
             return@launch
         }
 
-        giftCardRepository.insertGiftCard(GiftCard(giftNumber=cardNumber, giftAmount = amount))
-        added.postValue(true)
+        try {
+            giftCardRepository.insertGiftCard(
+                GiftCard(
+                    giftNumber = cardNumber,
+                    giftAmount = amount
+                )
+            )
+            added.postValue(true)
+        } catch(error: Throwable){
+            errorMessage.postValue("No se pudo agregar la tarjeta, revisa que no la hayas agregado ya previamente")
+        }
     }
 
     fun setCardNumber(s: CharSequence, start:Int, before: Int, count:Int) {

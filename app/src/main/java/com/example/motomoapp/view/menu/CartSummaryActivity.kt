@@ -30,7 +30,6 @@ class CartSummaryActivity : AppCompatActivity(), NavigationView.OnNavigationItem
     private lateinit var binding: ActivityCartSummaryBinding
     private lateinit var pedidoViewModel: PedidoViewModel
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCartSummaryBinding.inflate(layoutInflater)

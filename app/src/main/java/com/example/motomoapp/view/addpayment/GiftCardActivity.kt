@@ -6,18 +6,15 @@ import android.os.Bundle
 import android.transition.Fade
 import android.transition.Visibility
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import com.example.motomoapp.R
 import com.example.motomoapp.databinding.ActivityGiftCardBinding
-import com.example.motomoapp.models.entities.GiftCard
 import com.example.motomoapp.view.app.MotomoApp
 import com.example.motomoapp.view.inicio.MenuInicioActivity
-import com.example.motomoapp.viewmodels.AddGiftCardViewModel
-import com.example.motomoapp.viewmodels.GiftCardListViewModel
+import com.example.motomoapp.view.payment.MyGiftCards
+import com.example.motomoapp.viewmodels.giftcard.AddGiftCardViewModel
 import es.dmoral.toasty.Toasty
 
 class GiftCardActivity : AppCompatActivity() {
@@ -52,8 +49,15 @@ class GiftCardActivity : AppCompatActivity() {
             if(it) {
                 Toasty.success(this, "Se agregó correctamente la tarjeta", Toast.LENGTH_SHORT, true)
                     .show()
-                val i = Intent(this, MenuInicioActivity::class.java)
-                startActivity(i)
+                val from = intent.extras?.getString("from")
+                if(from == "mycards"){
+                    val i = Intent(this, MyGiftCards::class.java)
+                    startActivity(i)
+                } else {
+                    val i = Intent(this, MenuInicioActivity::class.java)
+                    startActivity(i)
+                }
+
             }
         })
     }
