@@ -9,6 +9,7 @@ import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -25,15 +26,16 @@ import com.example.motomoapp.viewmodels.MenuViewModel
 import com.example.motomoapp.viewmodels.PedidoViewModel
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
+import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
 
-
+@AndroidEntryPoint
 class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityOrderBinding
     private lateinit var preferences: SharedPreferences
 
-    private lateinit var menuViewModel: MenuViewModel
+    private val menuViewModel: MenuViewModel by viewModels()
     private lateinit var pedidoViewModel: PedidoViewModel
 
     // Initializing the ViewPagerAdapter
@@ -61,7 +63,6 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
         setButtons()
 
-        menuViewModel =  MenuViewModel((applicationContext as MotomoApp).menuRepository)
         pedidoViewModel = PedidoViewModel((applicationContext as MotomoApp).carritoRepository)
 
         tabs = findViewById(R.id.tabs)

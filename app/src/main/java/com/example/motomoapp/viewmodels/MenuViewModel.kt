@@ -1,28 +1,19 @@
 package com.example.motomoapp.viewmodels
 
-import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.viewpager.widget.ViewPager
-import com.example.motomoapp.R
-import com.example.motomoapp.adapters.ViewPagerAdapter
 import com.example.motomoapp.models.FoodItem
-import com.example.motomoapp.models.api.ApiFood
 import com.example.motomoapp.models.repositories.MenuRepository
-import com.example.motomoapp.view.menu.GridFragment
-import com.example.motomoapp.view.menu.OrderActivity
-import com.google.android.material.tabs.TabLayout
 import com.google.firebase.crashlytics.FirebaseCrashlytics
-import es.dmoral.toasty.Toasty
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import retrofit2.Response
+import javax.inject.Inject
 
-class MenuViewModel(private val menuRepository: MenuRepository):ViewModel() {
+@HiltViewModel
+class MenuViewModel @Inject constructor(
+    private val menuRepository: MenuRepository
+):ViewModel() {
     var _bestFoods = MutableLiveData<List<FoodItem>>()
     var _drinks = MutableLiveData<List<FoodItem>>()
     var _desserts = MutableLiveData<List<FoodItem>>()
