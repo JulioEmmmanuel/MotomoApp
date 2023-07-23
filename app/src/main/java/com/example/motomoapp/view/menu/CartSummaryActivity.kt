@@ -12,14 +12,13 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.motomoapp.R
 import com.example.motomoapp.adapters.CartRecyclerAdapter
 import com.example.motomoapp.databinding.ActivityCartSummaryBinding
 import com.example.motomoapp.models.MyGiftCards
-import com.example.motomoapp.view.GpsActivity
+import com.example.motomoapp.view.gps.GpsActivity
 import com.example.motomoapp.view.MyCreditCards
 import com.example.motomoapp.view.app.MotomoApp
 import com.example.motomoapp.viewmodels.PedidoViewModel

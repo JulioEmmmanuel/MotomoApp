@@ -81,7 +81,7 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         }
 
         binding.bttnLogOut.setOnClickListener(){
-            preferences.edit().putBoolean(MenuInicioActivity.PREFS_NAME, false).apply()
+            preferences.edit().putBoolean(MenuInicioActivity.ISLOGGED_KEY, false).apply()
             val intent = Intent(this, MenuInicioActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())

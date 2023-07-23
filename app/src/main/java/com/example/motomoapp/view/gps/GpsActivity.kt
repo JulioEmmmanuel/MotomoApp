@@ -1,4 +1,4 @@
-package com.example.motomoapp.view
+package com.example.motomoapp.view.gps
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -15,10 +15,13 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.example.motomoapp.R
 import com.example.motomoapp.databinding.ActivityGpsBinding
 import com.example.motomoapp.models.MyGiftCards
+import com.example.motomoapp.view.MyCreditCards
+import com.example.motomoapp.view.SelectPaymentMethodActivity
 import com.example.motomoapp.view.menu.CartSummaryActivity
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.navigation.NavigationView
+import es.dmoral.toasty.Toasty
 
 
 class GpsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -38,12 +41,10 @@ class GpsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelected
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        setAppBar()
+
         //Obtención de la localización
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-
-        val appBar = findViewById<Toolbar>(R.id.motomoToolbar)
-        this.setSupportActionBar(appBar)
-        setupDrawer(appBar)
 
         btnSi = binding.acceptHomeDelivery
         btnNo = binding.denyHomeDelivery
@@ -65,6 +66,29 @@ class GpsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelected
 
     }
 
+    private fun setAppBar(){
+        val appBar = findViewById<Toolbar>(R.id.motomoToolbar)
+        this.setSupportActionBar(appBar)
+        setupDrawer(appBar)
+    }
+
+    //obtiene la localización al activar los permisos
+    @SuppressLint("MissingSuperCall")
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        if (requestCode == PERMISSION_ID) {
+            if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                getLocation()
+            } else {
+                Toasty.error(this,"Aun requieres permiso", Toast.LENGTH_SHORT, true).show()
+            }
+        }
+    }
+
     //Consulta del estatus de permiso de ubicación
     private fun checkGranted(permission: String) =
         ActivityCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
@@ -76,8 +100,8 @@ class GpsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelected
 
     //Solicita el permiso de ubicación
     private fun requestPermissions() {
-        Toast.makeText(this,"Es necesario conocer tu ubicación",
-            Toast.LENGTH_SHORT).show()
+        Toasty.info(this,"Es necesario conocer tu ubicación",
+            Toast.LENGTH_SHORT, true).show()
         ActivityCompat.requestPermissions(
             this,
             arrayOf(
@@ -92,8 +116,8 @@ class GpsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelected
     private fun getLocation() {
         if (checkPermissions()) {
             fusedLocationClient.lastLocation.addOnSuccessListener(this) {location ->
-                Toast.makeText(this,"Se ha guardado tu ubicación con exito",
-                    Toast.LENGTH_SHORT).show()
+                Toasty.success(this,"Se ha guardado tu ubicación con exito",
+                    Toast.LENGTH_SHORT, true).show()
                 val intent = Intent(this, SelectPaymentMethodActivity::class.java)
                 startActivity(intent)
             }
