@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.motomoapp.models.FoodItem
 import com.example.motomoapp.models.PedidoItem
 import com.example.motomoapp.models.repositories.CarritoRepository
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import kotlinx.coroutines.launch
 
 class PedidoViewModel(val repository: CarritoRepository):ViewModel() {
@@ -30,6 +31,7 @@ class PedidoViewModel(val repository: CarritoRepository):ViewModel() {
             repository.addItem(foodItem, amount)
             updateValues()
         } catch(error: Throwable){
+            FirebaseCrashlytics.getInstance().recordException(error)
             errorMessage.postValue(error.message)
         }
     }
@@ -40,6 +42,7 @@ class PedidoViewModel(val repository: CarritoRepository):ViewModel() {
             repository.addOne(id)
             updateValues()
         } catch(error: Throwable){
+            FirebaseCrashlytics.getInstance().recordException(error)
             errorMessage.postValue(error.message)
         }
     }
