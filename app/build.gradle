@@ -13,6 +13,10 @@ android {
         enabled = true
     }
 
+    buildFeatures {
+        dataBinding true
+    }
+
     defaultConfig {
         applicationId "com.example.motomoapp"
         minSdk 28
@@ -42,10 +46,13 @@ android {
 }
 
 dependencies {
+
+    //firebase
     implementation platform('com.google.firebase:firebase-bom:32.1.0')
     implementation 'com.google.firebase:firebase-messaging-ktx'
     implementation 'com.google.firebase:firebase-auth-ktx:21.1.0'
 
+    //room
     def room_version = "2.5.1"
 
     implementation "androidx.room:room-runtime:$room_version"
@@ -73,4 +80,11 @@ dependencies {
 
     //    Toasty
     implementation 'com.github.GrenderG:Toasty:1.5.0'
+
+    //retrofit
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.google.code.gson:gson:2.8.9'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
 }

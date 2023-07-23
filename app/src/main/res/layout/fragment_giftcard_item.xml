@@ -1,90 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="giftCard"
+            type="com.example.motomoapp.models.entities.GiftCard" />
 
-    <ImageView
-        android:id="@+id/cardDisplay"
-        android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:src="@drawable/cardbackground"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="6dp"
-        tools:ignore="MissingConstraints" />
+        <variable
+            name="viewModel"
+            type="com.example.motomoapp.viewmodels.giftcard.GiftCardListViewModel" />
 
-    <TextView
-        android:id="@+id/item_number"
-        style="@style/Text"
+        <variable
+            name="price"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/giftcard_title"
-        android:textAppearance="?attr/textAppearanceListItem"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.145"
-        tools:ignore="MissingConstraints" />
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/giftCardValue"
-        style="@style/Text"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="24dp"
-        android:layout_marginStart="24dp"
-        android:text="@string/giftcardValue"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.047"
-        app:layout_constraintStart_toStartOf="@+id/cardDisplay"
-        app:layout_constraintTop_toBottomOf="@+id/item_number"
-        app:layout_constraintVertical_bias="0.106" />
 
-    <TextView
-        android:id="@+id/value"
-        style="@style/Text"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="24dp"
-        android:text="$"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.047"
-        app:layout_constraintStart_toStartOf="@+id/cardDisplay"
-        app:layout_constraintTop_toBottomOf="@+id/item_number"
-        app:layout_constraintVertical_bias="0.106" />
+        <ImageView
+            android:id="@+id/cardDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/cardbackground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="6dp"
+            tools:ignore="MissingConstraints" />
 
-    <Button
-        android:id="@+id/select_gift_card"
-        android:layout_width="140dp"
-        android:layout_height="50dp"
-        android:text="@string/btnCard"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.745"
-        app:layout_constraintStart_toEndOf="@+id/item_number"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.182" />
+        <TextView
+            android:id="@+id/item_number"
+            style="@style/Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="16dp"
+            android:textSize="20sp"
+            android:text="@{giftCard.giftNumber}"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/cardDisplay"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.145"
+            tools:ignore="MissingConstraints"
+            tools:text="@string/giftcard_title" />
 
-    <ImageView
-        android:layout_width="80dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="24dp"
-        android:src="@drawable/giftcard"
-        app:layout_constraintBottom_toBottomOf="@+id/cardDisplay"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.918"
-        app:layout_constraintStart_toStartOf="parent"
-        app:tint="@color/colorPrimary" />
+        <TextView
+            android:id="@+id/giftCardValue"
+            style="@style/Text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="24dp"
+            android:text="@{price}"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/cardDisplay"
+            app:layout_constraintTop_toBottomOf="@+id/item_number"
+            app:layout_constraintVertical_bias="0.106"
+            tools:text="@string/giftcardValue" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/select_gift_card"
+            android:layout_width="140dp"
+            android:layout_height="50dp"
+            android:text="@string/btnCard"
+            android:onClick="@{() -> viewModel.processPayment(giftCard)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/cardDisplay"
+            app:layout_constraintHorizontal_bias="0.745"
+            app:layout_constraintStart_toEndOf="@+id/item_number"
+            app:layout_constraintTop_toTopOf="@+id/cardDisplay"
+            app:layout_constraintVertical_bias="0.182" />
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="24dp"
+            android:src="@drawable/giftcard"
+            app:layout_constraintBottom_toBottomOf="@+id/cardDisplay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.918"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tint="@color/colorPrimary" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

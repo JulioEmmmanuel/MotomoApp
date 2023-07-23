@@ -1,7 +1,6 @@
 package com.example.motomoapp.view.inicio
 
 import android.app.ActivityOptions
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
@@ -15,7 +14,7 @@ import androidx.fragment.app.FragmentManager
 import com.example.motomoapp.R
 import com.example.motomoapp.databinding.ActivityMenuInicioBinding
 import com.example.motomoapp.utils.executeOrRequestPermission
-import com.example.motomoapp.view.OrderActivity
+import com.example.motomoapp.view.menu.OrderActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
@@ -29,8 +28,11 @@ class MenuInicioActivity : AppCompatActivity() {
     private lateinit var signUpFragment: SignUpFragment
 
     //Aplicación de sharedPreferences
-    private val PREFS_NAME = "sharedpreferences"
-    private val ISLOGGED_KEY = "islogged_key"
+    companion object {
+        val PREFS_NAME = "sharedpreferences"
+        val ISLOGGED_KEY = "islogged_key"
+    }
+
     private lateinit var preferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {

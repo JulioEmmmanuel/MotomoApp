@@ -18,31 +18,31 @@
         android:theme="@style/Theme.MotomoApp"
         tools:targetApi="31">
         <activity
-            android:name=".view.GpsActivity"
+            android:name=".view.gps.GpsActivity"
             android:exported="false" />
         <activity
-            android:name=".view.CashPaymentActivity"
+            android:name=".view.payment.CashPaymentActivity"
             android:exported="false" />
         <activity
-            android:name=".view.SplashScreenProcessingPayment"
+            android:name=".view.payment.SplashScreenProcessingPayment"
             android:exported="false" />
         <activity
-            android:name=".view.CartSummaryActivity"
+            android:name=".view.menu.CartSummaryActivity"
             android:exported="false" />
         <activity
-            android:name=".view.PaymentDone"
+            android:name=".view.payment.PaymentDone"
             android:exported="true" />
         <activity
-            android:name=".models.MyGiftCards"
+            android:name=".view.payment.MyGiftCards"
             android:exported="false" />
         <activity
-            android:name=".view.MyCreditCards"
+            android:name=".view.payment.MyCreditCards"
             android:exported="true" />
         <activity
-            android:name=".view.SelectPaymentMethodActivity"
+            android:name=".view.payment.SelectPaymentMethodActivity"
             android:exported="true" />
         <activity
-            android:name=".view.ItemDetalleActivity"
+            android:name=".view.menu.ItemDetalleActivity"
             android:exported="true" />
         <activity
             android:name=".view.inicio.SplashScreenActivity"
@@ -54,19 +54,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.OrderActivity"
+            android:name=".view.menu.OrderActivity"
             android:exported="true" />
         <activity
-            android:name=".view.PaymentMethodActivity"
+            android:name=".view.addpayment.PaymentMethodActivity"
             android:exported="true" />
         <activity
-            android:name=".view.CreditCardActivity"
+            android:name=".view.addpayment.CreditCardActivity"
             android:exported="true" />
         <activity
-            android:name=".view.GiftCardActivity"
+            android:name=".view.addpayment.GiftCardActivity"
             android:exported="true" />
         <activity
-            android:name=".view.CashActivity"
+            android:name=".view.addpayment.CashActivity"
             android:exported="true" />
         <activity
             android:name=".view.inicio.MenuInicioActivity"
@@ -76,7 +76,7 @@
         <receiver android:name=".receivers.NotificationReceiver"
             android:exported="true"/>
         <service
-            android:name=".firebase.FirebaseMessaging"
+            android:name=".utils.firebase.FirebaseMessaging"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

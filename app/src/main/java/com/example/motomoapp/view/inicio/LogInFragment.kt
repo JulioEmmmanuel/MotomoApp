@@ -3,7 +3,6 @@ package com.example.motomoapp.view.inicio
 
 import android.animation.ValueAnimator
 import android.app.ActivityOptions
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -15,11 +14,10 @@ import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
 import android.widget.Toast
-import androidx.core.widget.addTextChangedListener
+import androidx.appcompat.app.AppCompatActivity
 import com.example.motomoapp.R
 import com.example.motomoapp.databinding.FragmentLogInBinding
-import com.example.motomoapp.view.OrderActivity
-import com.example.motomoapp.view.PaymentMethodActivity
+import com.example.motomoapp.view.menu.OrderActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
@@ -29,11 +27,11 @@ import es.dmoral.toasty.Toasty
 //@Suppress("UNREACHABLE_CODE")
 class LogInFragment : Fragment() {
 
-    //Aplicación de sharedPreferences
-    private val ISLOGGED_KEY = "islogged_key"
-
     private lateinit var binding: FragmentLogInBinding
     private lateinit var auth: FirebaseAuth
+
+    private lateinit var preferences: SharedPreferences
+
 
 
     override fun onCreateView(
@@ -66,6 +64,12 @@ class LogInFragment : Fragment() {
                 Toasty.error(requireActivity(), "Debes llenar los campos", Toast.LENGTH_SHORT, true).show()
             }
         }
+
+        preferences = requireActivity().getSharedPreferences(
+            MenuInicioActivity.PREFS_NAME,
+            AppCompatActivity.MODE_PRIVATE
+        )
+
     }
 
     //create account with firebase
@@ -76,6 +80,11 @@ class LogInFragment : Fragment() {
                 if(task.isSuccessful){
                     Log.d("login", "signInUserWithEmail:success")
                     val user = auth.currentUser
+                    //save logged in status
+                    preferences
+                        .edit()
+                        .putBoolean(MenuInicioActivity.ISLOGGED_KEY, true)
+                        .apply()
                     updateUI(user, null)
                 } else {
                     Log.w("login", "signInUserWithEmail:failure", task.exception)
