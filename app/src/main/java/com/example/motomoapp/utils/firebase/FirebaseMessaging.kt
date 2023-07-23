@@ -1,4 +1,4 @@
-package com.example.motomoapp.firebase
+package com.example.motomoapp.utils.firebase
 
 import android.annotation.SuppressLint
 import android.util.Log

@@ -1,4 +1,4 @@
-package com.example.motomoapp.view
+package com.example.motomoapp.view.payment
 
 import android.animation.AnimatorInflater
 import android.content.Intent

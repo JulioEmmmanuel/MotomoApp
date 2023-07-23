@@ -1,28 +1,23 @@
 package com.example.motomoapp.view.menu
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.example.motomoapp.R
 import com.example.motomoapp.databinding.ActivityItemDetalleBinding
 import com.example.motomoapp.models.FoodItem
-import com.example.motomoapp.models.MyGiftCards
+import com.example.motomoapp.view.payment.MyGiftCards
 import com.example.motomoapp.models.repositories.CarritoRepository
-import com.example.motomoapp.view.MyCreditCards
+import com.example.motomoapp.view.payment.MyCreditCards
 import com.example.motomoapp.view.app.MotomoApp
 import com.example.motomoapp.viewmodels.PedidoViewModel
 import com.google.android.material.navigation.NavigationView
-import com.squareup.picasso.Picasso
 import es.dmoral.toasty.Toasty
 
 class ItemDetalleActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {

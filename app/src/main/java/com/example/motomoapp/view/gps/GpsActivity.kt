@@ -14,9 +14,9 @@ import androidx.core.app.ActivityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.motomoapp.R
 import com.example.motomoapp.databinding.ActivityGpsBinding
-import com.example.motomoapp.models.MyGiftCards
-import com.example.motomoapp.view.MyCreditCards
-import com.example.motomoapp.view.SelectPaymentMethodActivity
+import com.example.motomoapp.view.payment.MyGiftCards
+import com.example.motomoapp.view.payment.MyCreditCards
+import com.example.motomoapp.view.payment.SelectPaymentMethodActivity
 import com.example.motomoapp.view.menu.CartSummaryActivity
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices

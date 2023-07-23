@@ -1,30 +1,26 @@
-package com.example.motomoapp.view
+package com.example.motomoapp.view.payment
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.content.Intent
 import android.view.MenuItem
-import android.widget.Button
-import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.motomoapp.R
-import com.google.android.material.navigation.NavigationView
-import com.example.motomoapp.databinding.ActivitySelectPaymentMethodBinding
-import com.example.motomoapp.models.MyGiftCards
+import com.example.motomoapp.databinding.ActivityMyCreditCartsBinding
+import com.example.motomoapp.view.addpayment.CreditCardActivity
 import com.example.motomoapp.view.menu.CartSummaryActivity
+import com.google.android.material.navigation.NavigationView
 
-class SelectPaymentMethodActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MyCreditCards : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    private lateinit var binding: ActivitySelectPaymentMethodBinding
+    //Variables Globales
 
-    private lateinit var creditCardButton: Button
-    private lateinit var giftCardButton: Button
-    private lateinit var cashButton: Button
-
+    private lateinit var binding: ActivityMyCreditCartsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySelectPaymentMethodBinding.inflate(layoutInflater)
+        binding = ActivityMyCreditCartsBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
@@ -32,23 +28,13 @@ class SelectPaymentMethodActivity : AppCompatActivity(), NavigationView.OnNaviga
         this.setSupportActionBar(appBar)
         setupDrawer(appBar)
 
-        creditCardButton = findViewById(R.id.creditCardPaymentButton)
-        giftCardButton = findViewById(R.id.giftCardPaymentButton)
-        cashButton = findViewById(R.id.cashPaymentButton)
- //       acceptPaymentButton = findViewById(R.id.acceptPaymentButton)
-
-        creditCardButton.setOnClickListener() {
-            val intent = Intent(this, MyCreditCards::class.java)
+        binding.cardItem.selectCard.setOnClickListener {
+            val intent = Intent(this, SplashScreenProcessingPayment::class.java)
             this.startActivity(intent)
         }
 
-        giftCardButton.setOnClickListener() {
-            val intent = Intent(this, MyGiftCards::class.java)
-            this.startActivity(intent)
-        }
-
-        cashButton.setOnClickListener() {
-            val intent = Intent(this, CashPaymentActivity::class.java)
+        binding.btnAgregar.setOnClickListener {
+            val intent = Intent(this, CreditCardActivity::class.java)
             this.startActivity(intent)
         }
 
@@ -59,6 +45,7 @@ class SelectPaymentMethodActivity : AppCompatActivity(), NavigationView.OnNaviga
 
         binding.navView.setNavigationItemSelectedListener(this)
     }
+
     private fun setupDrawer(toolbar: Toolbar){
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
         val drawerToggle = ActionBarDrawerToggle(this,drawerLayout,toolbar,
@@ -66,7 +53,6 @@ class SelectPaymentMethodActivity : AppCompatActivity(), NavigationView.OnNaviga
             R.string.close_drawer
         )
     }
-
     override fun onNavigationItemSelected(item: MenuItem) : Boolean {
         // Handle navigation view item clicks here.
 

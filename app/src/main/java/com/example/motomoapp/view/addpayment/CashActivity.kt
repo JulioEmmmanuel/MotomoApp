@@ -1,4 +1,4 @@
-package com.example.motomoapp.view
+package com.example.motomoapp.view.addpayment
 
 import android.app.ActivityOptions
 import android.content.Intent

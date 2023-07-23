@@ -1,6 +1,5 @@
 package com.example.motomoapp.view.menu
 
-import android.app.Activity
 import android.app.ActivityOptions
 import android.content.Intent
 import android.content.SharedPreferences
@@ -10,20 +9,16 @@ import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.example.motomoapp.R
 import com.example.motomoapp.adapters.ViewPagerAdapter
 import com.example.motomoapp.databinding.ActivityOrderBinding
-import com.example.motomoapp.models.FoodItem
-import com.example.motomoapp.models.MyGiftCards
-import com.example.motomoapp.view.MyCreditCards
+import com.example.motomoapp.view.payment.MyGiftCards
+import com.example.motomoapp.view.payment.MyCreditCards
 import com.example.motomoapp.view.app.MotomoApp
 import com.example.motomoapp.view.inicio.MenuInicioActivity
 import com.example.motomoapp.viewmodels.MenuViewModel

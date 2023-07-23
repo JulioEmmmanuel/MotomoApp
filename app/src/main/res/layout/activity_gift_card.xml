@@ -1,87 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".view.GiftCardActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.example.motomoapp.viewmodels.AddGiftCardViewModel" />
+    </data>
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/app_bar"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".view.addpayment.GiftCardActivity">
 
-    <TextView
-        android:id="@+id/textTitle"
-        style="@style/Title.H2"
-        android:layout_marginTop="70dp"
-        android:text="@string/giftcardTitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/giftNumber"
-        style="@style/inputCardLarge"
-        android:layout_marginEnd="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_height="83dp"
-        android:layout_marginTop="100dp"
-        android:ems="10"
-        android:hint="Ingresa los dígitos de tu tarjeta"
-        android:inputType="text"
-        app:helperText="Ingresa los 10 dígitos de tu tarjeta"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textTitle"
-        tools:layout_editor_absoluteY="203dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiGiftNumber"
+        <include
+            android:id="@+id/include"
+            layout="@layout/app_bar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLength="10" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/giftQty"
-        style="@style/inputCardMedium"
-        android:layout_width="237dp"
-        android:inputType="number"
-        android:hint="Ingresa el monto de tarjeta"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/giftNumber">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiMonto"
-            style="@style/EditText"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnAgregar"
-        style="@style/ButtonFull"
-        android:text="@string/agregar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/giftQty" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnBack"
-        style="@style/roundButton"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="65dp"
-        app:layout_constraintEnd_toStartOf="@+id/textTitle"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        <TextView
+            android:id="@+id/textTitle"
+            style="@style/Title.H2"
+            android:layout_marginTop="70dp"
+            android:text="@string/giftcardTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/giftNumber"
+            style="@style/inputCardLarge"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_height="83dp"
+            android:layout_marginTop="100dp"
+            android:ems="10"
+            android:hint="Ingresa los dígitos de tu tarjeta"
+            android:inputType="text"
+            app:helperText="Ingresa los 10 dígitos de tu tarjeta"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textTitle"
+            tools:layout_editor_absoluteY="203dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiGiftNumber"
+                android:inputType="number"
+                android:onTextChanged="@{viewmodel.setCardNumber}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="10" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/giftQty"
+            style="@style/inputCardMedium"
+            android:layout_width="237dp"
+            android:inputType="number"
+            android:hint="Ingresa el monto de tarjeta"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/giftNumber">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiMonto"
+                android:inputType="numberDecimal"
+                android:onTextChanged="@{viewmodel.setCardAmount}"
+                style="@style/EditText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAgregar"
+            style="@style/ButtonFull"
+            android:text="@string/agregar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/giftQty" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBack"
+            style="@style/roundButton"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="65dp"
+            app:layout_constraintEnd_toStartOf="@+id/textTitle"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

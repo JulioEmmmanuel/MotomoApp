@@ -17,9 +17,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.motomoapp.R
 import com.example.motomoapp.adapters.CartRecyclerAdapter
 import com.example.motomoapp.databinding.ActivityCartSummaryBinding
-import com.example.motomoapp.models.MyGiftCards
+import com.example.motomoapp.view.payment.MyGiftCards
 import com.example.motomoapp.view.gps.GpsActivity
-import com.example.motomoapp.view.MyCreditCards
+import com.example.motomoapp.view.payment.MyCreditCards
 import com.example.motomoapp.view.app.MotomoApp
 import com.example.motomoapp.viewmodels.PedidoViewModel
 import com.google.android.material.navigation.NavigationView
@@ -28,8 +28,6 @@ import es.dmoral.toasty.Toasty
 class CartSummaryActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener  {
 
     private lateinit var binding: ActivityCartSummaryBinding
-
-    private lateinit var recyclerItems: RecyclerView
     private lateinit var pedidoViewModel: PedidoViewModel
 
 
@@ -43,7 +41,6 @@ class CartSummaryActivity : AppCompatActivity(), NavigationView.OnNavigationItem
 
         setUpAppbar()
 
-        recyclerItems = findViewById(R.id.recyclerViewCart)
         setUpRecyclerView()
 
         pedidoViewModel = PedidoViewModel((applicationContext as MotomoApp).carritoRepository)
@@ -88,7 +85,7 @@ class CartSummaryActivity : AppCompatActivity(), NavigationView.OnNavigationItem
                     startActivity(intent)
                 }
             }
-            recyclerItems.adapter = CartRecyclerAdapter(pedidoViewModel.getElements(), pedidoViewModel)
+            binding.recyclerViewCart.adapter = CartRecyclerAdapter(pedidoViewModel.getElements(), pedidoViewModel)
         })
 
         pedidoViewModel.errorMessage.observe(this, Observer {
@@ -103,9 +100,9 @@ class CartSummaryActivity : AppCompatActivity(), NavigationView.OnNavigationItem
     //configuramos lo necesario para desplegar el RecyclerView
     private fun setUpRecyclerView() {
         // indicamos que tiene un tamaño fijo
-        recyclerItems.setHasFixedSize(true)
+        binding.recyclerViewCart.setHasFixedSize(true)
         // indicamos el tipo de layoutManager
-        recyclerItems.layoutManager = LinearLayoutManager(this)
+        binding.recyclerViewCart.layoutManager = LinearLayoutManager(this)
     }
 
     private fun setupDrawer(toolbar: Toolbar) {

@@ -16,7 +16,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.motomoapp.R
 import com.example.motomoapp.databinding.FragmentSignUpBinding
-import com.example.motomoapp.view.PaymentMethodActivity
+import com.example.motomoapp.view.addpayment.PaymentMethodActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth

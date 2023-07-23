@@ -1,4 +1,4 @@
-package com.example.motomoapp.view
+package com.example.motomoapp.view.payment
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,8 +15,6 @@ import com.google.android.material.button.MaterialButton
 class CashPaymentActivity : AppCompatActivity() {
 
     private lateinit var newOrderButton: MaterialButton
-    private lateinit var pedidoViewModel: PedidoViewModel
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +34,5 @@ class CashPaymentActivity : AppCompatActivity() {
             OrderNotification(this@CashPaymentActivity)
         }
 
-        pedidoViewModel = ViewModelProvider(this)[PedidoViewModel::class.java]
-        pedidoViewModel.clear()
     }
 }
