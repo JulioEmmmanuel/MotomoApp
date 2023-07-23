@@ -1,47 +1,36 @@
 package com.example.motomoapp.view.menu
 
+import android.app.Activity
 import android.app.ActivityOptions
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.transition.Slide
-import android.util.Log
 import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import androidx.activity.viewModels
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
-import androidx.viewpager.widget.ViewPager
+import androidx.lifecycle.ViewModelProvider
 import com.example.motomoapp.R
 import com.example.motomoapp.adapters.ViewPagerAdapter
 import com.example.motomoapp.databinding.ActivityOrderBinding
-import com.example.motomoapp.models.Carrito
 import com.example.motomoapp.models.FoodItem
 import com.example.motomoapp.models.MyGiftCards
-import com.example.motomoapp.models.api.ApiFood
-import com.example.motomoapp.models.repositories.MenuRepository
 import com.example.motomoapp.view.MyCreditCards
 import com.example.motomoapp.view.app.MotomoApp
 import com.example.motomoapp.view.inicio.MenuInicioActivity
 import com.example.motomoapp.viewmodels.MenuViewModel
+import com.example.motomoapp.viewmodels.PedidoViewModel
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import es.dmoral.toasty.Toasty
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import retrofit2.Response
 
 
 class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -49,7 +38,8 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     private lateinit var binding: ActivityOrderBinding
     private lateinit var preferences: SharedPreferences
 
-    private lateinit var viewModel: MenuViewModel
+    private lateinit var menuViewModel: MenuViewModel
+    private lateinit var pedidoViewModel: PedidoViewModel
 
     // Initializing the ViewPagerAdapter
     val adapter = ViewPagerAdapter(supportFragmentManager)
@@ -74,11 +64,10 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
         binding.navView.setNavigationItemSelectedListener(this)
 
-        //setValues()
-        updateCart()
         setButtons()
 
-        viewModel = MenuViewModel((applicationContext as MotomoApp).menuRepository)
+        menuViewModel =  MenuViewModel((applicationContext as MotomoApp).menuRepository)
+        pedidoViewModel = PedidoViewModel((applicationContext as MotomoApp).carritoRepository)
 
         tabs = findViewById(R.id.tabs)
         setupObservers()
@@ -119,67 +108,66 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
     override fun onResume() {
         super.onResume()
-
-        if(Carrito.getSize() > 0){
-            binding.btnCarrito.visibility = View.VISIBLE
-            binding.btnCarrito.text = "Ver carrito (${Carrito.Orden.getTotalItems()})"
-        }
+        pedidoViewModel.updateValues()
     }
 
     //Menu tab de las categorias de comida
     private fun setupObservers(){
-        viewModel.bestFoods.observe(this, Observer {
+        menuViewModel.bestFoods.observe(this, Observer {
             if(it.isNotEmpty()){
                 val g = GridFragment()
                 g.setFoodItems(it)
+                g.setViewModel(menuViewModel)
                 adapter.addFragment(g, MAIN_TYPE)
                 binding.viewPager.adapter = adapter
                 tabs.setupWithViewPager(binding.viewPager)
             }
         })
 
-        viewModel.drinks.observe(this, Observer {
+        menuViewModel.drinks.observe(this, Observer {
             if(it.isNotEmpty()){
                 val g = GridFragment()
                 g.setFoodItems(it)
+                g.setViewModel(menuViewModel)
                 adapter.addFragment(g, DRINKS)
                 binding.viewPager.adapter = adapter
                 tabs.setupWithViewPager(binding.viewPager)
             }
         })
 
-        viewModel.desserts.observe(this, Observer {
+        menuViewModel.desserts.observe(this, Observer {
             if(it.isNotEmpty()){
                 val g = GridFragment()
                 g.setFoodItems(it)
+                g.setViewModel(menuViewModel)
                 adapter.addFragment(g, DESSERTS)
                 binding.viewPager.adapter = adapter
                 tabs.setupWithViewPager(binding.viewPager)
             }
         })
 
-        viewModel.errorMessage.observe(this, Observer {
-            if(it.isNotEmpty()){
+        menuViewModel.errorMessage.observe(this, Observer {
+            if(!it.isNullOrEmpty()){
                 Toasty.error(this@OrderActivity,  it, Toast.LENGTH_SHORT, true).show()
             }
         })
-    }
 
+        menuViewModel.showDetail.observe(this, Observer {
+            if(it){
+                val intent = Intent(this, ItemDetalleActivity::class.java)
+                intent.putExtra("FoodItem", menuViewModel.selectedElement.value)
+                startActivity(intent)
+            }
+        })
 
-
-    //actualizar el carrito
-    private fun updateCart(){
-        val foodItem = intent.getParcelableExtra<FoodItem>("FoodSelected")
-        val cantidad = intent.getIntExtra("Cantidad", 0)
-
-       if(foodItem != null){
-            Carrito.addItem(foodItem, cantidad)
-        }
-
-        if(Carrito.getSize() > 0){
-            binding.btnCarrito.visibility = View.VISIBLE
-            binding.btnCarrito.text = "Ver carrito (${Carrito.Orden.getTotalItems()})"
-        }
+        pedidoViewModel.totalItems.observe(this, Observer {
+            if(it > 0){
+                binding.btnCarrito.visibility = View.VISIBLE
+                binding.btnCarrito.text = "Ver carrito (${it})"
+            } else {
+                binding.btnCarrito.visibility = View.INVISIBLE
+            }
+        })
     }
 
     //set up drawer

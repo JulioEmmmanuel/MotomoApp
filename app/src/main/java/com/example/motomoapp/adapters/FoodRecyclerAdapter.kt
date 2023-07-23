@@ -5,13 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.motomoapp.databinding.FoodItemCardBinding
 import com.example.motomoapp.models.FoodItem
+import com.example.motomoapp.viewmodels.MenuViewModel
 
-class FoodRecyclerAdapter(private val foodItems: List<FoodItem>): RecyclerView.Adapter<FoodRecyclerAdapter.ViewHolder>()
+class FoodRecyclerAdapter(
+    private val foodItems: List<FoodItem>,
+    private val viewModel: MenuViewModel): RecyclerView.Adapter<FoodRecyclerAdapter.ViewHolder>()
 {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val foodItem = foodItems.get(position)
-        holder.bind(foodItem)
+        holder.bind(foodItem, viewModel)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder  =
@@ -24,8 +27,9 @@ class FoodRecyclerAdapter(private val foodItems: List<FoodItem>): RecyclerView.A
     class ViewHolder(val binding: FoodItemCardBinding) : RecyclerView.ViewHolder(binding.root) {
         //"atando" los datos a las Views
 
-        fun bind(foodItem: FoodItem){
+        fun bind(foodItem: FoodItem, viewModel: MenuViewModel){
             binding.foodItem = foodItem
+            binding.viewModel = viewModel
             binding.price = "$" + String.format("%.2f", foodItem.price.toDouble())
         }
     }

@@ -7,27 +7,32 @@ import android.transition.Slide
 import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.motomoapp.R
 import com.example.motomoapp.adapters.CartRecyclerAdapter
 import com.example.motomoapp.databinding.ActivityCartSummaryBinding
-import com.example.motomoapp.models.Carrito
-import com.example.motomoapp.models.CartItem
 import com.example.motomoapp.models.MyGiftCards
 import com.example.motomoapp.view.GpsActivity
 import com.example.motomoapp.view.MyCreditCards
+import com.example.motomoapp.view.app.MotomoApp
+import com.example.motomoapp.viewmodels.PedidoViewModel
 import com.google.android.material.navigation.NavigationView
+import es.dmoral.toasty.Toasty
 
 class CartSummaryActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener  {
 
     private lateinit var binding: ActivityCartSummaryBinding
 
-    private lateinit var adapter: CartRecyclerAdapter
     private lateinit var recyclerItems: RecyclerView
+    private lateinit var pedidoViewModel: PedidoViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,13 +47,14 @@ class CartSummaryActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         recyclerItems = findViewById(R.id.recyclerViewCart)
         setUpRecyclerView()
 
-        binding.tvTotal.text = "Total: $${Carrito.getPrice()}"
+        pedidoViewModel = PedidoViewModel((applicationContext as MotomoApp).carritoRepository)
 
-        if (Carrito.getSize() > 0) {
-           updateUI()
-        }
+        setObservers()
 
         binding.navView.setNavigationItemSelectedListener(this)
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
     }
 
     private fun setUpAppbar(){
@@ -69,18 +75,31 @@ class CartSummaryActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         window.enterTransition = transition
     }
 
-    //update ui based on cart size
-    private fun updateUI(){
-        binding.btnPagar.visibility = View.VISIBLE
-        binding.btnPagar.setOnClickListener {
-            val intent = Intent(this, GpsActivity::class.java)
-            startActivity(intent)
-        }
+    //set up observers with the viewModel
+    private fun setObservers(){
+        pedidoViewModel.price.observe(this, Observer {
+            binding.tvTotal.text = "Total: $${String.format("%.2f", it)}"
+        })
 
-        binding.btnBack.setOnClickListener {
-            finish()
-        }
+        pedidoViewModel.items.observe(this, Observer {
+            if(it.isNotEmpty()){
+                binding.btnPagar.visibility = View.VISIBLE
+                binding.btnPagar.setOnClickListener {
+                    val intent = Intent(this, GpsActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+            recyclerItems.adapter = CartRecyclerAdapter(pedidoViewModel.getElements(), pedidoViewModel)
+        })
+
+        pedidoViewModel.errorMessage.observe(this, Observer {
+            if(!it.isNullOrEmpty()){
+                Toasty.error(this, it, Toast.LENGTH_SHORT, true).show()
+            }
+        })
+
     }
+
 
     //configuramos lo necesario para desplegar el RecyclerView
     private fun setUpRecyclerView() {
@@ -88,15 +107,8 @@ class CartSummaryActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         recyclerItems.setHasFixedSize(true)
         // indicamos el tipo de layoutManager
         recyclerItems.layoutManager = LinearLayoutManager(this)
-        //seteando el Adapter
-        adapter = CartRecyclerAdapter(getItems(), binding.tvTotal)
-        //asignando el Adapter al RecyclerView
-        recyclerItems.adapter = adapter
     }
 
-    private fun getItems(): MutableList<CartItem> {
-        return Carrito.getItems()
-    }
     private fun setupDrawer(toolbar: Toolbar) {
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
         val drawerToggle = ActionBarDrawerToggle(

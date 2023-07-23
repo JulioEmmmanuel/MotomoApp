@@ -3,17 +3,20 @@ package com.example.motomoapp.view
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.example.motomoapp.R
-import com.example.motomoapp.models.Carrito
 import com.example.motomoapp.utils.OrderNotification
 import com.example.motomoapp.utils.ReceiverNotification
 import com.example.motomoapp.utils.executeOrRequestPermission
 import com.example.motomoapp.view.menu.OrderActivity
+import com.example.motomoapp.viewmodels.PedidoViewModel
 import com.google.android.material.button.MaterialButton
 
 class CashPaymentActivity : AppCompatActivity() {
 
     private lateinit var newOrderButton: MaterialButton
+    private lateinit var pedidoViewModel: PedidoViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +36,7 @@ class CashPaymentActivity : AppCompatActivity() {
             OrderNotification(this@CashPaymentActivity)
         }
 
-        Carrito.clear()
+        pedidoViewModel = ViewModelProvider(this)[PedidoViewModel::class.java]
+        pedidoViewModel.clear()
     }
 }

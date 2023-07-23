@@ -26,16 +26,21 @@ class MenuViewModel(private val menuRepository: MenuRepository):ViewModel() {
     var _drinks = MutableLiveData<List<FoodItem>>()
     var _desserts = MutableLiveData<List<FoodItem>>()
     var _errorMessage = MutableLiveData<String>()
+    var _showDetail = MutableLiveData<Boolean>()
+    var _selectedElement = MutableLiveData<FoodItem>()
 
     val bestFoods = _bestFoods
     val drinks = _drinks
     val desserts = _desserts
     val errorMessage = _errorMessage
+    val showDetail = _showDetail
+    val selectedElement = _selectedElement
 
     init {
         fetchBestFoods()
         fetchDrinks()
         fetchDesserts()
+        showDetail.postValue(false)
     }
 
     fun onRefresh() {
@@ -95,6 +100,15 @@ class MenuViewModel(private val menuRepository: MenuRepository):ViewModel() {
             } catch(error: Throwable){
                 _errorMessage.postValue(error.message)
             }
+        }
+    }
+
+    fun toggleShowDetail(foodItem: FoodItem?){
+        if(foodItem != null){
+            selectedElement.postValue(foodItem)
+            showDetail.postValue(true)
+        } else {
+            showDetail.postValue(false)
         }
     }
 

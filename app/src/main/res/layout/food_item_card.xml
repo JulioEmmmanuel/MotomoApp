@@ -13,6 +13,11 @@
             type="String"
             />
 
+        <variable
+            name="viewModel"
+            type="com.example.motomoapp.viewmodels.MenuViewModel"
+            />
+
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -23,7 +28,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginStart="5dp"
         android:layout_marginBottom="5dp"
-        app:detailClick="@{foodItem}"
+        android:onClick="@{() -> viewModel.toggleShowDetail(foodItem)}"
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout

@@ -11,12 +11,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.motomoapp.R
 import com.example.motomoapp.adapters.FoodRecyclerAdapter
 import com.example.motomoapp.models.FoodItem
+import com.example.motomoapp.viewmodels.MenuViewModel
 
 class GridFragment: Fragment() {
 
     private lateinit var adapter: FoodRecyclerAdapter
     private lateinit var recyclerItems:RecyclerView
     private var foodItems:List<FoodItem> = ArrayList()
+    private lateinit var menuViewModel: MenuViewModel
 
 
     override fun onCreateView(
@@ -42,6 +44,10 @@ class GridFragment: Fragment() {
         foodItems = items;
     }
 
+    public fun setViewModel(viewModel: MenuViewModel){
+        menuViewModel = viewModel
+    }
+
     //configuramos lo necesario para desplegar el RecyclerView
     private fun setUpRecyclerView(){
         // indicamos que tiene un tamaño fijo
@@ -49,7 +55,7 @@ class GridFragment: Fragment() {
         // indicamos el tipo de layoutManager
         recyclerItems.layoutManager = GridLayoutManager(activity, 2)
         //seteando el Adapter
-        adapter = FoodRecyclerAdapter(foodItems)
+        adapter = FoodRecyclerAdapter(foodItems, menuViewModel)
         //asignando el Adapter al RecyclerView
         recyclerItems.adapter = adapter
     }

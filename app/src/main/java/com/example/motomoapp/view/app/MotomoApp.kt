@@ -9,6 +9,7 @@ import androidx.annotation.RequiresApi
 import com.example.motomoapp.R
 import com.example.motomoapp.models.api.ApiFood
 import com.example.motomoapp.models.api.FoodService
+import com.example.motomoapp.models.repositories.CarritoRepository
 import com.example.motomoapp.models.repositories.MenuRepository
 
 class MotomoApp:Application() {
@@ -17,6 +18,8 @@ class MotomoApp:Application() {
         get() = MenuRepository(
             ApiFood
         )
+
+    val carritoRepository = CarritoRepository()
 
     companion object {
         const val CHANNEL_ID = "Notificaciones pedido"
