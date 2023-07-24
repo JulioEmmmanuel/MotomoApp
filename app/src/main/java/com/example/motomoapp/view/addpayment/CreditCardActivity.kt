@@ -2,18 +2,37 @@ package com.example.motomoapp.view.addpayment
 
 
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
+import android.transition.Fade
+import android.transition.Visibility
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.Observer
 import com.example.motomoapp.R
 import com.example.motomoapp.databinding.ActivityCreditCardBinding
-import com.example.motomoapp.models.CreditCard
+import com.example.motomoapp.view.app.MotomoApp
+import com.example.motomoapp.view.inicio.MenuInicioActivity
+import com.example.motomoapp.view.payment.MyCreditCards
+import com.example.motomoapp.view.payment.MyGiftCards
+import com.example.motomoapp.viewmodels.creditcard.AddCreditCardViewModel
+import es.dmoral.toasty.Toasty
+import io.conekta.conektasdk.Conekta
+import io.conekta.conektasdk.Token
 
 //formulario de registro de tarjeta de credito
 class CreditCardActivity : AppCompatActivity() {
 
     private lateinit var binding:ActivityCreditCardBinding
+    private lateinit var creditCardViewModel: AddCreditCardViewModel
+
+    companion object {
+        private val PUBLIC_KEY = "key_NHMT2LSYle4m4DsCVnXCNXA"
+        private val API_VERSION = "1.0.0"
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,41 +40,82 @@ class CreditCardActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        val appBar = findViewById<Toolbar>(R.id.motomoToolbar)
-        this.setSupportActionBar(appBar)
+        creditCardViewModel = AddCreditCardViewModel(
+            (applicationContext as MotomoApp).creditCardRepository
+        )
 
+        setTransition()
+        setAppBar()
+        setButtonListeners()
+        setObservers()
+    }
+
+    private fun setObservers(){
+        binding.viewmodel = creditCardViewModel
+        creditCardViewModel.errorMessage.observe(this, Observer {
+            Toasty.error(this, it, Toast.LENGTH_SHORT, true).show()
+        })
+        creditCardViewModel.added.observe(this, Observer {
+            if(it) {
+                Toasty.success(this, "Se agregó correctamente la tarjeta", Toast.LENGTH_SHORT, true)
+                    .show()
+                val from = intent.extras?.getString("from")
+                if(from == "mycards"){
+                    val i = Intent(this, MyCreditCards::class.java)
+                    startActivity(i)
+                } else {
+                    val i = Intent(this, MenuInicioActivity::class.java)
+                    startActivity(i)
+                }
+
+            }
+        })
+    }
+
+    //set button listeners
+    private fun setButtonListeners(){
         binding.btnBack.setOnClickListener {
             finish()
         }
 
         binding.btnAgregar.setOnClickListener {
-//validacion de los elementos del formulario
-            if(binding.tiCardNumber.text.isNullOrBlank() ||
-                binding.tiExpiryMonth.text.isNullOrBlank() ||
-                binding.tiExpiryYear.text.isNullOrBlank() ||
-                binding.tiAmountCard.text.isNullOrBlank() ||
-                binding.tiLimite.text.isNullOrBlank()
-                    ){
-                Toast.makeText(this, "Debes llenar todos los campos", Toast.LENGTH_SHORT)
-                    .show()
-                return@setOnClickListener
+            if(hasInternetConnection()) {
+                creditCardViewModel.createCard(createToken())
+            } else {
+                Toasty.error(this, "Debes estar conectado a internet", Toast.LENGTH_SHORT, true).show()
             }
-
-            val cardClass = CreditCard(
-                binding.tiCardNumber.text.toString(),
-                Integer.parseInt(binding.tiExpiryMonth.text.toString()),
-                binding.tiExpiryYear.text.toString(),
-                binding.tiAmountCard.text.toString().toFloat(),
-                binding.tiLimite.text.toString().toFloat()
-            )
-            if( cardClass.isValid() ) {
-                Toast.makeText(this, "Se registró la tarjeta", Toast.LENGTH_SHORT)
-                    .show()
-                val intent = Intent(this, CashActivity::class.java)
-                startActivity(intent)
-            }else{
-                Toast.makeText(this, "Error con los datos de la tarjeta", Toast.LENGTH_SHORT)
-                    .show()            }
         }
+    }
+
+    private fun setTransition(){
+
+        // transicion al abrir activity
+        val transition = Fade(Visibility.MODE_IN).apply {
+            duration = 700
+            excludeTarget(window.decorView.findViewById<View>(androidx.transition.R.id.action_bar_container), true)
+            excludeTarget(android.R.id.statusBarBackground, true)
+            excludeTarget(android.R.id.navigationBarBackground, true)
+        }
+        window.enterTransition = transition
+    }
+
+    private fun setAppBar(){
+        val appBar = findViewById<Toolbar>(R.id.motomoToolbar)
+        this.setSupportActionBar(appBar)
+    }
+
+    //set up Conekta and create token
+    fun createToken():Token{
+        Conekta.setPublicKey(PUBLIC_KEY)
+        Conekta.setApiVersion(API_VERSION)
+        Conekta.collectDevice(this)
+        val token = Token(this)
+        return token
+    }
+
+    private fun hasInternetConnection(): Boolean {
+        val cm = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        val netInfo = cm.activeNetworkInfo
+        return netInfo != null && netInfo.isConnected
     }
 }

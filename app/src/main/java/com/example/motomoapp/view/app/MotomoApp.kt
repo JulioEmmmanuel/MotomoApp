@@ -9,6 +9,7 @@ import androidx.annotation.RequiresApi
 import com.example.motomoapp.R
 import com.example.motomoapp.models.databases.MotomoDb
 import com.example.motomoapp.models.repositories.CarritoRepository
+import com.example.motomoapp.models.repositories.CreditCardRepository
 import com.example.motomoapp.models.repositories.GiftCardRepository
 import com.example.motomoapp.models.repositories.MenuRepository
 import com.google.firebase.FirebaseApp
@@ -22,10 +23,18 @@ class MotomoApp:Application() {
     val giftCardDao
         get() = database.giftCardDao()
 
+    val creditCardDao
+        get() = database.creditCardDao()
+
     val carritoRepository = CarritoRepository()
     val giftCardRepository: GiftCardRepository
         get() = GiftCardRepository(
             giftCardDao
+        )
+
+    val creditCardRepository: CreditCardRepository
+        get() = CreditCardRepository(
+            creditCardDao
         )
 
     companion object {
