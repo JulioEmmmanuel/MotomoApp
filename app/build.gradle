@@ -95,4 +95,10 @@ dependencies {
     implementation "com.google.dagger:hilt-android:2.47"
     kapt "com.google.dagger:hilt-compiler:2.47"
 
+    //conekta
+    // Conekta
+    implementation('io.conekta:conektasdk:2.0') {
+        exclude group: 'com.android.support'
+    }
+
 }

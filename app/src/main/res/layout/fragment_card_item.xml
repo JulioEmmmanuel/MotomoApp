@@ -1,76 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="cardNumber"
+            type="String" />
 
-    <ImageView
-        android:id="@+id/cardDisplay"
-        android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:src="@drawable/cardbackground"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="6dp"
-        tools:ignore="MissingConstraints" />
+        <variable
+            name="viewModel"
+            type="com.example.motomoapp.viewmodels.creditcard.CreditCardListViewModel" />
+    </data>
 
-    <TextView
-        android:id="@+id/item_number"
-        style="@style/Text"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/credit_card_title"
-        android:textAppearance="?attr/textAppearanceListItem"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.145"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/cardIdNumber"
-        style="@style/Text"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="24dp"
-        android:layout_marginLeft="10dp"
-        android:text="****1187"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.047"
-        app:layout_constraintStart_toStartOf="@+id/cardDisplay"
-        app:layout_constraintTop_toBottomOf="@+id/item_number"
-        app:layout_constraintVertical_bias="0.106" />
-
-    <Button
-        android:id="@+id/select_card"
-        android:layout_width="140dp"
-        android:layout_height="50dp"
-        android:text="@string/btnCard"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.745"
-        app:layout_constraintStart_toEndOf="@+id/item_number"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.182" />
-
-    <ImageView
-        android:layout_width="80dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="24dp"
-        android:src="@drawable/visalogo"
-        app:layout_constraintBottom_toBottomOf="@+id/cardDisplay"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.918"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:orientation="horizontal">
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/cardDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/cardbackground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="6dp"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/item_number"
+            style="@style/Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="16dp"
+            android:textSize="20sp"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textStyle="bold"
+            android:text="@{cardNumber}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/cardDisplay"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.145"
+            tools:ignore="MissingConstraints"
+            tools:text="@string/giftcard_title" />
+
+        <Button
+            android:id="@+id/select_gift_card"
+            android:layout_width="140dp"
+            android:layout_height="50dp"
+            android:text="@string/btnCard"
+            android:onClick="@{() -> viewModel.processPayment()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/cardDisplay"
+            app:layout_constraintHorizontal_bias="0.745"
+            app:layout_constraintStart_toEndOf="@+id/item_number"
+            app:layout_constraintTop_toTopOf="@+id/cardDisplay"
+            app:layout_constraintVertical_bias="0.182" />
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="24dp"
+            android:src="@drawable/visalogo"
+            app:layout_constraintBottom_toBottomOf="@+id/cardDisplay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.918"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

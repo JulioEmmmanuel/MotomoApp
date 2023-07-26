@@ -4,12 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.motomoapp.models.entities.CreditCard
 import com.example.motomoapp.models.entities.GiftCard
 
-@Database(entities = [GiftCard::class], version = 1)
+@Database(entities = [GiftCard::class, CreditCard::class], version = 2)
 abstract class MotomoDb: RoomDatabase() {
 
     abstract fun giftCardDao(): GiftCardDao
+    abstract fun creditCardDao(): CreditCardDao
 
     companion object {
         @Volatile
@@ -23,7 +25,9 @@ abstract class MotomoDb: RoomDatabase() {
                     context.applicationContext,
                     MotomoDb::class.java,
                     DB_NAME
-                ).build()
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
                 dbInstance = instance
 
                 instance

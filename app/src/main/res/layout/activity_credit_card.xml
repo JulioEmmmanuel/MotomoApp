@@ -1,147 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".view.addpayment.CreditCardActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Campos del formulario para tarjeta de crédito -->
-    <include
-        android:id="@+id/include"
-        layout="@layout/app_bar"
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.example.motomoapp.viewmodels.creditcard.AddCreditCardViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".view.addpayment.CreditCardActivity">
 
-    <TextView
-        android:id="@+id/textTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/Title.H2"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="72dp"
-        android:text="@string/debitcardTitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.625"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <!-- Campos del formulario para tarjeta de crédito -->
+        <include
+            android:id="@+id/include"
+            layout="@layout/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/etCardNumber"
-        style="@style/inputCardLarge"
-        android:layout_marginStart="32dp"
-        android:hint="Ingresa los dígitos de tu tarjeta"
-        app:helperText="Ingresa los 16 dígitos de tu tarjeta"
-        app:helperTextEnabled="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textTitle">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiCardNumber"
-            style="@style/EditText"
-            android:maxLength="16"
-        />
+        <TextView
+            android:id="@+id/textTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Title.H2"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="72dp"
+            android:text="@string/debitcardTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.625"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etCardNumber"
+            style="@style/inputCardLarge"
+            android:layout_marginStart="32dp"
+            android:hint="Ingresa los dígitos de tu tarjeta"
+            app:helperText="Ingresa los 16 dígitos de tu tarjeta"
+            app:helperTextEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textTitle">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/etExpiryMonth"
-        style="@style/inputCardSmall"
-        android:layout_marginStart="32dp"
-        android:hint="Mes"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etCardNumber">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiExpiryMonth"
-            style="@style/EditText"
-        />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiCardNumber"
+                style="@style/EditText"
+                android:onTextChanged="@{viewmodel.setCardNumber}"
+                android:inputType="number"
+                android:maxLength="16" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/etExpiryYear"
-        style="@style/inputCardSmall"
-        android:layout_marginStart="8dp"
-        android:hint="Año"
-        android:inputType="number"
-        app:layout_constraintStart_toEndOf="@+id/etExpiryMonth"
-        app:layout_constraintTop_toBottomOf="@+id/etCardNumber">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiExpiryYear"
-            style="@style/EditText"
-        />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etCardName"
+            style="@style/inputCardLarge"
+            android:layout_marginStart="32dp"
+            android:hint="Nombre como aparece en la tarjeta"
+            app:helperTextEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etCardNumber">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiCardName"
+                android:onTextChanged="@{viewmodel.setCardName}"
+                android:inputType="text"
+                style="@style/EditText" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/etCVV"
-        style="@style/inputCardMedium"
-        android:hint="Código CVV"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/etExpiryYear"
-        app:layout_constraintTop_toBottomOf="@+id/etCardNumber">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiCVV"
-            style="@style/EditText"
-            />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etExpiryMonth"
+            style="@style/inputCardSmall"
+            android:layout_marginStart="32dp"
+            android:hint="Mes"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etCardName">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/amountCard"
-        style="@style/inputCardMedium"
-        android:layout_marginStart="32dp"
-        android:inputType="number"
-        android:hint="Monto de la tarjeta"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etExpiryMonth">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiAmountCard"
-            style="@style/EditText"
-            />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiExpiryMonth"
+                android:onTextChanged="@{viewmodel.setMonthExp}"
+                android:inputType="number"
+                android:maxLength="2"
+                style="@style/EditText" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/limitCard"
-        style="@style/inputCardMedium"
-        android:ems="10"
-        android:inputType="number"
-        android:hint="Límite"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etCVV">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiLimite"
-            style="@style/EditText"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etExpiryYear"
+            style="@style/inputCardSmall"
+            android:layout_marginStart="8dp"
+            android:hint="Año"
+            android:inputType="number"
+            app:layout_constraintStart_toEndOf="@+id/etExpiryMonth"
+            app:layout_constraintTop_toBottomOf="@+id/etCardName">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnAgregar"
-        style="@style/ButtonFull"
-        android:layout_marginTop="240dp"
-        android:text="@string/agregar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etCardNumber" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiExpiryYear"
+                android:onTextChanged="@{viewmodel.setYearExp}"
+                android:inputType="number"
+                android:maxLength="4"
+                style="@style/EditText" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnBack"
-        style="@style/roundButton"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="65dp"
-        app:layout_constraintEnd_toStartOf="@+id/textTitle"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-         />
+        </com.google.android.material.textfield.TextInputLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etCVV"
+            style="@style/inputCardMedium"
+            android:hint="Código CVV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/etExpiryYear"
+            app:layout_constraintTop_toBottomOf="@+id/etCardName">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiCVV"
+                android:onTextChanged="@{viewmodel.setCvv}"
+                android:inputType="number"
+                android:maxLength="3"
+                style="@style/EditText" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAgregar"
+            style="@style/ButtonFull"
+            android:layout_marginTop="240dp"
+            android:text="@string/agregar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etCardNumber" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBack"
+            style="@style/roundButton"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="65dp"
+            app:layout_constraintEnd_toStartOf="@+id/textTitle"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
