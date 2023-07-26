@@ -11,13 +11,17 @@ import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import com.example.motomoapp.R
 import com.example.motomoapp.databinding.ActivityMenuInicioBinding
 import com.example.motomoapp.utils.executeOrRequestPermission
 import com.example.motomoapp.view.menu.OrderActivity
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
+import androidx.navigation.ui.NavigationUI.setupWithNavController
 
 class MenuInicioActivity : AppCompatActivity() {
 
@@ -26,6 +30,8 @@ class MenuInicioActivity : AppCompatActivity() {
 
     private lateinit var logInFragment: LogInFragment
     private lateinit var signUpFragment: SignUpFragment
+
+    private lateinit var navController: NavController
 
     //Aplicación de sharedPreferences
     companion object {
@@ -48,11 +54,16 @@ class MenuInicioActivity : AppCompatActivity() {
         val appBar = findViewById<Toolbar>(R.id.motomoToolbar)
         this.setSupportActionBar(appBar)
 
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.mainContainer) as NavHostFragment
+        navController = navHostFragment.navController
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        setupWithNavController(bottomNavigationView, navController)
+
         //set up fragments
-        logInFragment = LogInFragment()
-        signUpFragment = SignUpFragment()
-        setCurrentFragment(logInFragment)
-        createFragments()
+        //logInFragment = LogInFragment()
+        //signUpFragment = SignUpFragment()
+        //setCurrentFragment(logInFragment)
+        //createFragments()
 
         connectToFirebase()
 
@@ -109,7 +120,8 @@ class MenuInicioActivity : AppCompatActivity() {
     private fun setCurrentFragment(fragment: Fragment){
         val fm: FragmentManager = supportFragmentManager
         fm.beginTransaction()
-            .replace(R.id.frameLayout, fragment)
+            .replace(R.id.mainContainer, fragment)
+            //.replace(R.id.frameLayout, fragment)
             .commit()
     }
 
