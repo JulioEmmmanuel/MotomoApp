@@ -15,7 +15,7 @@ class ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideBaseUrl() = "https://tiny-blue-vulture-shoe.cyclic.app/"
+    fun provideBaseUrl() = "https://motomo-api.vercel.app/"
 
     @Provides
     @Singleton

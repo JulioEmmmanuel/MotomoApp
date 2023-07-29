@@ -43,9 +43,9 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     private lateinit var tabs:TabLayout
 
     companion object {
-        val MAIN_TYPE = "Best Food"
-        val DRINKS = "Drinks"
-        val DESSERTS = "Desserts"
+        const val MAIN_TYPE = "Plato Principal"
+        const val BEVERAGES = "Bebidas"
+        const val RAMEN = "Ramen"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,7 +63,9 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
         setButtons()
 
-        pedidoViewModel = PedidoViewModel((applicationContext as MotomoApp).carritoRepository)
+        val motomoApp = applicationContext as MotomoApp
+        motomoApp.menuViewModel = menuViewModel
+        pedidoViewModel = PedidoViewModel(motomoApp.carritoRepository)
 
         tabs = findViewById(R.id.tabs)
         setupObservers()
@@ -109,8 +111,8 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
     //Menu tab de las categorias de comida
     private fun setupObservers(){
-        menuViewModel.bestFoods.observe(this, Observer {
-            if(it.isNotEmpty()){
+        menuViewModel.mainDishes.observe(this) {
+            if (it.isNotEmpty()) {
                 val g = GridFragment()
                 g.setFoodItems(it)
                 g.setViewModel(menuViewModel)
@@ -118,52 +120,53 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 binding.viewPager.adapter = adapter
                 tabs.setupWithViewPager(binding.viewPager)
             }
-        })
+        }
 
-        menuViewModel.drinks.observe(this, Observer {
-            if(it.isNotEmpty()){
+        menuViewModel.ramen.observe(this) {
+            if (it.isNotEmpty()) {
                 val g = GridFragment()
                 g.setFoodItems(it)
                 g.setViewModel(menuViewModel)
-                adapter.addFragment(g, DRINKS)
+                adapter.addFragment(g, RAMEN)
                 binding.viewPager.adapter = adapter
                 tabs.setupWithViewPager(binding.viewPager)
             }
-        })
+        }
 
-        menuViewModel.desserts.observe(this, Observer {
-            if(it.isNotEmpty()){
+        menuViewModel.beverages.observe(this) {
+            if (it.isNotEmpty()) {
                 val g = GridFragment()
                 g.setFoodItems(it)
                 g.setViewModel(menuViewModel)
-                adapter.addFragment(g, DESSERTS)
+                adapter.addFragment(g, BEVERAGES)
                 binding.viewPager.adapter = adapter
                 tabs.setupWithViewPager(binding.viewPager)
             }
-        })
+        }
 
-        menuViewModel.errorMessage.observe(this, Observer {
-            if(!it.isNullOrEmpty()){
-                Toasty.error(this@OrderActivity,  it, Toast.LENGTH_SHORT, true).show()
+        menuViewModel.errorMessage.observe(this) {
+            if (!it.isNullOrEmpty()) {
+                Toasty.error(this@OrderActivity, it, Toast.LENGTH_SHORT, true).show()
             }
-        })
+        }
 
-        menuViewModel.showDetail.observe(this, Observer {
-            if(it){
+        menuViewModel.showDetail.observe(this) {
+            if (it) {
                 val intent = Intent(this, ItemDetalleActivity::class.java)
                 intent.putExtra("FoodItem", menuViewModel.selectedElement.value)
+                intent.putExtra("url", menuViewModel.selectedElement.value?.url)
                 startActivity(intent)
             }
-        })
+        }
 
-        pedidoViewModel.totalItems.observe(this, Observer {
-            if(it > 0){
+        pedidoViewModel.totalItems.observe(this) {
+            if (it > 0) {
                 binding.btnCarrito.visibility = View.VISIBLE
                 binding.btnCarrito.text = "Ver carrito (${it})"
             } else {
                 binding.btnCarrito.visibility = View.INVISIBLE
             }
-        })
+        }
     }
 
     //set up drawer

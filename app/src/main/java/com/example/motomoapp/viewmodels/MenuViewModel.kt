@@ -12,44 +12,48 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MenuViewModel @Inject constructor(
-    private val menuRepository: MenuRepository
+    val menuRepository: MenuRepository
 ):ViewModel() {
-    var _bestFoods = MutableLiveData<List<FoodItem>>()
-    var _drinks = MutableLiveData<List<FoodItem>>()
-    var _desserts = MutableLiveData<List<FoodItem>>()
+    var _mainDishes = MutableLiveData<List<FoodItem>>()
+    var _beverages = MutableLiveData<List<FoodItem>>()
+    var _ramen = MutableLiveData<List<FoodItem>>()
     var _errorMessage = MutableLiveData<String>()
     var _showDetail = MutableLiveData<Boolean>()
     var _selectedElement = MutableLiveData<FoodItem>()
 
-    val bestFoods = _bestFoods
-    val drinks = _drinks
-    val desserts = _desserts
+    val mainDishes = _mainDishes
+    val beverages = _beverages
+    val ramen = _ramen
     val errorMessage = _errorMessage
     val showDetail = _showDetail
     val selectedElement = _selectedElement
 
     init {
-        fetchBestFoods()
-        fetchDrinks()
-        fetchDesserts()
+        fetchMainDishes()
+        fetchRamen()
+        fetchBeverages()
         showDetail.postValue(false)
     }
 
     fun onRefresh() {
-        fetchBestFoods()
-        fetchDrinks()
-        fetchDesserts()
+        fetchMainDishes()
+        fetchRamen()
+        fetchBeverages()
     }
 
     //obtenemos los datos de la API
-    private fun fetchBestFoods() {
+    private fun fetchMainDishes() {
         // Get the menu from the API through the Repository
         // Using the square brackets we will be able to call directly the method get
         viewModelScope.launch {
             try {
-                val result = menuRepository.getBestFoods()
+                val result = menuRepository.getMainDishes()
                 if (result.isSuccessful) {
-                    _bestFoods.postValue(result.body()?.subList(0, 10))
+                    var list = result.body()
+                    if (list?.size!! > 10) {
+                        list = list.subList(0, 10)
+                    }
+                    _mainDishes.postValue(list!!)
                 } else {
                     _errorMessage.postValue("No se pudieron obtener los datos")
                 }
@@ -61,14 +65,18 @@ class MenuViewModel @Inject constructor(
     }
 
     //obtenemos los datos de la API
-    private fun fetchDrinks() {
+    private fun fetchBeverages() {
         // Get the menu from the API through the Repository
         // Using the square brackets we will be able to call directly the method get
         viewModelScope.launch {
             try {
-                val result = menuRepository.getDrinks()
+                val result = menuRepository.getBeverages()
                 if (result.isSuccessful) {
-                    _drinks.postValue(result.body()?.subList(0, 10))
+                    var list = result.body()
+                    if (list?.size!! > 10) {
+                        list = list.subList(0, 10)
+                    }
+                    _beverages.postValue(list!!)
                 } else {
                     _errorMessage.postValue("No se pudieron obtener los datos")
                 }
@@ -80,14 +88,18 @@ class MenuViewModel @Inject constructor(
     }
 
     //obtenemos los datos de la API
-    private fun fetchDesserts() {
+    private fun fetchRamen() {
         // Get the menu from the API through the Repository
         // Using the square brackets we will be able to call directly the method get
         viewModelScope.launch {
             try {
-                val result = menuRepository.getDesserts()
+                val result = menuRepository.getRamen()
                 if (result.isSuccessful) {
-                    _desserts.postValue(result.body()?.subList(0, 10))
+                    var list = result.body()
+                    if (list?.size!! > 10) {
+                        list = list.subList(0, 10)
+                    }
+                    _ramen.postValue(list!!)
                 } else {
                     _errorMessage.postValue("No se pudieron obtener los datos")
                 }
@@ -107,5 +119,12 @@ class MenuViewModel @Inject constructor(
         }
     }
 
+    fun pushOrder(json: String?){
+        viewModelScope.launch {
+            if(json != null){
+                menuRepository.pushOrder(json)
+            }
+        }
+    }
 
 }

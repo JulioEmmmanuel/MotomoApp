@@ -7,16 +7,20 @@ import javax.inject.Inject
 
 class MenuRepository @Inject constructor(private val foodService: FoodService) {
 
-    suspend fun getBestFoods(): Response<List<FoodItem>> {
-        return foodService.getBestFoods()
+    suspend fun getMainDishes(): Response<List<FoodItem>> {
+        return foodService.getMainDishes()
     }
 
-    suspend fun getDrinks(): Response<List<FoodItem>> {
-        return foodService.getDrinks()
+    suspend fun getBeverages(): Response<List<FoodItem>> {
+        return foodService.getBeverages()
     }
 
-    suspend fun getDesserts(): Response<List<FoodItem>> {
-        return foodService.getDesserts()
+    suspend fun getRamen(): Response<List<FoodItem>> {
+        return foodService.getRamen()
+    }
+
+    suspend fun pushOrder(order: String) {
+        foodService.pushOrder(order)
     }
 
 }

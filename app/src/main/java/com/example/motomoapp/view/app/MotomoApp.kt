@@ -12,6 +12,7 @@ import com.example.motomoapp.models.repositories.CarritoRepository
 import com.example.motomoapp.models.repositories.CreditCardRepository
 import com.example.motomoapp.models.repositories.GiftCardRepository
 import com.example.motomoapp.models.repositories.MenuRepository
+import com.example.motomoapp.viewmodels.MenuViewModel
 import com.google.firebase.FirebaseApp
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dagger.hilt.android.HiltAndroidApp
@@ -19,6 +20,7 @@ import dagger.hilt.android.HiltAndroidApp
 @HiltAndroidApp
 class MotomoApp:Application() {
 
+    lateinit var menuViewModel: MenuViewModel
     private val database by lazy { MotomoDb.getInstance(this)}
     val giftCardDao
         get() = database.giftCardDao()

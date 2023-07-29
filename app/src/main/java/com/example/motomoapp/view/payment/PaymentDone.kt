@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.ViewModelProvider
 import com.example.motomoapp.R
 import com.example.motomoapp.databinding.ActivityPaymentDoneBinding
@@ -12,14 +14,19 @@ import com.example.motomoapp.utils.OrderNotification
 import com.example.motomoapp.utils.executeOrRequestPermission
 import com.example.motomoapp.view.app.MotomoApp
 import com.example.motomoapp.view.menu.OrderActivity
+import com.example.motomoapp.viewmodels.MenuViewModel
 import com.example.motomoapp.viewmodels.PedidoViewModel
 import com.google.android.material.button.MaterialButton
+import kotlinx.coroutines.CoroutineScope
+import kotlin.coroutines.coroutineContext
 
 class PaymentDone : AppCompatActivity() {
 
     private lateinit var newOrderButton: MaterialButton
     private lateinit var binding: ActivityPaymentDoneBinding
     private lateinit var pedidoViewModel: PedidoViewModel
+
+    private val menuViewModel: MenuViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +40,7 @@ class PaymentDone : AppCompatActivity() {
             this.startActivity(intent)
         }
 
-        pedidoViewModel = PedidoViewModel((applicationContext as MotomoApp).carritoRepository)
-        pedidoViewModel.clear()
+        pushOrder()
 
         executeOrRequestPermission(this@PaymentDone) {
             OrderNotification(this@PaymentDone)
@@ -51,5 +57,12 @@ class PaymentDone : AppCompatActivity() {
         val animation = AnimationUtils.loadAnimation(this, R.anim.fade_in)
         binding.newOrderButton.startAnimation(animation)
 
+    }
+
+    private fun pushOrder() {
+        pedidoViewModel = PedidoViewModel((applicationContext as MotomoApp).carritoRepository)
+        val scope = (applicationContext as MotomoApp).menuViewModel
+        scope.pushOrder(pedidoViewModel.serialize())
+        pedidoViewModel.clear()
     }
 }
