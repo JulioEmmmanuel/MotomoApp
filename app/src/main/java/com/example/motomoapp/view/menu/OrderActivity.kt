@@ -37,6 +37,7 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
     private val menuViewModel: MenuViewModel by viewModels()
     private lateinit var pedidoViewModel: PedidoViewModel
+    private var tabFragments : HashMap<String, GridFragment> = HashMap()
 
     // Initializing the ViewPagerAdapter
     val adapter = ViewPagerAdapter(supportFragmentManager)
@@ -116,9 +117,14 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 val g = GridFragment()
                 g.setFoodItems(it)
                 g.setViewModel(menuViewModel)
-                adapter.addFragment(g, MAIN_TYPE)
-                binding.viewPager.adapter = adapter
-                tabs.setupWithViewPager(binding.viewPager)
+                tabFragments[MAIN_TYPE] = g
+                if (tabFragments.size == 3){
+                    tabFragments[MAIN_TYPE]?.let { it1 -> adapter.addFragment(it1, MAIN_TYPE) }
+                    tabFragments[RAMEN]?.let { it1 -> adapter.addFragment(it1, RAMEN) }
+                    tabFragments[BEVERAGES]?.let { it1 -> adapter.addFragment(it1, BEVERAGES) }
+                    binding.viewPager.adapter = adapter
+                    tabs.setupWithViewPager(binding.viewPager)
+                }
             }
         }
 
@@ -127,9 +133,14 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 val g = GridFragment()
                 g.setFoodItems(it)
                 g.setViewModel(menuViewModel)
-                adapter.addFragment(g, RAMEN)
-                binding.viewPager.adapter = adapter
-                tabs.setupWithViewPager(binding.viewPager)
+                tabFragments[RAMEN] = g
+                if (tabFragments.size == 3){
+                    tabFragments[MAIN_TYPE]?.let { it1 -> adapter.addFragment(it1, MAIN_TYPE) }
+                    tabFragments[RAMEN]?.let { it1 -> adapter.addFragment(it1, RAMEN) }
+                    tabFragments[BEVERAGES]?.let { it1 -> adapter.addFragment(it1, BEVERAGES) }
+                    binding.viewPager.adapter = adapter
+                    tabs.setupWithViewPager(binding.viewPager)
+                }
             }
         }
 
@@ -138,9 +149,14 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 val g = GridFragment()
                 g.setFoodItems(it)
                 g.setViewModel(menuViewModel)
-                adapter.addFragment(g, BEVERAGES)
-                binding.viewPager.adapter = adapter
-                tabs.setupWithViewPager(binding.viewPager)
+                tabFragments[BEVERAGES] = g
+                if (tabFragments.size == 3){
+                    tabFragments[MAIN_TYPE]?.let { it1 -> adapter.addFragment(it1, MAIN_TYPE) }
+                    tabFragments[RAMEN]?.let { it1 -> adapter.addFragment(it1, RAMEN) }
+                    tabFragments[BEVERAGES]?.let { it1 -> adapter.addFragment(it1, BEVERAGES) }
+                    binding.viewPager.adapter = adapter
+                    tabs.setupWithViewPager(binding.viewPager)
+                }
             }
         }
 
