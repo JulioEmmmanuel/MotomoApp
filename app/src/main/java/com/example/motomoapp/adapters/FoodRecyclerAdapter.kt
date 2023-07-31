@@ -1,11 +1,15 @@
 package com.example.motomoapp.adapters
 
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.motomoapp.databinding.FoodItemCardBinding
 import com.example.motomoapp.models.FoodItem
 import com.example.motomoapp.viewmodels.MenuViewModel
+import java.io.InputStream
+import java.net.URL
+
 
 class FoodRecyclerAdapter(
     private val foodItems: List<FoodItem>,
@@ -31,6 +35,10 @@ class FoodRecyclerAdapter(
             binding.foodItem = foodItem
             binding.viewModel = viewModel
             binding.price = "$" + String.format("%.2f", foodItem.price.toDouble())
+
+            // Load the image from a URL in a background thread using Kotlin coroutines
+            // val bitmap = BitmapFactory.decodeStream(URL(foodItem.url).content as InputStream)
+            // binding.imgFoodItem.setImageBitmap(bitmap)
         }
     }
 }

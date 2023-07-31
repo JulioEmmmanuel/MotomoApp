@@ -23,7 +23,7 @@ import es.dmoral.toasty.Toasty
 class ItemDetalleActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityItemDetalleBinding
-    private var cantidad:Int = 1;
+    private var cantidad:Int = 1
     private lateinit var foodItem:FoodItem
     private lateinit var pedidoViewModel: PedidoViewModel
 
@@ -48,6 +48,7 @@ class ItemDetalleActivity : AppCompatActivity(), NavigationView.OnNavigationItem
     //updateUI with selected food item
     private fun updateUI(){
         foodItem = intent.getParcelableExtra<FoodItem>("FoodItem")!!
+        foodItem.url = intent.getStringExtra("url")!!
         binding.foodItem = foodItem
         binding.amount = "1"
         binding.price = "$${String.format("%.2f", foodItem.price.toDouble())}"

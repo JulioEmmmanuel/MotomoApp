@@ -3,8 +3,11 @@ package com.example.motomoapp.models.repositories
 import androidx.lifecycle.MutableLiveData
 import com.example.motomoapp.models.FoodItem
 import com.example.motomoapp.models.PedidoItem
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.encodeToString
 
-class CarritoRepository() {
+class CarritoRepository {
     private var items = mutableMapOf<String, PedidoItem>()
     private var price = 0.0
     private var totalItems = 0
@@ -34,7 +37,7 @@ class CarritoRepository() {
                 foodItem.name,
                 foodItem.price.toDouble(),
                 amount,
-                foodItem.idImage
+                foodItem.url
             )
             items[foodItem.id] = item
         } else {
@@ -81,5 +84,11 @@ class CarritoRepository() {
         return items.values.toMutableList()
     }
 
+    fun serialize(): String {
+        return Json.encodeToString(ApiOrder(items.toMap(), price, totalItems))
+    }
+
+    @Serializable
+    internal data class ApiOrder(val items: Map<String, PedidoItem>, val price: Double, val totalItems: Int)
 
 }

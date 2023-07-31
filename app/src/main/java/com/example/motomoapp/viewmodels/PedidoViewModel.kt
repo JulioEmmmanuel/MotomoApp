@@ -62,6 +62,10 @@ class PedidoViewModel(val repository: CarritoRepository):ViewModel() {
         return repository.getElements()
     }
 
+    fun serialize(): String{
+        return repository.serialize()
+    }
+
     fun updateValues(){
         items.postValue(repository.getItems())
         price.postValue(repository.getPrice())

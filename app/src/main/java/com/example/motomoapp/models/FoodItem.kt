@@ -13,7 +13,8 @@ data class FoodItem (
     val name: String,
     @SerializedName("dsc") val description: String,
     var price: String,
-    @SerializedName("img") var idImage: String
+    @SerializedName("img") var idImage: String,
+    var url: String = ""
 )  : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,

@@ -5,6 +5,7 @@ plugins {
     id 'kotlin-kapt'
     id 'com.google.firebase.crashlytics'
     id 'dagger.hilt.android.plugin'
+    id 'kotlinx-serialization'
 }
 
 android {
@@ -100,5 +101,7 @@ dependencies {
     implementation('io.conekta:conektasdk:2.0') {
         exclude group: 'com.android.support'
     }
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1'
 
 }
