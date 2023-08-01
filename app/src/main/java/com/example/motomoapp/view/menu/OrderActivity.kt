@@ -65,7 +65,6 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         setButtons()
 
         val motomoApp = applicationContext as MotomoApp
-        motomoApp.menuViewModel = menuViewModel
         pedidoViewModel = PedidoViewModel(motomoApp.carritoRepository)
 
         tabs = findViewById(R.id.tabs)
@@ -119,11 +118,7 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 g.setViewModel(menuViewModel)
                 tabFragments[MAIN_TYPE] = g
                 if (tabFragments.size == 3){
-                    tabFragments[MAIN_TYPE]?.let { it1 -> adapter.addFragment(it1, MAIN_TYPE) }
-                    tabFragments[RAMEN]?.let { it1 -> adapter.addFragment(it1, RAMEN) }
-                    tabFragments[BEVERAGES]?.let { it1 -> adapter.addFragment(it1, BEVERAGES) }
-                    binding.viewPager.adapter = adapter
-                    tabs.setupWithViewPager(binding.viewPager)
+                    addFragments()
                 }
             }
         }
@@ -135,11 +130,7 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 g.setViewModel(menuViewModel)
                 tabFragments[RAMEN] = g
                 if (tabFragments.size == 3){
-                    tabFragments[MAIN_TYPE]?.let { it1 -> adapter.addFragment(it1, MAIN_TYPE) }
-                    tabFragments[RAMEN]?.let { it1 -> adapter.addFragment(it1, RAMEN) }
-                    tabFragments[BEVERAGES]?.let { it1 -> adapter.addFragment(it1, BEVERAGES) }
-                    binding.viewPager.adapter = adapter
-                    tabs.setupWithViewPager(binding.viewPager)
+                    addFragments()
                 }
             }
         }
@@ -151,11 +142,7 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 g.setViewModel(menuViewModel)
                 tabFragments[BEVERAGES] = g
                 if (tabFragments.size == 3){
-                    tabFragments[MAIN_TYPE]?.let { it1 -> adapter.addFragment(it1, MAIN_TYPE) }
-                    tabFragments[RAMEN]?.let { it1 -> adapter.addFragment(it1, RAMEN) }
-                    tabFragments[BEVERAGES]?.let { it1 -> adapter.addFragment(it1, BEVERAGES) }
-                    binding.viewPager.adapter = adapter
-                    tabs.setupWithViewPager(binding.viewPager)
+                    addFragments()
                 }
             }
         }
@@ -170,7 +157,6 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             if (it) {
                 val intent = Intent(this, ItemDetalleActivity::class.java)
                 intent.putExtra("FoodItem", menuViewModel.selectedElement.value)
-                intent.putExtra("url", menuViewModel.selectedElement.value?.url)
                 startActivity(intent)
             }
         }
@@ -183,6 +169,15 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 binding.btnCarrito.visibility = View.INVISIBLE
             }
         }
+    }
+
+    //add fragments to the adapter and set it up
+    private fun addFragments(){
+        tabFragments[MAIN_TYPE]?.let { it1 -> adapter.addFragment(it1, MAIN_TYPE) }
+        tabFragments[RAMEN]?.let { it1 -> adapter.addFragment(it1, RAMEN) }
+        tabFragments[BEVERAGES]?.let { it1 -> adapter.addFragment(it1, BEVERAGES) }
+        binding.viewPager.adapter = adapter
+        tabs.setupWithViewPager(binding.viewPager)
     }
 
     //set up drawer

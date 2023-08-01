@@ -15,18 +15,19 @@ import com.example.motomoapp.utils.executeOrRequestPermission
 import com.example.motomoapp.view.app.MotomoApp
 import com.example.motomoapp.view.menu.OrderActivity
 import com.example.motomoapp.viewmodels.MenuViewModel
+import com.example.motomoapp.viewmodels.OrderViewModel
 import com.example.motomoapp.viewmodels.PedidoViewModel
 import com.google.android.material.button.MaterialButton
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlin.coroutines.coroutineContext
 
+@AndroidEntryPoint
 class PaymentDone : AppCompatActivity() {
 
-    private lateinit var newOrderButton: MaterialButton
     private lateinit var binding: ActivityPaymentDoneBinding
     private lateinit var pedidoViewModel: PedidoViewModel
-
-    private val menuViewModel: MenuViewModel by viewModels()
+    private val orderViewModel: OrderViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,10 +60,10 @@ class PaymentDone : AppCompatActivity() {
 
     }
 
+    //push order to the API
     private fun pushOrder() {
         pedidoViewModel = PedidoViewModel((applicationContext as MotomoApp).carritoRepository)
-        val scope = (applicationContext as MotomoApp).menuViewModel
-        scope.pushOrder(pedidoViewModel.serialize())
+        orderViewModel.pushOrder(pedidoViewModel.serialize())
         pedidoViewModel.clear()
     }
 }
