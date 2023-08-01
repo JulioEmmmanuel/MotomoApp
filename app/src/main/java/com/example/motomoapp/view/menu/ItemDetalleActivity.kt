@@ -16,6 +16,8 @@ import com.example.motomoapp.view.payment.MyGiftCards
 import com.example.motomoapp.models.repositories.CarritoRepository
 import com.example.motomoapp.view.payment.MyCreditCards
 import com.example.motomoapp.view.app.MotomoApp
+import com.example.motomoapp.view.options.MyCreditCardsVO
+import com.example.motomoapp.view.options.MyGiftCardsVO
 import com.example.motomoapp.viewmodels.PedidoViewModel
 import com.google.android.material.navigation.NavigationView
 import es.dmoral.toasty.Toasty
@@ -115,11 +117,11 @@ class ItemDetalleActivity : AppCompatActivity(), NavigationView.OnNavigationItem
 
         when(item.itemId){
             R.id.credit_card -> {
-                val intent = Intent(this, MyCreditCards::class.java)
+                val intent = Intent(this, MyCreditCardsVO::class.java)
                 this.startActivity(intent)
             }
             R.id.giftcard -> {
-                val intent = Intent(this, MyGiftCards::class.java)
+                val intent = Intent(this, MyGiftCardsVO::class.java)
                 this.startActivity(intent)
             }
             R.id.order -> {

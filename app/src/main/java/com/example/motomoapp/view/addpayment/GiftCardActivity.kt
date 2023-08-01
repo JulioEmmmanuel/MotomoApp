@@ -13,6 +13,8 @@ import com.example.motomoapp.R
 import com.example.motomoapp.databinding.ActivityGiftCardBinding
 import com.example.motomoapp.view.app.MotomoApp
 import com.example.motomoapp.view.inicio.MenuInicioActivity
+import com.example.motomoapp.view.options.MyCreditCardsVO
+import com.example.motomoapp.view.options.MyGiftCardsVO
 import com.example.motomoapp.view.payment.MyGiftCards
 import com.example.motomoapp.viewmodels.giftcard.AddGiftCardViewModel
 import es.dmoral.toasty.Toasty
@@ -52,6 +54,9 @@ class GiftCardActivity : AppCompatActivity() {
                 val from = intent.extras?.getString("from")
                 if(from == "mycards"){
                     val i = Intent(this, MyGiftCards::class.java)
+                    startActivity(i)
+                } else if(from == "mycardsvo") {
+                    val i = Intent(this, MyGiftCardsVO::class.java)
                     startActivity(i)
                 } else {
                     val i = Intent(this, MenuInicioActivity::class.java)

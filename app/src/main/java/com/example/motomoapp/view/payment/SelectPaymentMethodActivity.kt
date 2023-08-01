@@ -12,6 +12,8 @@ import com.example.motomoapp.R
 import com.google.android.material.navigation.NavigationView
 import com.example.motomoapp.databinding.ActivitySelectPaymentMethodBinding
 import com.example.motomoapp.view.menu.CartSummaryActivity
+import com.example.motomoapp.view.options.MyCreditCardsVO
+import com.example.motomoapp.view.options.MyGiftCardsVO
 
 class SelectPaymentMethodActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -71,11 +73,11 @@ class SelectPaymentMethodActivity : AppCompatActivity(), NavigationView.OnNaviga
 
         when(item.itemId){
             R.id.credit_card -> {
-                val intent = Intent(this, MyCreditCards::class.java)
+                val intent = Intent(this, MyCreditCardsVO::class.java)
                 this.startActivity(intent)
             }
             R.id.giftcard -> {
-                val intent = Intent(this, MyGiftCards::class.java)
+                val intent = Intent(this, MyGiftCardsVO::class.java)
                 this.startActivity(intent)
             }
             R.id.order -> {
