@@ -13,11 +13,10 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import com.example.motomoapp.R
 import com.example.motomoapp.databinding.ActivityCreditCardBinding
-import com.example.motomoapp.view.app.MotomoApp
+import com.example.motomoapp.MotomoApp
 import com.example.motomoapp.view.inicio.MenuInicioActivity
 import com.example.motomoapp.view.options.MyCreditCardsVO
 import com.example.motomoapp.view.payment.MyCreditCards
-import com.example.motomoapp.view.payment.MyGiftCards
 import com.example.motomoapp.viewmodels.creditcard.AddCreditCardViewModel
 import es.dmoral.toasty.Toasty
 import io.conekta.conektasdk.Conekta

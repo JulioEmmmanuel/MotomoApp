@@ -6,21 +6,15 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.ViewModelProvider
 import com.example.motomoapp.R
 import com.example.motomoapp.databinding.ActivityPaymentDoneBinding
 import com.example.motomoapp.utils.OrderNotification
 import com.example.motomoapp.utils.executeOrRequestPermission
-import com.example.motomoapp.view.app.MotomoApp
+import com.example.motomoapp.MotomoApp
 import com.example.motomoapp.view.menu.OrderActivity
-import com.example.motomoapp.viewmodels.MenuViewModel
 import com.example.motomoapp.viewmodels.OrderViewModel
 import com.example.motomoapp.viewmodels.PedidoViewModel
-import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlin.coroutines.coroutineContext
 
 @AndroidEntryPoint
 class PaymentDone : AppCompatActivity() {

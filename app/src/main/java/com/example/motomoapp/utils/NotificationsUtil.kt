@@ -7,7 +7,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.example.motomoapp.view.app.MotomoApp
+import com.example.motomoapp.MotomoApp
 import com.example.motomoapp.view.menu.OrderActivity
 import com.example.motomoapp.R
 import com.example.motomoapp.receivers.NotificationReceiver

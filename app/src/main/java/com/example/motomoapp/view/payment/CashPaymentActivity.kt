@@ -4,14 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.example.motomoapp.R
 import com.example.motomoapp.utils.OrderNotification
 import com.example.motomoapp.utils.ReceiverNotification
 import com.example.motomoapp.utils.executeOrRequestPermission
-import com.example.motomoapp.view.app.MotomoApp
+import com.example.motomoapp.MotomoApp
 import com.example.motomoapp.view.menu.OrderActivity
-import com.example.motomoapp.viewmodels.MenuViewModel
 import com.example.motomoapp.viewmodels.OrderViewModel
 import com.example.motomoapp.viewmodels.PedidoViewModel
 import com.google.android.material.button.MaterialButton

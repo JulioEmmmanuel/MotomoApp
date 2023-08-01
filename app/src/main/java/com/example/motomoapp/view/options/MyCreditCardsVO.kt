@@ -10,15 +10,11 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.motomoapp.R
-import com.example.motomoapp.adapters.CreditCardRecyclerAdapter
 import com.example.motomoapp.adapters.CreditCardVORecyclerAdapter
 import com.example.motomoapp.databinding.ActivityMyCreditCartsBinding
 import com.example.motomoapp.view.addpayment.CreditCardActivity
-import com.example.motomoapp.view.app.MotomoApp
+import com.example.motomoapp.MotomoApp
 import com.example.motomoapp.view.menu.CartSummaryActivity
-import com.example.motomoapp.view.payment.MyCreditCards
-import com.example.motomoapp.view.payment.MyGiftCards
-import com.example.motomoapp.view.payment.SplashScreenProcessingPayment
 import com.example.motomoapp.viewmodels.creditcard.CreditCardListViewModel
 import com.google.android.material.navigation.NavigationView
 
