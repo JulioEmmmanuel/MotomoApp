@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.example.motomoapp.view.app.MotomoApp.Companion.CHANNEL_ID
+import com.example.motomoapp.MotomoApp.Companion.CHANNEL_ID
 import com.example.motomoapp.R
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage

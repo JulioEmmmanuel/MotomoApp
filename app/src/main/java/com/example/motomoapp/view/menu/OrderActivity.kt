@@ -14,13 +14,10 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.lifecycle.Observer
 import com.example.motomoapp.R
 import com.example.motomoapp.adapters.ViewPagerAdapter
 import com.example.motomoapp.databinding.ActivityOrderBinding
-import com.example.motomoapp.view.payment.MyGiftCards
-import com.example.motomoapp.view.payment.MyCreditCards
-import com.example.motomoapp.view.app.MotomoApp
+import com.example.motomoapp.MotomoApp
 import com.example.motomoapp.view.inicio.MenuInicioActivity
 import com.example.motomoapp.view.options.MyCreditCardsVO
 import com.example.motomoapp.view.options.MyGiftCardsVO

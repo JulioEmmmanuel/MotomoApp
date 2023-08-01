@@ -15,7 +15,7 @@ import com.example.motomoapp.view.addpayment.GiftCardActivity
 import com.example.motomoapp.R
 import com.example.motomoapp.adapters.GiftCardRecyclerAdapter
 import com.example.motomoapp.databinding.ActivityMyGiftCardsBinding
-import com.example.motomoapp.view.app.MotomoApp
+import com.example.motomoapp.MotomoApp
 import com.example.motomoapp.view.options.MyCreditCardsVO
 import com.example.motomoapp.view.options.MyGiftCardsVO
 import com.example.motomoapp.viewmodels.PedidoViewModel
