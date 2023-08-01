@@ -1,29 +1,29 @@
-package com.example.motomoapp.view.payment
+package com.example.motomoapp.view.options
 
-import android.os.Bundle
 import android.content.Intent
+import android.os.Bundle
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.motomoapp.R
 import com.example.motomoapp.adapters.CreditCardRecyclerAdapter
-import com.example.motomoapp.adapters.GiftCardRecyclerAdapter
+import com.example.motomoapp.adapters.CreditCardVORecyclerAdapter
 import com.example.motomoapp.databinding.ActivityMyCreditCartsBinding
 import com.example.motomoapp.view.addpayment.CreditCardActivity
 import com.example.motomoapp.view.app.MotomoApp
 import com.example.motomoapp.view.menu.CartSummaryActivity
-import com.example.motomoapp.view.options.MyCreditCardsVO
-import com.example.motomoapp.view.options.MyGiftCardsVO
+import com.example.motomoapp.view.payment.MyCreditCards
+import com.example.motomoapp.view.payment.MyGiftCards
+import com.example.motomoapp.view.payment.SplashScreenProcessingPayment
 import com.example.motomoapp.viewmodels.creditcard.CreditCardListViewModel
 import com.google.android.material.navigation.NavigationView
-import es.dmoral.toasty.Toasty
 
-class MyCreditCards : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MyCreditCardsVO: AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
 
     //Variables Globales
 
@@ -51,7 +51,7 @@ class MyCreditCards : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     private fun setupButtonListeners(){
         binding.btnAgregar.setOnClickListener {
             val intent = Intent(this, CreditCardActivity::class.java)
-            intent.putExtra("from", "mycards")
+            intent.putExtra("from", "mycardsvo")
             this.startActivity(intent)
         }
 
@@ -62,16 +62,10 @@ class MyCreditCards : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
     private fun setupObservers(){
         creditCardViewModel.creditCards.observe(this, Observer{
-            val adapter = CreditCardRecyclerAdapter(it, creditCardViewModel)
+            val adapter = CreditCardVORecyclerAdapter(it, creditCardViewModel)
             binding.recyclerViewCards.adapter = adapter
         })
 
-        creditCardViewModel.updated.observe(this, Observer {
-            if(it) {
-                val i = Intent(this, SplashScreenProcessingPayment::class.java)
-                startActivity(i)
-            }
-        })
     }
 
     //setup app bar

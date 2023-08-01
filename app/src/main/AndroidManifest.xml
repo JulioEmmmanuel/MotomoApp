@@ -72,6 +72,13 @@
             android:name=".view.inicio.MenuInicioActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".view.options.MyCreditCardsVO"
+            android:exported="true" />
+        <activity
+            android:name=".view.options.MyGiftCardsVO"
+            android:exported="true" />
+
 
         <receiver android:name=".receivers.NotificationReceiver"
             android:exported="true"/>

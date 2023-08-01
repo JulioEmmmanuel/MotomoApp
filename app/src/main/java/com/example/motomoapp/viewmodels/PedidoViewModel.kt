@@ -53,6 +53,7 @@ class PedidoViewModel(val repository: CarritoRepository):ViewModel() {
         updateValues()
     }
 
+
     fun clear(){
         repository.clear()
         updateValues()

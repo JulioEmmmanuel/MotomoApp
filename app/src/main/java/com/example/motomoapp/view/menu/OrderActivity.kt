@@ -22,6 +22,8 @@ import com.example.motomoapp.view.payment.MyGiftCards
 import com.example.motomoapp.view.payment.MyCreditCards
 import com.example.motomoapp.view.app.MotomoApp
 import com.example.motomoapp.view.inicio.MenuInicioActivity
+import com.example.motomoapp.view.options.MyCreditCardsVO
+import com.example.motomoapp.view.options.MyGiftCardsVO
 import com.example.motomoapp.viewmodels.MenuViewModel
 import com.example.motomoapp.viewmodels.PedidoViewModel
 import com.google.android.material.navigation.NavigationView
@@ -195,11 +197,11 @@ class OrderActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
         when(item.itemId){
             R.id.credit_card -> {
-                val intent = Intent(this, MyCreditCards::class.java)
+                val intent = Intent(this, MyCreditCardsVO::class.java)
                 this.startActivity(intent)
             }
             R.id.giftcard -> {
-                val intent = Intent(this, MyGiftCards::class.java)
+                val intent = Intent(this, MyGiftCardsVO::class.java)
                 this.startActivity(intent)
             }
             R.id.order -> {
