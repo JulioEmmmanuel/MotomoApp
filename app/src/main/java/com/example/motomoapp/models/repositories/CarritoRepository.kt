@@ -37,7 +37,7 @@ class CarritoRepository {
                 foodItem.name,
                 foodItem.price.toDouble(),
                 amount,
-                foodItem.url
+                foodItem.idImage
             )
             items[foodItem.id] = item
         } else {

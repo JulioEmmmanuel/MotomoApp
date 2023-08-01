@@ -48,7 +48,6 @@ class ItemDetalleActivity : AppCompatActivity(), NavigationView.OnNavigationItem
     //updateUI with selected food item
     private fun updateUI(){
         foodItem = intent.getParcelableExtra<FoodItem>("FoodItem")!!
-        foodItem.url = intent.getStringExtra("url")!!
         binding.foodItem = foodItem
         binding.amount = "1"
         binding.price = "$${String.format("%.2f", foodItem.price.toDouble())}"
@@ -77,10 +76,8 @@ class ItemDetalleActivity : AppCompatActivity(), NavigationView.OnNavigationItem
             finish()
         }
         binding.btnAgregar.setOnClickListener(){
-            if(foodItem != null) {
-                pedidoViewModel.addItem(foodItem!!, cantidad)
-                finish()
-            }
+            pedidoViewModel.addItem(foodItem, cantidad)
+            finish()
         }
 
     }

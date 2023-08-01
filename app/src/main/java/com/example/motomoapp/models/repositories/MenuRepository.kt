@@ -19,8 +19,4 @@ class MenuRepository @Inject constructor(private val foodService: FoodService) {
         return foodService.getRamen()
     }
 
-    suspend fun pushOrder(order: String) {
-        foodService.pushOrder(order)
-    }
-
 }

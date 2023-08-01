@@ -17,8 +17,4 @@ interface FoodService {
 
     @GET("api/v1/menu/Ramen")
     suspend fun getRamen(): Response<List<FoodItem>>
-
-    @POST("api/v1/orders")
-    @Headers("Content-Type: application/json")
-    suspend fun pushOrder(@Body order: String)
 }

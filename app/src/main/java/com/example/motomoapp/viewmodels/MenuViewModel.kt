@@ -119,12 +119,4 @@ class MenuViewModel @Inject constructor(
         }
     }
 
-    fun pushOrder(json: String?){
-        viewModelScope.launch {
-            if(json != null){
-                menuRepository.pushOrder(json)
-            }
-        }
-    }
-
 }

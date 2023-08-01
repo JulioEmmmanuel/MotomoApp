@@ -2,6 +2,7 @@ package com.example.motomoapp.view.payment
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.motomoapp.R
@@ -10,13 +11,18 @@ import com.example.motomoapp.utils.ReceiverNotification
 import com.example.motomoapp.utils.executeOrRequestPermission
 import com.example.motomoapp.view.app.MotomoApp
 import com.example.motomoapp.view.menu.OrderActivity
+import com.example.motomoapp.viewmodels.MenuViewModel
+import com.example.motomoapp.viewmodels.OrderViewModel
 import com.example.motomoapp.viewmodels.PedidoViewModel
 import com.google.android.material.button.MaterialButton
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CashPaymentActivity : AppCompatActivity() {
 
     private lateinit var newOrderButton: MaterialButton
     private lateinit var pedidoViewModel: PedidoViewModel
+    private val orderViewModel: OrderViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,10 +46,11 @@ class CashPaymentActivity : AppCompatActivity() {
 
     }
 
+    //push order to the API
     private fun pushOrder() {
         pedidoViewModel = PedidoViewModel((applicationContext as MotomoApp).carritoRepository)
-        val scope = (applicationContext as MotomoApp).menuViewModel
-        scope.pushOrder(pedidoViewModel.serialize())
+        orderViewModel.pushOrder(pedidoViewModel.serialize())
         pedidoViewModel.clear()
     }
+
 }

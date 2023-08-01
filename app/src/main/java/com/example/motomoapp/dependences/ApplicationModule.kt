@@ -1,6 +1,7 @@
 package com.example.motomoapp.dependences
 
 import com.example.motomoapp.models.api.FoodService
+import com.example.motomoapp.models.api.OrderService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,5 +30,10 @@ class ApplicationModule {
     @Singleton
     fun provideFoodService(retrofit: Retrofit): FoodService =
         retrofit.create(FoodService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideOrderService(retrofit: Retrofit): OrderService =
+        retrofit.create(OrderService::class.java)
 
 }
